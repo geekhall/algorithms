@@ -1,7 +1,10 @@
 # 00000. Title
 
+_Read this in other languages:_
+[_简体中文_](README.md)
+
 Description
- 
+
 ## 题目大意
 
 

@@ -1,3 +1,4 @@
 # 标题
 
-Read this in other languages: [English](https://github.com/geekhall/algorithms/tree/main/algorithm/math/title/RADME.en-US.md)
+_Read this in other languages:_
+[_English_](README.en-US.md)

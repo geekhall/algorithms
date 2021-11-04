@@ -2,8 +2,9 @@
 # filename : commit.sh
 # author   : geekhall
 # version  : v1.0.0
-# function : 1. Get current date and time.
-#            2. commit and push to github and gitee. 
+# function : quick commit tool
+#            1. Get current date and time.
+#            2. commit and push to github, gitee and gitlab.
 #########################################################
 usage()
 {
@@ -23,10 +24,10 @@ fi
 ###############
 # copy file
 ###############
-	
+
 git add .
 git commit -m "$comment"
-git push github 
+git push github
 git push gitee
 git push gitlab
 echo "commit ok"
