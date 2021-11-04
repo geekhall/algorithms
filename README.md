@@ -10,23 +10,23 @@ _Read this in other languages:_
 
 是计算机中存储、组织数据的方式。 数据结构是一种具有一定逻辑关系，在计算机中应用某种存储结构，并且封装了相应操作的数据元素集合。 它包含三方面的内容，逻辑关系、存储关系及操作。 不同种类的数据结构适合于不同种类的应用，而部分甚至专门用于特定的作业任务。
 
-* 数组
-* 链表
-* 双向链表
-* 队列
-* 栈
-* 哈希表（散列表）
-* 堆
-* 优先队列
-* 字典树
-* 树
-  * 二叉查找树（Balanced Binary Tree）
-  * AVL树
-  * 红黑树
-  * 线段树（Segment Tree）
-  * 树状数组（Fenwick Tree，二叉索引树）
-* 图
-* 并查集
+* [数组](data-structures/array)
+* [链表](data-structures/linked-list)
+* [双向链表](data-structures/doubly-linked-list)
+* [队列](data-structures/queue)
+* [栈](data-structures/stack)
+* [哈希表（散列表）](data-structures/hash-table)
+* [堆](data-structures/heap)
+* [优先队列](data-structures/priority-queue)
+* [字典树](data-structures/trie)
+* [树](data-structures/tree)
+  * [二叉查找树](data-structures/tree/binary-search-tree)
+  * [AVL树](data-structures/tree/avl-tree)
+  * [红黑树](data-structures/tree/red-black-tree)
+  * [线段树](data-structures/tree/segment-tree)
+  * [树状数组](data-structures/tree/fenwick-tree)
+* [图](data-structures/graph)
+* [并查集](disjoint-sets)
 
 ## 算法
 

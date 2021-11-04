@@ -1,4 +1,4 @@
-# 标题
+# 并查集
 
 _Read this in other languages:_
 [_English_](README.en-US.md)
