@@ -1,8 +1,10 @@
-# Algorithm Code
+# Algorithms
+
+_Read this in other languages:_
+[_简体中文_](README.md)
 
 本库包含了多种基于Golang语言的数据结构和算法。
 每种算法和数据结构都有自己的 README，包含相关说明和链接以及源码，以便进一步阅读。
-Read this in other language: [English](https://github.com/geekhall/algorithms)
 
 ## 数据结构
 
