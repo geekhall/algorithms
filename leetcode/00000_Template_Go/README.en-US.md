@@ -1,7 +1,7 @@
 # 00000. Title
 
 _Read this in other languages:_
-[_Englist_](README.en-US.md),
+[_简体中文_](README.md),
 
 Description
 

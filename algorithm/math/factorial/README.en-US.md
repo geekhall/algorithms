@@ -1,3 +1,4 @@
-# Factorial
+# Title
 
-Read this in other languages: [简体中文](https://github.com/geekhall/algorithms/tree/main/algorithm/math/factorial/RADME.md)
+_Read this in other languages:_
+[_简体中文_](README.md),
