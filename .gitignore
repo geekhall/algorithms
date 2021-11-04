@@ -1,3 +1,6 @@
+#############################################
+# ignore file for Go
+#############################################
 # Binaries for programs and plugins
 *.exe
 *.exe~
@@ -13,3 +16,15 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+#############################################
+# ignore file
+#############################################
+*.class
+*.swp
+.idea/
+.vscode/
+.DS_Store/
+.DS_Store
+/TempSource/
+

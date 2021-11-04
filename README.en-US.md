@@ -2,7 +2,7 @@
 
 本库包含了多种基于Golang语言的数据结构和算法。
 每种算法和数据结构都有自己的 README，包含相关说明和链接以及源码，以便进一步阅读。
-Read this in other language: [English](https://github.com/geekhall/algorithms/blob/main/README.en-US.md)
+Read this in other language: [English](https://github.com/geekhall/algorithms)
 
 ## 数据结构
 
@@ -18,11 +18,11 @@ Read this in other language: [English](https://github.com/geekhall/algorithms/bl
 * 优先队列
 * 字典树
 * 树
-  * 二叉查找树（Balanced Binary Tree）
+  * 二叉查找树
   * AVL树
   * 红黑树
-  * 线段树（Segment Tree）
-  * 树状数组（Fenwick Tree，二叉索引树）
+  * 线段树
+  * 树状数组（二叉索引树）
 * 图
 * 并查集
 
@@ -31,7 +31,7 @@ Read this in other language: [English](https://github.com/geekhall/algorithms/bl
 ### 数学相关
 
 * 位运算 - set/get/update/clear 位、乘以/除以二进制位 、变负等
-* 阶乘（Factorial）
+* 阶乘
 * 斐波那契数 - 经典 和 闭式 版本
 * 素数检测 (排除法)
 * 欧几里得算法 - 计算最大公约数 (GCD)
@@ -105,7 +105,7 @@ Read this in other language: [English](https://github.com/geekhall/algorithms/bl
 * 广度优先搜索 (BFS)
 * 克鲁斯克尔演算法 - 寻找加权无向图的最小生成树 (MST)
 * 戴克斯特拉算法 - 找到图中所有顶点的最短路径
-* 贝尔曼-福特算法 - 找到图中所有顶点的最短路径
+* 贝尔曼-福特算法（Bellman-ford） - 找到图中所有顶点的最短路径
 * 弗洛伊德算法 - 找到所有顶点对 之间的最短路径
 * 判圈算法 - 对于有向图和无向图 (基于 DFS 和不相交集的版本)
 * 普林演算法 - 寻找加权无向图的最小生成树 (MST)
@@ -180,7 +180,7 @@ Read this in other language: [English](https://github.com/geekhall/algorithms/bl
 * 弗洛伊德算法 - 找到所有顶点对之间的最短路径
 * 正则表达式匹配
 
-### 回溯 （Backtracking）
+### 回溯
 
 类似于 BF 算法 试图产生所有可能的解决方案，但每次生成解决方案测试如果它满足所有条件，那么只有继续生成后续解决方案。否则回溯并继续寻找不同路径的解决方案。
 
