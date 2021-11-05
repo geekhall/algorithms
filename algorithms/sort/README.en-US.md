@@ -1,7 +1,7 @@
-# 排序 （Sort）
+# Sort
 
 _Read this in other languages:_
-[_English_](README.en-US.md)
+[_简体中文_](README.md)
 
 ![](https://gitee.com/geekhall/pic/raw/main/img/20210918_algo_all.png)
 

@@ -1,15 +1,15 @@
-# 树的遍历 （Traversal）
+# Traversal
 
 _Read this in other languages:_
 [_English_](README.en-US.md)
 
 
-## 深度优先遍历 （DFS）
+## Deepth-First-Search
 
-### 前序遍历 （Pre-Order Traversal）
+### Pre-Order Traversal
 
-### 中序遍历 （In-Order Traversal）
+### In-Order Traversal
 
-### 后序遍历 （Post-Order Traversal）
+### Post-Order Traversal
 
-## 广度优先遍历 （BFS）
+## Breadth-First-Search

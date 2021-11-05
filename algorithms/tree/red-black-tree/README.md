@@ -1,4 +1,4 @@
-# 红黑树 （Red-Black Tree）
+# 红黑树
 
 _Read this in other languages:_
 [_English_](README.en-US.md)
