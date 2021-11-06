@@ -55,7 +55,8 @@ public class HeapShiftDown<T extends Comparable> {
     }
 
     /**
-     * shift up
+     * k位置的元素向上移动（Shift Up）至合适的位置
+     * 元素下标从1开始
      */
     private void shiftUp(int k){
         while (k>1 && data[k/2].compareTo(data[k])<0){
@@ -65,12 +66,13 @@ public class HeapShiftDown<T extends Comparable> {
     }
 
     /**
-     * shift down
+     * k位置的元素向下移动（Shift Down）至合适位置
+     * 元素下标从1开始。
      */
     private void shiftDown(int k){
         while( 2*k <= count){
             int j = 2*k;    // 在此轮循环中，data[k]和data[j]交换位置
-            if ( j+1 <=count && data[j+1].compareTo(data[j])>0)
+            if ( j+1 <= count && data[j+1].compareTo(data[j])>0)
                 j++;
             // data[j] 是 data[2*k]和data[2*k+1]中的最大值
             if( data[k].compareTo(data[j])>=0) break;
