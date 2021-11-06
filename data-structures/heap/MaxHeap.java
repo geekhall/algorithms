@@ -52,14 +52,37 @@ class MaxHeap<T> {
         }
 
         int heapSize = arr.length;
-        swap(arr, i, --heapSize);
+        swap(arr, 0, --heapSize);
         while(heapSize > 0) {
             heapify(arr, 0, heapSize);
             swap(arr, 0, --heapSize);
         }
     }
+    public static void swap(int[] arr, int i, int j){
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
+    public static void printArray(int[] arr){
+        for (int i = 0; i<arr.length; i++){
+            if (i==0) {
+                System.out.print("[");
+            }
+            System.out.print(arr[i]);
+            if ( i == arr.length - 1 ) {
+                System.out.println("]");
+            } else {
+                System.out.print(", ");
+            }
+        }
+    }
     public static void main(String[] args) {
         MaxHeap<Integer> maxHeap = new MaxHeap<Integer>(100);
         System.out.println(maxHeap.size());
+        int[] arr = {7,2,5,6,12,3,8};
+        printArray(arr);
+        heapSort(arr);
+        printArray(arr);
+
     }
 }
