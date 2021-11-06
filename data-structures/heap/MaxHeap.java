@@ -18,7 +18,7 @@ class MaxHeap<T> {
         return count == 0;
     }
 
-    // 某个数在index位置， 能否往下移动
+    // 某个数在index位置， 能否往下移动(ShiftDown)
     public static void heapify(int[] arr, int index, int heapSize) {
         int left = index * 2 + 1; // 左孩子的下标
         while (left < heapSize) { // 下方还有孩子的时候
@@ -42,6 +42,9 @@ class MaxHeap<T> {
         }
     }
 
+    /**
+     * Heap Sort
+     */
     public static void heapSort(int[] arr){
         if (arr == null || arr.length < 2) {
             return;
@@ -83,6 +86,5 @@ class MaxHeap<T> {
         printArray(arr);
         heapSort(arr);
         printArray(arr);
-
     }
 }

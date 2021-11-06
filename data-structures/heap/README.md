@@ -19,5 +19,6 @@ _Read this in other languages:_
 
 ![](https://gitee.com/geekhall/pic/raw/main/img/20211105205916.png)
 
-## Heapfy
+优先级队列，就是堆
 
+## Heapfy
