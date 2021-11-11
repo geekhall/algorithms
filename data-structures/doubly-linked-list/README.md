@@ -33,7 +33,6 @@ type ListNode struct {
 
 ![](https://gitee.com/geekhall/pic/raw/main/img/20211111115357.png)
 
-
 ## 常用操作
 
 ### 插入
@@ -49,3 +48,14 @@ p->next = s;            /* P的next指向s */
 
 ![](https://gitee.com/geekhall/pic/raw/main/img/20211111132050.png)
 
+### 删除
+
+核心代码
+
+```c
+p->prev->next = p->next;
+p->next->prev = p->prev;
+free(p);
+```
+
+![](https://gitee.com/geekhall/pic/raw/main/img/20211111133449.png)

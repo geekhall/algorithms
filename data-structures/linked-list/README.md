@@ -50,8 +50,6 @@ type ListNode struct {
 
 ### 删除
 
-![](https://gitee.com/geekhall/pic/raw/main/img/20211111122845.png)
-
 #### 核心代码
 
 ```C
@@ -60,4 +58,14 @@ p->next->prior = p->prior;   /* 把 p->prior 赋值给 p->next 的前驱 */
 free(p);
 ```
 
+![](https://gitee.com/geekhall/pic/raw/main/img/20211111122845.png)
+
 ### 查找、遍历
+
+核心代码
+
+```c
+while(p->next != null) {
+    // do something
+}
+```
