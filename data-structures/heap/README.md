@@ -23,6 +23,8 @@ _Read this in other languages:_
 
 ## Heapfy
 
+堆化（Heapfy）的过程，就是将新的元素插入大根堆或者小根堆并且维持堆结构的过程。
+
 核心代码
 
 ```java
