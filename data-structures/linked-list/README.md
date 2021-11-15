@@ -69,3 +69,7 @@ while(p->next != null) {
     // do something
 }
 ```
+
+## 应用
+
+LRU Cache
