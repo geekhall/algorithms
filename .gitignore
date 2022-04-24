@@ -7,6 +7,7 @@
 *.dll
 *.so
 *.dylib
+*.log
 
 # Test binary, built with `go test -c`
 *.test
@@ -22,9 +23,14 @@
 #############################################
 *.class
 *.swp
-.idea/
 .vscode/
-.DS_Store/
-.DS_Store
 /TempSource/
-
+.DS_Store
+.vite-ssg-dist
+.vite-ssg-temp
+*.local
+dist
+dist-ssr
+node_modules
+.idea/
+*.log
