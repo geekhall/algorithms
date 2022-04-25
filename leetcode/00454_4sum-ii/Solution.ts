@@ -7,33 +7,28 @@
  */
 function fourSumCount(nums1: number[], nums2: number[], nums3: number[], nums4: number[]): number {
   let n = nums1.length
-  let m1 = new Map<number, number>();
-  let m2 = new Map<number, number>();
+  let m: Map<number, number> = new Map<number, number>();
   let res = 0
 
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
-      let v1 = m1.get(nums1[i] + nums2[j])
+      let v1 = m.get(nums1[i] + nums2[j])
       if (v1)
-        m1.set(nums1[i] + nums2[j], v1 + 1)
+        m.set(nums1[i] + nums2[j], v1 + 1)
       else
-        m1.set(nums1[i] + nums2[j], 1)
+        m.set(nums1[i] + nums2[j], 1)
     }
   }
 
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
-      let v2 = m2.get(nums3[i] + nums4[j])
-      if (v2)
-        m2.set(nums3[i] + nums4[j], v2 + 1)
-      else
-        m2.set(nums3[i] + nums4[j], 1)
+      let v2 = -(nums3[i] + nums4[j]);
+      if (m.has(v2)) {
+        res = res + m.get(v2)!
+      }
     }
   }
-  m1.forEach((k1, v1) => {
-    if (m2.has(-k1))
-      res += v1 * m2.get(-k1)!
-  })
+
   return res
 };
 
@@ -64,25 +59,8 @@ function test_00454() {
 
 }
 
-// test_00454()
+test_00454()
 
-let m1 = new Map<number, number>()
-m1.set(1, 10)
-m1.set(2, 20)
-m1.set(3, 30)
-
-console.log(m1);
-console.log(m1.has(1));
-console.log(m1.has(4));
-console.log(m1.get(1));
-console.log(m1.get(4));
-let v3 = m1.get(4)
-
-if (v3) {
-  console.log("entered");
-} else {
-  console.log("in the else");
-}
 
 
 
