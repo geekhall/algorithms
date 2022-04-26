@@ -18,6 +18,7 @@ class ListNode {
     this.next = (next === undefined ? null : next)
   }
 }
+
 function isPalindrome(head: ListNode | null): boolean {
   let fast = head
   let slow = head
