@@ -48,14 +48,3 @@ function test_00125() {
 
 test_00125()
 
-// let str = "A man, a plan, a canal: Panama"
-// console.log(str);
-// str = str.toLowerCase()
-// console.log(str);
-// console.log(str.charAt(0));
-// console.log(str.charAt(1));
-// console.log(str.charAt(2));
-// console.log(str.charAt(2) < 'a');
-// console.log(str.charAt(2) > 'z');
-
-
