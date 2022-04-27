@@ -31,13 +31,37 @@ function findRelativeRanks(score: number[]): string[] {
   return ranks
 };
 
+function findRelativeRanks1(score: number[]): string[] {
+  let ranks: string[] = new Array()
+  let m = new Map()
+  for (let i = 0; i < score.length; i++) {
+    m.set(score[i], "")
+  }
+  let keys = Array.from(m.keys()).sort((a, b) => b - a);
+  for (let i = 0; i < keys.length; i++) {
+    if (i === 0) {
+      m.set(keys[i], "Gold Medal")
+    } else if (i === 1) {
+      m.set(keys[i], "Silver Medal")
+    } else if (i === 2) {
+      m.set(keys[i], "Bronze Medal")
+    } else {
+      m.set(keys[i], String(i + 1))
+    }
+  }
+
+  for (let i = 0; i < score.length; i++) {
+    ranks.push(m.get(score[i]))
+  }
+  return ranks;
+}
 
 function test_00506() {
   // Input: score = [5,4,3,2,1]
   // Output: ["Gold Medal","Silver Medal","Bronze Medal","4","5"]
   // Explanation: The placements are [1st, 2nd, 3rd, 4th, 5th].
   let nums1 = [5, 4, 3, 2, 1]
-  console.log(findRelativeRanks(nums1));
+  console.log(findRelativeRanks1(nums1));
   console.log(nums1);
 
   // Input: score = [10,3,8,9,4]
@@ -45,7 +69,7 @@ function test_00506() {
   // Explanation: The placements are [1st, 5th, 3rd, 2nd, 4th].
 
   let nums2 = [10, 3, 8, 9, 4]
-  console.log(findRelativeRanks(nums2));
+  console.log(findRelativeRanks1(nums2));
   console.log(nums2);
 }
 test_00506()
