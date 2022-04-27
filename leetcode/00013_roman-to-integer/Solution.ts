@@ -36,6 +36,8 @@ function test_00013() {
   console.log(romanToInt("IV"));
   console.log(romanToInt("VI"));
   console.log(romanToInt("VIII"));
+  console.log(romanToInt("DCCLXXVIII"));
+  console.log(romanToInt("MMCM"));
 }
 
 test_00013()
