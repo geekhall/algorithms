@@ -37,7 +37,7 @@ function intersectionArray(nums1: number[], nums2: number[]): number[] {
   return [...new Set(nums1.filter((v, _) => s2.has(v)))]
 }
 
-function test_02248() {
+function test_02085() {
   // Input: words1 = ["leetcode","is","amazing","as","is"], words2 = ["amazing","leetcode","is"]
   // Output: 2
   // Explanation:
@@ -61,4 +61,4 @@ function test_02248() {
   words1 = ["a", "ab"], words2 = ["a", "a", "a", "ab"]
   console.log(countWords(words1, words2));
 }
-test_02248()
+test_02085()
