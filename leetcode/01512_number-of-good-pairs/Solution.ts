@@ -13,7 +13,6 @@ function numIdenticalPairs(nums: number[]): number {
   return res
 };
 
-
 function test_01512() {
   // Input: nums = [1,2,3,1,1,3]
   // Output: 4
@@ -31,9 +30,6 @@ function test_01512() {
   // Output: 0
   let nums3: number[] = [1, 2, 3]
   console.log(numIdenticalPairs(nums3));
-
-
-
 }
 
 test_01512()
