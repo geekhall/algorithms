@@ -4,22 +4,31 @@
 
 function checkValid(matrix: number[][]): boolean {
   let n = matrix.length
+  // check row
   for (let arr of matrix) {
     if (!checkValidArr(arr))
       return false
   }
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j < n; j++) {
 
+  // check column
+  let s = new Set()
+  for (let i = 0; i < n; i++) {
+    s.clear()
+    for (let j = 0; j < n; j++) {
+      if (s.has(matrix[j][i]))
+        return false
+      s.add(matrix[j][i])
     }
   }
-  return false
+  return true
 };
+
 function checkValidArr(arr: number[]): boolean {
   let s = new Set()
   for (let num of arr) {
     if (s.has(num))
       return false
+    s.add(num)
   }
   return true
 }
