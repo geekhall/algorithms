@@ -11,6 +11,7 @@ function longestCommonPrefix(strs: string[]): string {
   if (minLength === 0)
     return ""
 
+  // can be improved by binary search
   let length = 1
   for (; length <= minLength; length++) {
     if (!isCommonPrefix(strs, length)) {
