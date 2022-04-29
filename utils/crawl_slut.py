@@ -2445,17 +2445,17 @@ def save_file(id, slut, title, difficulty, content):
         sf.write("function solution() {\n")
         sf.write("  \n")
         sf.write("}\n")
-        sf.write("function test() {\n")
+        sf.write("\n")
+        sf.write("function test_" + id + "() {\n")
         sf.write("  \n")
         sf.write("}\n")
         sf.write("\n")
-        sf.write("test()\n")
+        sf.write("test_" + id + "()\n")
         sf.close()
-    # if not os.path.exists(readme_file):
-    #     sf = open(readme_file, 'w')
-    #     content_text = html_text.extract_text(content).replace('\n', '\n//')
-    #     sf.write(html_text.extract_text(content))
-    #     sf.close()
+    if not os.path.exists(readme_file):
+        sf = open(readme_file, 'w')
+        sf.write(content)
+        sf.close()
 
 
 def create_single_slug(id):
