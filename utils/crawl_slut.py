@@ -2429,11 +2429,16 @@ def save_file(id, slut, title, difficulty, content):
     print(slut_dir)
     if not os.path.exists(slut_dir):
         os.mkdir(slut_dir)
-    solution_file = slut_dir + "/Solution.ts"
+    solution_file_ts = slut_dir + "/Solution.ts"
+    # solution_file_go = slut_dir + "/Solution.go"
+    # solution_file_py = slut_dir + "/Solution.py"
+    # solution_file_java = slut_dir + "/Solution.java"
+    # solution_file_c = slut_dir + "/Solution.c"
+    # solution_file_cpp = slut_dir + "/Solution.cpp"
     readme_file = slut_dir + "/README.md"
     content_text = html_text.extract_text(content).replace('\n', '\n * ')
-    if not os.path.exists(solution_file):
-        sf = open(solution_file, 'w')
+    if not os.path.exists(solution_file_ts):
+        sf = open(solution_file_ts, 'w')
         sf.write("/**\n")
         sf.write(" * ID:    " + id + "\n")
         sf.write(" * Title: " + title + "\n")
@@ -2450,6 +2455,24 @@ def save_file(id, slut, title, difficulty, content):
         sf.write("\n")
         sf.write("test_" + id + "()\n")
         sf.close()
+    # if not os.path.exists(solution_file_go):
+    #     sf = open(solution_file_go, 'w')
+    #     sf.write("/**\n")
+    #     sf.write(" * ID:    " + id + "\n")
+    #     sf.write(" * Title: " + title + "\n")
+    #     sf.write(" * Difficulty: " + difficulty + "\n")
+    #     sf.write(" * Description: " + content_text + "\n")
+    #     sf.write(" */\n")
+    #     sf.write("function solution() {\n")
+    #     sf.write("  \n")
+    #     sf.write("}\n")
+    #     sf.write("\n")
+    #     sf.write("function test_" + id + "() {\n")
+    #     sf.write("  \n")
+    #     sf.write("}\n")
+    #     sf.write("\n")
+    #     sf.write("test_" + id + "()\n")
+    #     sf.close()
     if not os.path.exists(readme_file):
         sf = open(readme_file, 'w')
         sf.write(content)
