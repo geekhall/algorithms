@@ -9,7 +9,6 @@ import requests
 import json
 import os
 import sys
-import html2text
 from requests_toolbelt import MultipartEncoder
 import pandas as pd
 import matplotlib.pyplot as plt
