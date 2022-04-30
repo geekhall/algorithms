@@ -2441,7 +2441,6 @@ def save_file(id, slut, title, difficulty, content):
         sf.write(" * Difficulty: " + difficulty + "\n")
         sf.write(" * Description: " + content_text + "\n")
         sf.write(" */\n")
-        sf.write("\n")
         sf.write("function solution() {\n")
         sf.write("  \n")
         sf.write("}\n")
