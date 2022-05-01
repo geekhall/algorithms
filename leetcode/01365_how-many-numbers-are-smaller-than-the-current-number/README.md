@@ -1,3 +1,8 @@
+# 01365. How Many Numbers Are Smaller Than the Current Number
+
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
+
 <p>Given the array <code>nums</code>, for each <code>nums[i]</code> find out how many numbers in the array are smaller than it. That is, for each <code>nums[i]</code> you have to count the number of valid <code>j&#39;s</code>&nbsp;such that&nbsp;<code>j != i</code> <strong>and</strong> <code>nums[j] &lt; nums[i]</code>.</p>
 
 <p>Return the answer in an array.</p>

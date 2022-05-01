@@ -1,3 +1,8 @@
+# 00844. Backspace String Compare
+
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
+
 <p>Given two strings <code>s</code> and <code>t</code>, return <code>true</code> <em>if they are equal when both are typed into empty text editors</em>. <code>&#39;#&#39;</code> means a backspace character.</p>
 
 <p>Note that after backspacing an empty text, the text will continue empty.</p>

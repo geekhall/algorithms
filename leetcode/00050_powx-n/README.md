@@ -1,47 +1,38 @@
-# 00050. Pow
+# 00050. Pow(x, n)
 
-Implement pow(x, n), which calculates x raised to the power n (i.e., xn).
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
 
-## 题目大意
+<p>Implement <a href="http://www.cplusplus.com/reference/valarray/pow/" target="_blank">pow(x, n)</a>, which calculates <code>x</code> raised to the power <code>n</code> (i.e., <code>x<sup>n</sup></code>).</p>
 
-实现 pow(x, n) ，即计算 x 的 n 次幂函数（即，$x^n$）。
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
 
-## Example 1
+<pre>
+<strong>Input:</strong> x = 2.00000, n = 10
+<strong>Output:</strong> 1024.00000
+</pre>
 
-```txt
-Input: x = 2.00000, n = 10
-Output: 1024.00000
-```
+<p><strong>Example 2:</strong></p>
 
-## Example 2
+<pre>
+<strong>Input:</strong> x = 2.10000, n = 3
+<strong>Output:</strong> 9.26100
+</pre>
 
-```txt
-Input: x = 2.10000, n = 3
-Output: 9.26100
-```
+<p><strong>Example 3:</strong></p>
 
-## Example 3
+<pre>
+<strong>Input:</strong> x = 2.00000, n = -2
+<strong>Output:</strong> 0.25000
+<strong>Explanation:</strong> 2<sup>-2</sup> = 1/2<sup>2</sup> = 1/4 = 0.25
+</pre>
 
-```txt
-Input: x = 2.00000, n = -2
-Output: 0.25000
-Explanation: 2-2 = 1/22 = 1/4 = 0.25
-```
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
-## Constraints
-
-```txt
--100.0 < x < 100.0
--231 <= n <= 231-1
--104 <= xn <= 104
-```
-
-## Solution 1
-
-### Go
-
-```go
-func myPow(x float64, n int) float64 {
-
-}
-```
+<ul>
+	<li><code>-100.0 &lt; x &lt; 100.0</code></li>
+	<li><code>-2<sup>31</sup> &lt;= n &lt;= 2<sup>31</sup>-1</code></li>
+	<li><code>-10<sup>4</sup> &lt;= x<sup>n</sup> &lt;= 10<sup>4</sup></code></li>
+</ul>

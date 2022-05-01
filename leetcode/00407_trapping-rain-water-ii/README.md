@@ -1,45 +1,34 @@
 # 00407. Trapping Rain Water II
 
-Given an m x n integer matrix heightMap representing the height of each unit cell in a 2D elevation map, return the volume of water it can trap after raining.
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
 
-## 题目大意
+<p>Given an <code>m x n</code> integer matrix <code>heightMap</code> representing the height of each unit cell in a 2D elevation map, return <em>the volume of water it can trap after raining</em>.</p>
 
-给你一个 m x n 的矩阵，其中的值均为非负整数，代表二维高度图每个单元的高度，请计算图中形状最多能接多少体积的雨水。
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+<img alt="" src="https://assets.leetcode.com/uploads/2021/04/08/trap1-3d.jpg" style="width: 361px; height: 321px;" />
+<pre>
+<strong>Input:</strong> heightMap = [[1,4,3,1,3,2],[3,2,1,3,2,4],[2,3,3,2,3,1]]
+<strong>Output:</strong> 4
+<strong>Explanation:</strong> After the rain, water is trapped between the blocks.
+We have two small ponds 1 and 3 units trapped.
+The total volume of water trapped is 4.
+</pre>
 
-## Example 1
+<p><strong>Example 2:</strong></p>
+<img alt="" src="https://assets.leetcode.com/uploads/2021/04/08/trap2-3d.jpg" style="width: 401px; height: 321px;" />
+<pre>
+<strong>Input:</strong> heightMap = [[3,3,3,3,3],[3,2,2,2,3],[3,2,1,2,3],[3,2,2,2,3],[3,3,3,3,3]]
+<strong>Output:</strong> 10
+</pre>
 
-![](https://gitee.com/geekhall/pic/raw/main/img/20211103105119.png)
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
-```txt
-输入: heightMap = [[1,4,3,1,3,2],[3,2,1,3,2,4],[2,3,3,2,3,1]]
-输出: 4
-解释: 下雨后，雨水将会被上图蓝色的方块中。总的接雨水量为1+2+1=4。
-```
-
-## Example 2
-
-![](https://gitee.com/geekhall/pic/raw/main/img/20211103105206.png)
-
-```txt
-输入: heightMap = [[3,3,3,3,3],[3,2,2,2,3],[3,2,1,2,3],[3,2,2,2,3],[3,3,3,3,3]]
-输出: 10
-```
-
-## Constraints
-
-```txt
-m == heightMap.length
-n == heightMap[i].length
-1 <= m, n <= 200
-0 <= heightMap[i][j] <= 2 * 104
-```
-
-### Solution 1
-
-### Go
-
-```go
-func trapRainWater(heightMap [][]int) int {
-
-}
-```
+<ul>
+	<li><code>m == heightMap.length</code></li>
+	<li><code>n == heightMap[i].length</code></li>
+	<li><code>1 &lt;= m, n &lt;= 200</code></li>
+	<li><code>0 &lt;= heightMap[i][j] &lt;= 2 * 10<sup>4</sup></code></li>
+</ul>

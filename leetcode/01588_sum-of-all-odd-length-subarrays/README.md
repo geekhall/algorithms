@@ -1,3 +1,8 @@
+# 01588. Sum of All Odd Length Subarrays
+
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
+
 <p>Given an array of positive integers&nbsp;<code>arr</code>, calculate the sum of all possible odd-length subarrays.</p>
 
 <p>A subarray is a contiguous&nbsp;subsequence of the array.</p>

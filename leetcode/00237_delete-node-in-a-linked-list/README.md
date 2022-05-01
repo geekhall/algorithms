@@ -1,82 +1,35 @@
 # 00237. Delete Node in a Linked List
 
-Write a function to delete a node in a singly-linked list. You will not be given access to the head of the list, instead you will be given access to the node to be deleted directly.
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
 
-It is guaranteed that the node to be deleted is not a tail node in the list.
+<p>Write a function to <strong>delete a node</strong> in a singly-linked list. You will <strong>not</strong> be given access to the <code>head</code> of the list, instead you will be given access to <strong>the node to be deleted</strong> directly.</p>
 
-## 题目大意
+<p>It is <strong>guaranteed</strong> that the node to be deleted is <strong>not a tail node</strong> in the list.</p>
 
-请编写一个函数，用于 删除单链表中某个特定节点 。在设计函数时需要注意，你无法访问链表的头节点 head ，只能直接访问 要被删除的节点 。
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+<img alt="" src="https://assets.leetcode.com/uploads/2020/09/01/node1.jpg" style="width: 300px; height: 215px;" />
+<pre>
+<strong>Input:</strong> head = [4,5,1,9], node = 5
+<strong>Output:</strong> [4,1,9]
+<strong>Explanation: </strong>You are given the second node with value 5, the linked list should become 4 -&gt; 1 -&gt; 9 after calling your function.
+</pre>
 
-题目数据保证需要删除的节点 不是末尾节点 。
+<p><strong>Example 2:</strong></p>
+<img alt="" src="https://assets.leetcode.com/uploads/2020/09/01/node2.jpg" style="width: 300px; height: 236px;" />
+<pre>
+<strong>Input:</strong> head = [4,5,1,9], node = 1
+<strong>Output:</strong> [4,5,9]
+<strong>Explanation: </strong>You are given the third node with value 1, the linked list should become 4 -&gt; 5 -&gt; 9 after calling your function.
+</pre>
 
-## Example 1
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
-![](https://gitee.com/geekhall/pic/raw/main/img/20211102085620.png)
-
-```txt
-Input: head = [4,5,1,9], node = 5
-Output: [4,1,9]
-Explanation: You are given the second node with value 5, the linked list should become 4 -> 1 -> 9 after calling your function.
-```
-
-## Example 2
-
-```txt
-Input: head = [4,5,1,9], node = 1
-Output: [4,5,9]
-Explanation: You are given the third node with value 1, the linked list should become 4 -> 5 -> 9 after calling your function.
-```
-
-## Example 3
-
-```txt
-Input: head = [1,2,3,4], node = 3
-Output: [1,2,4]
-```
-
-## Example 4
-
-```txt
-Input: head = [0,1], node = 0
-Output: [1]
-```
-
-## Example 5
-
-```txt
-Input: head = [-3,5,-99], node = -3
-Output: [5,-99]
-```
-
-## Constraints
-
-```txt
-The number of the nodes in the given list is in the range [2, 1000].
--1000 <= Node.val <= 1000
-The value of each node in the list is unique.
-The node to be deleted is in the list and is not a tail node
-```
-
-### Solution 1
-
-由于无法取得删除节点前的Node，所以使删除节点Node后的节点依次前移。
-
-### Go
-
-```go
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func deleteNode(node *ListNode) {
-	pre := node
-	for node.Next != nil {
-		node.Val = node.Next.Val
-		pre = node
-		node = node.Next
-	}
-	pre.Next = nil
-}
-```
+<ul>
+	<li>The number of the nodes in the given list is in the range <code>[2, 1000]</code>.</li>
+	<li><code>-1000 &lt;= Node.val &lt;= 1000</code></li>
+	<li>The value of each node in the list is <strong>unique</strong>.</li>
+	<li>The <code>node</code> to be deleted is <strong>in the list</strong> and is <strong>not a tail</strong> node</li>
+</ul>

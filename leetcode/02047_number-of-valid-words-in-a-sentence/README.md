@@ -1,3 +1,8 @@
+# 02047. Number of Valid Words in a Sentence
+
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
+
 <p>A sentence consists of lowercase letters (<code>&#39;a&#39;</code> to <code>&#39;z&#39;</code>), digits (<code>&#39;0&#39;</code> to <code>&#39;9&#39;</code>), hyphens (<code>&#39;-&#39;</code>), punctuation marks (<code>&#39;!&#39;</code>, <code>&#39;.&#39;</code>, and <code>&#39;,&#39;</code>), and spaces (<code>&#39; &#39;</code>) only. Each sentence can be broken down into <strong>one or more tokens</strong> separated by one or more spaces <code>&#39; &#39;</code>.</p>
 
 <p>A token is a valid word if <strong>all three</strong> of the following are true:</p>

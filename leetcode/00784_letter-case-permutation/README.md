@@ -1,50 +1,31 @@
 # 00784. Letter Case Permutation
 
-DescriptionGiven a string s, we can transform every letter individually to be lowercase or uppercase to create another string.
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
 
-Return a list of all possible strings we could create. You can return the output in any order.
+<p>Given a string <code>s</code>, you&nbsp;can transform every letter individually to be lowercase or uppercase to create another string.</p>
 
-## Example 1
+<p>Return <em>a list of all possible strings we could create</em>. Return the output in <strong>any order</strong>.</p>
 
-```txt
-Input: s = "a1b2"
-Output: ["a1b2","a1B2","A1b2","A1B2"]
-```
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
 
-## Example 2
+<pre>
+<strong>Input:</strong> s = &quot;a1b2&quot;
+<strong>Output:</strong> [&quot;a1b2&quot;,&quot;a1B2&quot;,&quot;A1b2&quot;,&quot;A1B2&quot;]
+</pre>
 
-```txt
-Input: s = "3z4"
-Output: ["3z4","3Z4"]
-```
+<p><strong>Example 2:</strong></p>
 
-## Example 3
+<pre>
+<strong>Input:</strong> s = &quot;3z4&quot;
+<strong>Output:</strong> [&quot;3z4&quot;,&quot;3Z4&quot;]
+</pre>
 
-```txt
-Input: s = "12345"
-Output: ["12345"]
-```
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
-## Example 4
-
-```txt
-Input: s = "0"
-Output: ["0"]
-```
-
-## Constraints
-
-```txt
-s will be a string with length between 1 and 12.
-s will consist only of letters or digits.
-```
-
-## Solution 1
-
-### Go
-
-```go
-func letterCasePermutation(s string) []string {
-    
-}
-```
+<ul>
+	<li><code>1 &lt;= s.length &lt;= 12</code></li>
+	<li><code>s</code> consists of lowercase English letters, uppercase English letters, and digits.</li>
+</ul>

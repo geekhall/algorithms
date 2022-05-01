@@ -1,53 +1,47 @@
 # 00009. Palindrome Number
 
-Given an integer x, return true if x is palindrome integer.
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
 
-An integer is a palindrome when it reads the same backward as forward. For example, 121 is palindrome while 123 is not.
+<p>Given an integer <code>x</code>, return <code>true</code> if <code>x</code> is palindrome integer.</p>
 
-## 题目大意
+<p>An integer is a <strong>palindrome</strong> when it reads the same backward as forward.</p>
 
-给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。
+<ul>
+	<li>For example, <code>121</code> is a palindrome while <code>123</code> is not.</li>
+</ul>
 
-回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。例如，121 是回文，而 123 不是。
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
 
-## Example 1
+<pre>
+<strong>Input:</strong> x = 121
+<strong>Output:</strong> true
+<strong>Explanation:</strong> 121 reads as 121 from left to right and from right to left.
+</pre>
 
-```txt
-Input: x = 121
-Output: true
-```
+<p><strong>Example 2:</strong></p>
 
-## Example 2
+<pre>
+<strong>Input:</strong> x = -121
+<strong>Output:</strong> false
+<strong>Explanation:</strong> From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+</pre>
 
-```txt
-Input: x = -121
-Output: false
-Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
-```
+<p><strong>Example 3:</strong></p>
 
-## Example 3
+<pre>
+<strong>Input:</strong> x = 10
+<strong>Output:</strong> false
+<strong>Explanation:</strong> Reads 01 from right to left. Therefore it is not a palindrome.
+</pre>
 
-```txt
-Input: x = 10
-Output: false
-Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
-```
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
-## Example 4
+<ul>
+	<li><code>-2<sup>31</sup>&nbsp;&lt;= x &lt;= 2<sup>31</sup>&nbsp;- 1</code></li>
+</ul>
 
-```txt
-Input: x = -101
-Output: false
-```
-
-## Constraints
-
-$-2^{31} <= x <= 2^{31} - 1$
-
-## Solution 1
-
-### Go
-
-```go
-
-```
+<p>&nbsp;</p>
+<strong>Follow up:</strong> Could you solve it without converting the integer to a string?

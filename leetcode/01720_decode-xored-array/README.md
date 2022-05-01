@@ -1,3 +1,8 @@
+# 01720. Decode XORed Array
+
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
+
 <p>There is a <strong>hidden</strong> integer array <code>arr</code> that consists of <code>n</code> non-negative integers.</p>
 
 <p>It was encoded into another integer array <code>encoded</code> of length <code>n - 1</code>, such that <code>encoded[i] = arr[i] XOR arr[i + 1]</code>. For example, if <code>arr = [1,0,2,1]</code>, then <code>encoded = [1,2,3]</code>.</p>

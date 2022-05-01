@@ -1,3 +1,8 @@
+# 01480. Running Sum of 1d Array
+
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
+
 <p>Given an array <code>nums</code>. We define a running sum of an array as&nbsp;<code>runningSum[i] = sum(nums[0]&hellip;nums[i])</code>.</p>
 
 <p>Return the running sum of <code>nums</code>.</p>

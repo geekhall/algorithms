@@ -1,62 +1,37 @@
 # 00029. Divide Two Integers
 
-Given two integers dividend and divisor, divide two integers without using multiplication, division, and mod operator.
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
 
-Return the quotient after dividing dividend by divisor.
+<p>Given two integers <code>dividend</code> and <code>divisor</code>, divide two integers <strong>without</strong> using multiplication, division, and mod operator.</p>
 
-The integer division should truncate toward zero, which means losing its fractional part. For example, truncate(8.345) = 8 and truncate(-2.7335) = -2.
+<p>The integer division should truncate toward zero, which means losing its fractional part. For example, <code>8.345</code> would be truncated to <code>8</code>, and <code>-2.7335</code> would be truncated to <code>-2</code>.</p>
 
-Note: Assume we are dealing with an environment that could only store integers within the 32-bit signed integer range: [−231, 231 − 1]. For this problem, assume that your function returns 231 − 1 when the division result overflows.
+<p>Return <em>the <strong>quotient</strong> after dividing </em><code>dividend</code><em> by </em><code>divisor</code>.</p>
 
-## 题目大意
+<p><strong>Note: </strong>Assume we are dealing with an environment that could only store integers within the <strong>32-bit</strong> signed integer range: <code>[&minus;2<sup>31</sup>, 2<sup>31</sup> &minus; 1]</code>. For this problem, if the quotient is <strong>strictly greater than</strong> <code>2<sup>31</sup> - 1</code>, then return <code>2<sup>31</sup> - 1</code>, and if the quotient is <strong>strictly less than</strong> <code>-2<sup>31</sup></code>, then return <code>-2<sup>31</sup></code>.</p>
 
-给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
 
-返回被除数 dividend 除以除数 divisor 得到的商。
+<pre>
+<strong>Input:</strong> dividend = 10, divisor = 3
+<strong>Output:</strong> 3
+<strong>Explanation:</strong> 10/3 = 3.33333.. which is truncated to 3.
+</pre>
 
-整数除法的结果应当截去（truncate）其小数部分，例如：truncate(8.345) = 8 以及 truncate(-2.7335) = -2
+<p><strong>Example 2:</strong></p>
 
-## Example 1
+<pre>
+<strong>Input:</strong> dividend = 7, divisor = -3
+<strong>Output:</strong> -2
+<strong>Explanation:</strong> 7/-3 = -2.33333.. which is truncated to -2.
+</pre>
 
-```txt
-Input: dividend = 10, divisor = 3
-Output: 3
-Explanation: 10/3 = truncate(3.33333..) = 3.
-```
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
-## Example 2
-
-```txt
-Input: dividend = 7, divisor = -3
-Output: -2
-Explanation: 7/-3 = truncate(-2.33333..) = -2.
-```
-
-## Example 3
-
-```txt
-Input: dividend = 0, divisor = 1
-Output: 0
-```
-
-## Example 4
-
-```txt
-Input: dividend = 1, divisor = 1
-Output: 1
-```
-
-## Constraints
-
-```txt
--231 <= dividend, divisor <= 231 - 1
-divisor != 0
-```
-
-## Solution 1
-
-### Go
-
-```go
-
-```
+<ul>
+	<li><code>-2<sup>31</sup> &lt;= dividend, divisor &lt;= 2<sup>31</sup> - 1</code></li>
+	<li><code>divisor != 0</code></li>
+</ul>

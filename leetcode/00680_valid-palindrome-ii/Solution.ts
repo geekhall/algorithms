@@ -1,6 +1,26 @@
-// Given a string s, return true if the s can be palindrome
-// after deleting at most one character from it.
-
+/**
+ * ID:    00680
+ * Title: Valid Palindrome II
+ * Difficulty: Easy
+ * Description: Given a string s, return true if the s can be palindrome after deleting at most one character from it.
+ *
+ * Example 1:
+ *
+ * Input: s = "aba" Output: true
+ *
+ * Example 2:
+ *
+ * Input: s = "abca" Output: true Explanation: You could delete the character 'c'.
+ *
+ * Example 3:
+ *
+ * Input: s = "abc" Output: false
+ *
+ * Constraints:
+ *
+ * 1 <= s.length <= 10 5
+ * s consists of lowercase English letters.
+ */
 function isPalindrome(s: string): boolean {
   let n = s.length
   let half = Math.floor(n / 2)

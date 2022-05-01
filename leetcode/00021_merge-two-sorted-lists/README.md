@@ -1,57 +1,41 @@
-# 00021. Merge Two Lists
+# 00021. Merge Two Sorted Lists
 
-将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
 
-## Example 1
+<p>You are given the heads of two sorted linked lists <code>list1</code> and <code>list2</code>.</p>
 
-```txt
-输入：l1 = [1,2,4], l2 = [1,3,4]
-输出：[1,1,2,3,4,4]
-```
+<p>Merge the two lists in a one <strong>sorted</strong> list. The list should be made by splicing together the nodes of the first two lists.</p>
 
-![](https://gitee.com/geekhall/pic/raw/main/img/leetcode_00021.png)
+<p>Return <em>the head of the merged linked list</em>.</p>
 
-## Example 2
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+<img alt="" src="https://assets.leetcode.com/uploads/2020/10/03/merge_ex1.jpg" style="width: 662px; height: 302px;" />
+<pre>
+<strong>Input:</strong> list1 = [1,2,4], list2 = [1,3,4]
+<strong>Output:</strong> [1,1,2,3,4,4]
+</pre>
 
-```txt
-输入：l1 = [], l2 = []
-输出：[]
-```
+<p><strong>Example 2:</strong></p>
 
-## Example 3
+<pre>
+<strong>Input:</strong> list1 = [], list2 = []
+<strong>Output:</strong> []
+</pre>
 
-```txt
-输入：l1 = [], l2 = [0]
-输出：[0]
-```
+<p><strong>Example 3:</strong></p>
 
-## Constraints
+<pre>
+<strong>Input:</strong> list1 = [], list2 = [0]
+<strong>Output:</strong> [0]
+</pre>
 
-```txt
-两个链表的节点数目范围是 [0, 50]
--100 <= Node.val <= 100
-l1 和 l2 均按 非递减顺序 排列
-```
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
-## Solution 1
-
-递归，按照题目意思解即可。
-
-### Go
-
-```go
-func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
- if l1 == nil {
-  return l2
- }
- if l2 == nil {
-  return l1
- }
- if l1.Val < l2.Val {
-  l1.Next = mergeTwoLists(l1.Next, l2)
-  return l1
- }
- l2.Next = mergeTwoLists(l1, l2.Next)
- return l2
-}
-```
+<ul>
+	<li>The number of nodes in both lists is in the range <code>[0, 50]</code>.</li>
+	<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+	<li>Both <code>list1</code> and <code>list2</code> are sorted in <strong>non-decreasing</strong> order.</li>
+</ul>

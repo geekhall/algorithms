@@ -1,3 +1,8 @@
+# 02114. Maximum Number of Words Found in Sentences
+
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
+
 <p>A <strong>sentence</strong> is a list of <strong>words</strong> that are separated by a single space&nbsp;with no leading or trailing spaces.</p>
 
 <p>You are given an array of strings <code>sentences</code>, where each <code>sentences[i]</code> represents a single <strong>sentence</strong>.</p>

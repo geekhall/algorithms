@@ -1,82 +1,36 @@
 # 00695. Max Area of Island
 
-给你一个大小为 m x n 的二进制矩阵 grid 。
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
 
-岛屿 是由一些相邻的 1 (代表土地) 构成的组合，这里的「相邻」要求两个 1 必须在 水平或者竖直的四个方向上 相邻。你可以假设 grid 的四个边缘都被 0（代表水）包围着。
+<p>You are given an <code>m x n</code> binary matrix <code>grid</code>. An island is a group of <code>1</code>&#39;s (representing land) connected <strong>4-directionally</strong> (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.</p>
 
-岛屿的面积是岛上值为 1 的单元格的数目。
+<p>The <strong>area</strong> of an island is the number of cells with a value <code>1</code> in the island.</p>
 
-计算并返回 grid 中最大的岛屿面积。如果没有岛屿，则返回面积为 0 。
+<p>Return <em>the maximum <strong>area</strong> of an island in </em><code>grid</code>. If there is no island, return <code>0</code>.</p>
 
-## Example 1
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+<img alt="" src="https://assets.leetcode.com/uploads/2021/05/01/maxarea1-grid.jpg" style="width: 500px; height: 310px;" />
+<pre>
+<strong>Input:</strong> grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
+<strong>Output:</strong> 6
+<strong>Explanation:</strong> The answer is not 11, because the island must be connected 4-directionally.
+</pre>
 
-```txt
-输入：grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
-输出：6
-解释：答案不应该是 11 ，因为岛屿只能包含水平或垂直这四个方向上的 1 。
-```
+<p><strong>Example 2:</strong></p>
 
-![](https://gitee.com/geekhall/pic/raw/main/img/leetcode_00695.png)
+<pre>
+<strong>Input:</strong> grid = [[0,0,0,0,0,0,0,0]]
+<strong>Output:</strong> 0
+</pre>
 
-## Example 2
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
-```txt
-输入：grid = [[0,0,0,0,0,0,0,0]]
-输出：0
-```
-
-## Constraints
-
-```txt
-m == grid.length
-n == grid[i].length
-1 <= m, n <= 50
-grid[i][j] 为 0 或 1
-
-```
-
-## Solution 1
-
-dfs方法，这里需要注意的是在dfs递归调用时需要使用“沉岛”方法，
-即计算过对应的点之后需要将其赋值为0，否则会产生递归死循环。
-
-### Go
-
-```go
-func maxAreaOfIsland(grid [][]int) int {
- var max int
- r, c := len(grid), len(grid[0])
- for i := 0; i < r; i++ {
-  for j := 0; j < c; j++ {
-   if grid[i][j] == 1 {
-    area := get_area(grid, r, c, i, j)
-    if area > max {
-     max = area
-    }
-   }
-  }
- }
- return max
-}
-
-func get_area(grid [][]int, r int, c int, i int, j int) int {
- var area int = 0
- if grid[i][j] == 1 {
-  area += 1
-  grid[i][j] = 0 // 计算过对应的点之后需要将其赋值为0，否则会产生递归死循环。
-  if i-1 >= 0 && grid[i-1][j] == 1 {
-   area += get_area(grid, r, c, i-1, j)
-  }
-  if i+1 < r && grid[i+1][j] == 1 {
-   area += get_area(grid, r, c, i+1, j)
-  }
-  if j-1 >= 0 && grid[i][j-1] == 1 {
-   area += get_area(grid, r, c, i, j-1)
-  }
-  if j+1 < c && grid[i][j+1] == 1 {
-   area += get_area(grid, r, c, i, j+1)
-  }
- }
- return area
-}
-```
+<ul>
+	<li><code>m == grid.length</code></li>
+	<li><code>n == grid[i].length</code></li>
+	<li><code>1 &lt;= m, n &lt;= 50</code></li>
+	<li><code>grid[i][j]</code> is either <code>0</code> or <code>1</code>.</li>
+</ul>

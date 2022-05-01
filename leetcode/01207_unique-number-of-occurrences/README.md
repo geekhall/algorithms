@@ -1,3 +1,8 @@
+# 01207. Unique Number of Occurrences
+
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
+
 <p>Given an array of integers <code>arr</code>, return <code>true</code> if the number of occurrences of each value in the array is <strong>unique</strong>, or <code>false</code> otherwise.</p>
 
 <p>&nbsp;</p>

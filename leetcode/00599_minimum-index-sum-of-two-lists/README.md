@@ -1,3 +1,8 @@
+# 00599. Minimum Index Sum of Two Lists
+
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
+
 <p>Suppose Andy and Doris want to choose a restaurant for dinner, and they both have a list of favorite restaurants represented by strings.</p>
 
 <p>You need to help them find out their <b>common interest</b> with the <b>least list index sum</b>. If there is a choice tie between answers, output all of them with no order requirement. You could assume there always exists an answer.</p>

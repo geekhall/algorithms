@@ -1,66 +1,45 @@
 # 00575. Distribute Candies
 
-Alice has n candies, where the ith candy is of type candyType[i]. Alice noticed that she started to gain weight, so she visited a doctor.
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
 
-The doctor advised Alice to only eat n / 2 of the candies she has (n is always even). Alice likes her candies very much, and she wants to eat the maximum number of different types of candies while still following the doctor's advice.
+<p>Alice has <code>n</code> candies, where the <code>i<sup>th</sup></code> candy is of type <code>candyType[i]</code>. Alice noticed that she started to gain weight, so she visited a doctor.</p>
 
-Given the integer array candyType of length n, return the maximum number of different types of candies she can eat if she only eats n / 2 of them.
+<p>The doctor advised Alice to only eat <code>n / 2</code> of the candies she has (<code>n</code> is always even). Alice likes her candies very much, and she wants to eat the maximum number of different types of candies while still following the doctor&#39;s advice.</p>
 
-## 题目大意
+<p>Given the integer array <code>candyType</code> of length <code>n</code>, return <em>the <strong>maximum</strong> number of different types of candies she can eat if she only eats </em><code>n / 2</code><em> of them</em>.</p>
 
-给定一个偶数长度的数组，其中不同的数字代表着不同种类的糖果，每一个数字代表一个糖果。你需要把这些糖果平均分给一个弟弟和一个妹妹。返回妹妹可以获得的最大糖果的种类数。
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
 
-## Example 1
+<pre>
+<strong>Input:</strong> candyType = [1,1,2,2,3,3]
+<strong>Output:</strong> 3
+<strong>Explanation:</strong> Alice can only eat 6 / 2 = 3 candies. Since there are only 3 types, she can eat one of each type.
+</pre>
 
-```txt
-Input: candyType = [1,1,2,2,3,3]
-Output: 3
-Explanation: Alice can only eat 6 / 2 = 3 candies. Since there are only 3 types, she can eat one of each type.
-```
+<p><strong>Example 2:</strong></p>
 
-## Example 2
+<pre>
+<strong>Input:</strong> candyType = [1,1,2,3]
+<strong>Output:</strong> 2
+<strong>Explanation:</strong> Alice can only eat 4 / 2 = 2 candies. Whether she eats types [1,2], [1,3], or [2,3], she still can only eat 2 different types.
+</pre>
 
-```txt
-Input: candyType = [1,1,2,3]
-Output: 2
-Explanation: Alice can only eat 4 / 2 = 2 candies. Whether she eats types [1,2], [1,3], or [2,3], she still can only eat 2 different types.
-```
+<p><strong>Example 3:</strong></p>
 
-## Example 3
+<pre>
+<strong>Input:</strong> candyType = [6,6,6,6]
+<strong>Output:</strong> 1
+<strong>Explanation:</strong> Alice can only eat 4 / 2 = 2 candies. Even though she can eat 2 candies, she only has 1 type.
+</pre>
 
-```txt
-Input: candyType = [6,6,6,6]
-Output: 1
-Explanation: Alice can only eat 4 / 2 = 2 candies. Even though she can eat 2 candies, she only has 1 type.
-```
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
-## Constraints
-
-```txt
-n == candyType.length
-2 <= n <= 104
-n is even.
--105 <= candyType[i] <= 105
-```
-
-## Solutions
-
-### Solution 1
-
-### Go
-
-```go
-func distributeCandies(candyType []int) int {
-    m := make(map[int]int)
-
-    for _, c := range candyType {
-        if len(m) < len(candyType)/2 {
-            if m[c] == 0 {
-                m[c]++
-            }
-        }
-    }
-    return len(m)
-}
-
-```
+<ul>
+	<li><code>n == candyType.length</code></li>
+	<li><code>2 &lt;= n &lt;= 10<sup>4</sup></code></li>
+	<li><code>n</code>&nbsp;is even.</li>
+	<li><code>-10<sup>5</sup> &lt;= candyType[i] &lt;= 10<sup>5</sup></code></li>
+</ul>

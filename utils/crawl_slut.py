@@ -2333,44 +2333,6 @@ session = requests.Session()
 user_agent = r'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36'
 
 
-def get_problem_by_slug_bk(slug):
-    url = "https://leetcode.com/graphql"
-    params = {'operationName': "getQuestionDetail",
-              'variables': {'titleSlug': slug},
-              'query': '''query getQuestionDetail($titleSlug: String!) {
-            question(titleSlug: $titleSlug) {
-                questionId
-                questionFrontendId
-                questionTitle
-                questionTitleSlug
-                content
-                difficulty
-                stats
-                similarQuestions
-                categoryTitle
-                topicTags {
-                        name
-                        slug
-                }
-            }
-        }'''
-              }
-
-    json_data = json.dumps(params).encode('utf8')
-
-    headers = {'User-Agent': user_agent, 'Connection':
-               'keep-alive', 'Content-Type': 'application/json',
-               'Referer': 'https://leetcode.com/problems/' + slug}
-    resp = session.post(url, data=json_data, headers=headers, timeout=10)
-    content = resp.json()
-
-    # 题目详细信息
-    question = content['data']['question']
-    data = content['data']
-    print(question)
-    print(data)
-
-
 def get_problem_by_slug(slug):
     url = "https://leetcode.com/graphql"
     params = {'operationName': "getQuestionDetail",
@@ -2409,6 +2371,16 @@ def get_problem_by_slug(slug):
     questionTitleSlug = question['questionTitleSlug']
     content = question['content']
     difficulty = question['difficulty']
+
+    # headers_cn = {'User-Agent': user_agent, 'Connection':
+    #               'keep-alive', 'Content-Type': 'application/json',
+    #               'Referer': 'https://leetcode-cn.com/problems/' + slug}
+    # resp_cn = session.post(url_cn, data=json_data,
+    #                        headers=headers_cn, timeout=10)
+    # content_cn = resp_cn.json()
+    # question_cn = content_cn['data']['question']
+    # content_cn = question_cn['translatedContent']
+    # content_cn = question_cn['content']
     return questionFrontendId, questionTitleSlug, questionTitle, difficulty, content
 ################################
 # write to csv file
@@ -2436,7 +2408,9 @@ def save_file(id, slut, title, difficulty, content):
     # solution_file_c = slut_dir + "/Solution.c"
     # solution_file_cpp = slut_dir + "/Solution.cpp"
     readme_file = slut_dir + "/README.md"
+    readme_file_cn = slut_dir + "/README.zh-CN.md"
     content_text = html_text.extract_text(content).replace('\n', '\n * ')
+    # content_text_cn = html_text.extract_text(content_cn).replace('\n', '\n * ')
     if not os.path.exists(solution_file_ts):
         sf = open(solution_file_ts, 'w')
         sf.write("/**\n")
@@ -2475,8 +2449,22 @@ def save_file(id, slut, title, difficulty, content):
     #     sf.close()
     if not os.path.exists(readme_file):
         sf = open(readme_file, 'w')
+        sf.write("# " + id + ". " + title + "\n")
+        sf.write("\n")
+        sf.write("  _Read this in other languages:_\n")
+        sf.write("    [_简体中文_](README.zh-CN.md)\n")
+        sf.write("\n")
         sf.write(content)
         sf.close()
+    if not os.path.exists(readme_file_cn):
+        sf_cn = open(readme_file_cn, 'w')
+        sf_cn.write("# " + id + ". " + title + "\n")
+        sf_cn.write("\n")
+        sf_cn.write("  _Read this in other languages:_\n")
+        sf_cn.write("    [_English_](README.md)\n")
+        sf_cn.write("\n")
+        sf_cn.write(content)
+        sf_cn.close()
 
 
 def create_single_slug(id):

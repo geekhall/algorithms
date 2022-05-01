@@ -1,20 +1,18 @@
 # 00077. Combinations
 
-Given two integers n and k, return all possible combinations of k numbers out of the range [1, n].
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
 
-You may return the answer in any order.
+<p>Given two integers <code>n</code> and <code>k</code>, return <em>all possible combinations of</em> <code>k</code> <em>numbers out of the range</em> <code>[1, n]</code>.</p>
 
-## 题目大意
+<p>You may return the answer in <strong>any order</strong>.</p>
 
-给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
 
-你可以按 任何顺序 返回答案。
-
-## Example 1
-
-```txt
-Input: n = 4, k = 2
-Output:
+<pre>
+<strong>Input:</strong> n = 4, k = 2
+<strong>Output:</strong>
 [
   [2,4],
   [3,4],
@@ -23,26 +21,19 @@ Output:
   [1,3],
   [1,4],
 ]
-```
+</pre>
 
-## Example 2
+<p><strong>Example 2:</strong></p>
 
-```txt
-Input: n = 1, k = 1
-Output: [[1]]
-```
+<pre>
+<strong>Input:</strong> n = 1, k = 1
+<strong>Output:</strong> [[1]]
+</pre>
 
-## Constraints
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
-```txt
-1 <= n <= 20
-1 <= k <= n
-```
-
-## Solution 1
-
-### Go
-
-```go
-
-```
+<ul>
+	<li><code>1 &lt;= n &lt;= 20</code></li>
+	<li><code>1 &lt;= k &lt;= n</code></li>
+</ul>

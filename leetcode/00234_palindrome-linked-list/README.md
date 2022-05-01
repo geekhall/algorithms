@@ -1,104 +1,32 @@
-# 00217. Contains Duplicate
+# 00234. Palindrome Linked List
 
-Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
 
-## 题目大意
+<p>Given the <code>head</code> of a singly linked list, return <code>true</code> if it is a palindrome.</p>
 
-给定一个整数数组，判断是否存在重复元素。
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+<img alt="" src="https://assets.leetcode.com/uploads/2021/03/03/pal1linked-list.jpg" style="width: 422px; height: 62px;" />
+<pre>
+<strong>Input:</strong> head = [1,2,2,1]
+<strong>Output:</strong> true
+</pre>
 
-如果存在一值在数组中出现至少两次，函数返回 true 。如果数组中每个元素都不相同，则返回 false 。
+<p><strong>Example 2:</strong></p>
+<img alt="" src="https://assets.leetcode.com/uploads/2021/03/03/pal2linked-list.jpg" style="width: 182px; height: 62px;" />
+<pre>
+<strong>Input:</strong> head = [1,2]
+<strong>Output:</strong> false
+</pre>
 
-## Example 1
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
-```txt
-Input: nums = [1,2,3,1]
-Output: true
-```
+<ul>
+	<li>The number of nodes in the list is in the range <code>[1, 10<sup>5</sup>]</code>.</li>
+	<li><code>0 &lt;= Node.val &lt;= 9</code></li>
+</ul>
 
-## Example 2
-
-```txt
-Input: nums = [1,2,3,4]
-Output: false
-```
-
-## Example 3
-
-```txt
-Input: nums = [1,1,1,3,3,4,3,2,4,2]
-Output: true
-```
-
-## Constraints
-
-```txt
-1 <= nums.length <= 105
--109 <= nums[i] <= 109
-```
-
-## Solution 1
-
-排序后比较相邻元素
-
-### Go
-
-```go
-func containsDuplicate(nums []int) bool {
- if len(nums) <= 1 {
-  return false
- }
-
- res := quickSort(nums)
- for i := 1; i < len(nums); i++ {
-  if res[i] == res[i-1] {
-   return true
-  }
- }
- return false
-}
-
-func quickSort(nums []int) []int {
- if len(nums) < 2 {
-  return nums
- }
- left, right := 0, len(nums)-1
- rand.Seed(time.Now().UnixNano()) // 取纳秒时间戳，可以保证每次的随机数种子都不同
- pivot := rand.Int() % len(nums)
- nums[pivot], nums[right] = nums[right], nums[pivot]
-
- for i, _ := range nums {
-  if nums[i] < nums[right] {
-   nums[left], nums[i] = nums[i], nums[left]
-   left++
-  }
- }
-
- nums[left], nums[right] = nums[right], nums[left]
- quickSort(nums[:left])
- quickSort(nums[left+1:])
-
- return nums
-}
-```
-
-## Solution 2
-
-使用map
-
-```go
-func containsDuplicate(nums []int) bool {
- if len(nums) < 2 {
-  return false
- }
- num_map := make(map[int]int, 0)
- for _, v := range nums {
-  num_map[v]++
- }
- for _, v := range num_map {
-  if v > 1 {
-   return true
-  }
- }
- return false
-}
-```
+<p>&nbsp;</p>
+<strong>Follow up:</strong> Could you do it in <code>O(n)</code> time and <code>O(1)</code> space?

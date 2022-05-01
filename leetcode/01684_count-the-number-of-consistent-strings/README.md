@@ -1,3 +1,8 @@
+# 01684. Count the Number of Consistent Strings
+
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
+
 <p>You are given a string <code>allowed</code> consisting of <strong>distinct</strong> characters and an array of strings <code>words</code>. A string is <strong>consistent </strong>if all characters in the string appear in the string <code>allowed</code>.</p>
 
 <p>Return<em> the number of <strong>consistent</strong> strings in the array </em><code>words</code>.</p>

@@ -1,49 +1,35 @@
-# 00617. MergeTree
+# 00617. Merge Two Binary Trees
 
-给定两个二叉树，想象当你将它们中的一个覆盖到另一个上时，两个二叉树的一些节点便会重叠。
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
 
-你需要将他们合并为一个新的二叉树。合并的规则是如果两个节点重叠，那么将他们的值相加作为节点合并后的新值，否则不为 NULL 的节点将直接作为新二叉树的节点。
+<p>You are given two binary trees <code>root1</code> and <code>root2</code>.</p>
 
-## Example 1
+<p>Imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not. You need to merge the two trees into a new binary tree. The merge rule is that if two nodes overlap, then sum node values up as the new value of the merged node. Otherwise, the NOT null node will be used as the node of the new tree.</p>
 
-```txt
-输入: 
- Tree 1                     Tree 2                  
-          1                         2                             
-         / \                       / \                            
-        3   2                     1   3                        
-       /                           \   \                      
-      5                             4   7                  
-输出: 
-合并后的树:
-      3
-     / \
-    4   5
-   / \   \ 
-  5   4   7
-```
+<p>Return <em>the merged tree</em>.</p>
 
-## Constraints
+<p><strong>Note:</strong> The merging process must start from the root nodes of both trees.</p>
 
-```txt
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+<img alt="" src="https://assets.leetcode.com/uploads/2021/02/05/merge.jpg" style="width: 600px; height: 163px;" />
+<pre>
+<strong>Input:</strong> root1 = [1,3,2,5], root2 = [2,1,3,null,4,null,7]
+<strong>Output:</strong> [3,4,5,5,4,null,7]
+</pre>
 
-```
+<p><strong>Example 2:</strong></p>
 
-## Solution 1
+<pre>
+<strong>Input:</strong> root1 = [1], root2 = [1,2]
+<strong>Output:</strong> [2,2]
+</pre>
 
-### Go
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
-```go
-func mergeTrees(root1 *TreeNode, root2 *TreeNode) *TreeNode {
- if root1 == nil {
-  return root2
- }
- if root2 == nil {
-  return root1
- }
- root := &TreeNode{root1.Val + root2.Val, nil, nil}
- root.Left = mergeTrees(root1.Left, root2.Left)
- root.Right = mergeTrees(root1.Right, root2.Right)
- return root
-}
-```
+<ul>
+	<li>The number of nodes in both trees is in the range <code>[0, 2000]</code>.</li>
+	<li><code>-10<sup>4</sup> &lt;= Node.val &lt;= 10<sup>4</sup></code></li>
+</ul>

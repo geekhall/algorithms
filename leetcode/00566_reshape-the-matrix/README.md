@@ -1,95 +1,38 @@
 # 00566. Reshape the Matrix
 
-In MATLAB, there is a handy function called reshape which can reshape an m x n matrix into a new one with a different size r x c keeping its original data.
+  _Read this in other languages:_
+    [_简体中文_](README.zh-CN.md)
 
-You are given an m x n matrix mat and two integers r and c representing the number of rows and the number of columns of the wanted reshaped matrix.
+<p>In MATLAB, there is a handy function called <code>reshape</code> which can reshape an <code>m x n</code> matrix into a new one with a different size <code>r x c</code> keeping its original data.</p>
 
-The reshaped matrix should be filled with all the elements of the original matrix in the same row-traversing order as they were.
+<p>You are given an <code>m x n</code> matrix <code>mat</code> and two integers <code>r</code> and <code>c</code> representing the number of rows and the number of columns of the wanted reshaped matrix.</p>
 
-If the reshape operation with given parameters is possible and legal, output the new reshaped matrix; Otherwise, output the original matrix.
+<p>The reshaped matrix should be filled with all the elements of the original matrix in the same row-traversing order as they were.</p>
 
-## 题目大意
+<p>If the <code>reshape</code> operation with given parameters is possible and legal, output the new reshaped matrix; Otherwise, output the original matrix.</p>
 
-在 MATLAB 中，有一个非常有用的函数 reshape ，它可以将一个 m x n 矩阵重塑为另一个大小不同（r x c）的新矩阵，但保留其原始数据。
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+<img alt="" src="https://assets.leetcode.com/uploads/2021/04/24/reshape1-grid.jpg" style="width: 613px; height: 173px;" />
+<pre>
+<strong>Input:</strong> mat = [[1,2],[3,4]], r = 1, c = 4
+<strong>Output:</strong> [[1,2,3,4]]
+</pre>
 
-给你一个由二维数组 mat 表示的 m x n 矩阵，以及两个正整数 r 和 c ，分别表示想要的重构的矩阵的行数和列数。
+<p><strong>Example 2:</strong></p>
+<img alt="" src="https://assets.leetcode.com/uploads/2021/04/24/reshape2-grid.jpg" style="width: 453px; height: 173px;" />
+<pre>
+<strong>Input:</strong> mat = [[1,2],[3,4]], r = 2, c = 4
+<strong>Output:</strong> [[1,2],[3,4]]
+</pre>
 
-重构后的矩阵需要将原始矩阵的所有元素以相同的 行遍历顺序 填充。
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
-如果具有给定参数的 reshape 操作是可行且合理的，则输出新的重塑矩阵；否则，输出原始矩阵。
-
-## Example 1
-
-```txt
-输入：mat = [[1,2],[3,4]], r = 1, c = 4
-输出：[[1,2,3,4]]
-```
-
-## Example 2
-
-```txt
-输入：mat = [[1,2],[3,4]], r = 2, c = 4
-输出：[[1,2],[3,4]]
-```
-
-## Constraints
-
-```txt
-m == mat.length
-n == mat[i].length
-1 <= m, n <= 100
--1000 <= mat[i][j] <= 1000
-1 <= r, c <= 300
-```
-
-## Solution 1
-
-Queue
-
-### Go
-
-```go
-func matrixReshape1(mat [][]int, r int, c int) [][]int {
- m := len(mat)
- n := len(mat[0])
- if m*n != r*c {
-  return mat
- }
-
- queue := make([]int, 0)
- for i := 0; i < len(mat); i++ {
-  for j := 0; j < len(mat[0]); j++ {
-   queue = append(queue, mat[i][j])
-  }
- }
-
- res := make([][]int, r)
- for i := 0; i < r; i++ {
-  res[i] = make([]int, c)
-  for j := 0; j < c; j++ {
-   res[i][j] = queue[0]
-   queue = queue[1:]
-  }
- }
- return res
-}
-```
-
-## Solution 2
-
-```go
-func matrixReshape(nums [][]int, r int, c int) [][]int {
- n, m := len(nums), len(nums[0])
- if n*m != r*c {
-  return nums
- }
- ans := make([][]int, r)
- for i := range ans {
-  ans[i] = make([]int, c)
- }
- for i := 0; i < n*m; i++ {
-  ans[i/c][i%c] = nums[i/m][i%m]
- }
- return ans
-}
-```
+<ul>
+	<li><code>m == mat.length</code></li>
+	<li><code>n == mat[i].length</code></li>
+	<li><code>1 &lt;= m, n &lt;= 100</code></li>
+	<li><code>-1000 &lt;= mat[i][j] &lt;= 1000</code></li>
+	<li><code>1 &lt;= r, c &lt;= 300</code></li>
+</ul>
