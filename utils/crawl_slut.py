@@ -36,6 +36,7 @@ problem_dict = {
     '2224': 'minimum-number-of-operations-to-convert-time',
     '2205': 'the-number-of-users-that-are-eligible-for-discount',
     '2199': 'finding-the-topic-of-each-post',
+    '2255': 'count-prefixes-of-a-given-string',
     '2251': 'number-of-flowers-in-full-bloom',
     '2250': 'count-number-of-rectangles-containing-each-point',
     '2249': 'count-lattice-points-inside-a-circle',
