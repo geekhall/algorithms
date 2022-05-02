@@ -27,14 +27,12 @@
  */
 // use xor features : a ^ b ^ b = a
 function missingNumber(nums: number[]): number {
-  let n = nums.length
-  return nums.reduce((pre, cur) => pre ^ cur) ^ Array.from({ length: n + 1 }, (_, i) => i).reduce((pre, cur) => pre ^ cur)
+  return nums.reduce((pre, cur) => pre ^ cur) ^ Array.from({ length: nums.length + 1 }, (_, i) => i).reduce((pre, cur) => pre ^ cur)
 };
 
 function test_00268() {
   let nums = [9, 6, 4, 2, 3, 5, 7, 0, 1]
   console.log(missingNumber(nums));
-
 }
 
 test_00268()
