@@ -30,11 +30,18 @@
  * 1 <= nums[i] <= 20
  */
 function subsetXORSum(nums: number[]): number {
-  return 0
+  let xor = 0
+  let ans = 0
+  for (let i = 0; i < nums.length; i++) {
+    xor |= nums[i]
+    ans = xor * Math.pow(2, nums.length - 1)
+  }
+  return ans
 };
 
 function test_01863() {
-
+  let nums = [3, 4, 5, 6, 7, 8]
+  console.log(subsetXORSum(nums));
 }
 
 test_01863()
