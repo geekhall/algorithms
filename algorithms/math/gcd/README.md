@@ -1,4 +1,4 @@
-# 最大公约数（欧几里得算法GCD）
+# GCD
 
 _Read this in other languages:_
-[_English_](README.en-US.md)
+[_简体中文_](README.zh-CN.md)

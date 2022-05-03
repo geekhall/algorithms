@@ -1,16 +1,15 @@
-# 数组
+# Array
 
 _Read this in other languages:_
-[_English_](README.en-US.md)
+[_简体中文_](README.zh-CN.md)
 
-数组数据结构（英语：array data structure），简称数组（英语：Array），是由相同类型的元素（element）的集合所组成的数据结构，分配一块连续的内存来存储。利用元素的索引（index）可以计算出该元素对应的存储地址。最简单的数据结构类型是一维数组。
+an array data structure, or simply an array, is a data structure consisting of a collection of elements (values or variables), each identified by at least one array index or key. An array is stored such that the position of each element can be computed from its index tuple by a mathematical formula. The simplest type of data structure is a linear array, also called one-dimensional array.
 
-## 一维数组
+## One-dimensional arrays
 
-一维（或单维）数组是一种线性数组，其中元素的访问是以行或列索引的单一下标表示。
+A one-dimensional array (or single dimension array) is a type of linear array. Accessing its elements involves a single subscript which can either represent a row or column index.
 
-## 多维数组
+## Multidimensional arrays
 
-多维数组（高维数组）的概念特别是在数值计算和图形应用方面非常有用。我们在多维数组之中采用一系列有序的整数来标注，如在[ 3,1,5 ] 。这种整数列表之中整数的个数始终相同，且被称为数组的“维度”。关于每个数组维度的边界称为“维”。维度为k的数组通常被称为k维。
-
-多维数组的数组名字，在表达式中自动转换为数组首元素地址值，但这个首元素实际上是去除数组下标第一维之后的数组剩余部分。
+For a multidimensional array, the element with indices i,j would have address B + c · i + d · j, where the coefficients c and d are the row and column address increments.
+!2 .

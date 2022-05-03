@@ -27,7 +27,7 @@
  * 2 <= arr.length <= 10 5
  * -10 6 <= arr[i] <= 10 6
  */
-function minimumAbsDifference(arr: number[]): number[][] {
+function minimumAbsDifference1(arr: number[]): number[][] {
   arr.sort((a, b) => a - b)
   let m = new Map()
   let min = Number.MAX_VALUE
@@ -44,7 +44,47 @@ function minimumAbsDifference(arr: number[]): number[][] {
   })
   return res
 };
+function minimumAbsDifference(arr: number[]): number[][] {
+  let minElement = arr[0]
+  let maxElement = arr[0]
 
+  for (const element of arr) {
+    minElement = Math.min(minElement, element)
+    maxElement = Math.max(maxElement, element)
+  }
+  let shift = -minElement
+  let line = new Array(maxElement - minElement + 1).fill(0)
+  let res = []
+
+  for (const num of arr) {
+    line[num + shift] = 1
+  }
+
+  let minPairDiff = maxElement - minElement
+  let prev = 0
+  for (let curr = 1; curr <= maxElement + shift; ++curr) {
+    // If line[curr] == 0, meaning there is no occurrence of the integer (curr - shift)
+    // held by this index, we will move on to the next index.
+    if (line[curr] === 0) {
+      continue;
+    }
+    // If the difference (curr - prev) equals `minPairDiff`, we add this pair
+    // {prev - shift, curr - shift} to the answer list. Otherwise, if the difference
+    // (curr - prev) is smaller than `minPairDiff`, we empty the answer list and add
+    // the pair {curr - shift, prev - shift} to the answre list and update the `minPairDiff`
+    if (curr - prev === minPairDiff) {
+      res.push([prev - shift, curr - shift]);
+    } else if (curr - prev < minPairDiff) {
+      res = [];
+      minPairDiff = curr - prev;
+      res.push([prev - shift, curr - shift]);
+    }
+
+    // Update prev as curr.
+    prev = curr;
+  }
+  return res;
+}
 function test_01200() {
   let arr = [4, 2, 1, 3]
   console.log(minimumAbsDifference(arr));

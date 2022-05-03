@@ -1,4 +1,4 @@
-# 计数排序
+# Counting Sort
 
 _Read this in other languages:_
-[_English_](README.en-US.md)
+[_简体中文_](README.zh-CN.md)
