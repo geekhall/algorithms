@@ -19,7 +19,7 @@
  * 1 <= path.length <= 10 4
  * path[i] is either 'N', 'S', 'E', or 'W'.
  */
-function isPathCrossing(path: string): boolean {
+function isPathCrossing1(path: string): boolean {
   let res = false
   let s = new Set()
   let current = [0, 0]
@@ -53,7 +53,41 @@ function isPathCrossing(path: string): boolean {
   return res
 };
 
+// const coordToStr = ([x: number, y: number]) => x + '' + y // construct string from x and y
+function isPathCrossing(path: string): boolean {
+  let dict: { [name: string]: number[] } = {
+    'N': [0, 1],
+    'S': [0, -1],
+    'E': [1, 0],
+    'W': [-1, 0],
+  }
+  let prev = [0, 0];
+  let map = new Map();
+  map.set(prev.toString(), 1); // initialise object with start position coordinates
+  for (let i = 0; i < path.length; i++) {
+    let direction = dict[path[i]];
+    let newCoord = [prev[0] + direction[0], prev[1] + direction[1]]; // calculate new coordinate
+    let newCoordKey = newCoord.toString();
+    map.set(newCoordKey, (map.get(newCoordKey) || 0) + 1); // increase count of x + y string coordinate
+    if (map.get(newCoordKey) > 1) return true; // if there are two or more of the same coordinates then we hit our previous path
+    prev = newCoord; // store new coordinate to use it for calculation in the next iteration
+
+  }
+  return false;
+};
+
 function test_01496() {
+  let path = "NESWW"
+  console.log(isPathCrossing(path));  // true
+  path = "NES"
+  console.log(isPathCrossing(path));  // false
+  path = "NNSWWEWSSESSWENNW"
+  console.log(isPathCrossing(path));  // true
+}
+
+test_01496()
+
+function array_problem_test() {
 
   //Use set to store array has the following problem:
   let s = new Set()
@@ -65,14 +99,4 @@ function test_01496() {
   // resolve:
   s.add(current.toString())
   console.log(s.has([0, 0].toString()));  // true
-
-  let path = "NESWW"
-  console.log(isPathCrossing(path));
-  path = "NES"
-  console.log(isPathCrossing(path));
-
-  path = "NNSWWEWSSESSWENNW"
-  console.log(isPathCrossing(path));
 }
-
-test_01496()
