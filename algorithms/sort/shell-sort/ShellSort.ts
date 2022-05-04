@@ -6,19 +6,15 @@ function shellSort(arr: number[]): number[] {
   }
 
   while (gap > 0) {
-    console.log("gap = ", gap);
-
     for (let i = gap; i < n; i++) {
       temp = arr[i]
       let j = i - gap;
-      while (j >= 0 && arr[j] > temp) {
-        arr[j + gap] = arr[j]
+      while (j >= 0 && arr[j] > temp) { // insertion sort (ascending order)
+        arr[j + gap] = arr[j]           // shift element
         j -= gap
       }
-      arr[j + gap] = temp
+      arr[j + gap] = temp   // insert element at proper position
     }
-    console.log("gap" + gap + ":" + arr);
-
     gap = Math.floor(gap / 3)
   }
 

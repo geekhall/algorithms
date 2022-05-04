@@ -1,3 +1,4 @@
+
 function insertionSort(arr: number[]): number[] {
   let n = arr.length
   let preIndex, current
