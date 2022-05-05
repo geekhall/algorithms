@@ -3,31 +3,50 @@
  * Title: Ugly Number
  * Difficulty: Easy
  * Description: An ugly number is a positive integer whose prime factors are limited to 2, 3, and 5.
- * 
+ *
  * Given an integer n, return true if n is an ugly number.
- * 
+ *
  * Example 1:
- * 
+ *
  * Input: n = 6 Output: true Explanation: 6 = 2 × 3
- * 
+ *
  * Example 2:
- * 
+ *
  * Input: n = 1 Output: true Explanation: 1 has no prime factors, therefore all of its prime factors are limited to 2, 3, and 5.
- * 
+ *
  * Example 3:
- * 
+ *
  * Input: n = 14 Output: false Explanation: 14 is not ugly since it includes the prime factor 7.
- * 
+ *
  * Constraints:
- * 
+ *
  * -2 31 <= n <= 2 31 - 1
  */
-function solution() {
-  
-}
+function isUgly(n: number): boolean {
+  if (n < 1) return false
+  while (n > 1) {
+    if (n % 2 === 0)
+      n = n / 2
+    else if (n % 3 === 0)
+      n = n / 3
+    else if (n % 5 === 0)
+      n = n / 5
+    else
+      return false
+  }
+  return true
+};
 
 function test_00263() {
-  
+  let num = 1
+  console.log(isUgly(num));
+  num = 14
+  console.log(isUgly(num));
+  num = 90
+  console.log(isUgly(num));
+  num = -2147483648
+  console.log(isUgly(num)); // expect false
+
 }
 
 test_00263()
