@@ -14,6 +14,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import html_text
 problem_dict = {
+    '2259': 'remove-digit-from-number-to-maximize-result',
     '2254': 'design-video-sharing-platform',
     '2237': 'count-positions-on-street-with-required-brightness',
     '2236': 'root-equals-sum-of-children',
