@@ -36,7 +36,7 @@ function addBinary(a: string, b: string): string {
   let res = Array.from({ length: n }, v => '0')
 
   for (let i = n - 1; i >= 0; i--) {
-    let t = parseInt(arrA[i].charAt(0)) + parseInt(arrB[i].charAt(0)) + upFlag
+    let t = parseInt(arrA[i]) + parseInt(arrB[i]) + upFlag
     if (t >= 2) {
       upFlag = 1
     } else {
