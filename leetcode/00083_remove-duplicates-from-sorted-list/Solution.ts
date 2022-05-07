@@ -56,7 +56,7 @@ function printNode(node: ListNode | null) {
   console.log(arr.join(' -> '));
 }
 
-function deleteDuplicates(head: ListNode | null): ListNode | null {
+function deleteDuplicates1(head: ListNode | null): ListNode | null {
   if (head === null)
     return null
   let node: ListNode | null = head
@@ -78,9 +78,33 @@ function deleteDuplicates(head: ListNode | null): ListNode | null {
   return head
 };
 
+function deleteDuplicates(head: ListNode | null): ListNode | null {
+  if (head === null)
+    return null
+  let node = head
+  let next = head.next
+  while (next !== null) {
+    // find next different value
+
+    while (next !== null && next!.val === node.val) {
+      next = next!.next
+    }
+    if (next === null) {
+      node.next = null
+      break
+    }
+    // delete element
+    node.next = next
+
+    // move pointer
+    node = next!
+    next = next!.next
+  }
+  return head
+};
 
 function test_00083() {
-  let head: ListNode = createNode([])
+  let head: ListNode = createNode([1, 1, 2, 3, 3])
   printNode(head)
   printNode(deleteDuplicates(head));
 }
