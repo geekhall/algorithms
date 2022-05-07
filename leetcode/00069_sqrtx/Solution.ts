@@ -21,7 +21,7 @@
  * 0 <= x <= 2 31 - 1
  */
 // Binary search
-function mySqrt1(x: number): number {
+function mySqrt(x: number): number {
   let left = 1;
   let right = x;
   let guess = Math.trunc((left + right) / 2);
@@ -38,7 +38,7 @@ function mySqrt1(x: number): number {
   return guess;
 }
 // time limit exceeded
-function mySqrt(x: number): number {
+function mySqrt1(x: number): number {
   for (let i = x; i >= 0; i--) {
     if (i * i === x || (((i + 1) * (i + 1)) > x && i * i < x))
       return i
