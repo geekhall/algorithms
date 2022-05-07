@@ -1,0 +1,88 @@
+/**
+ * ID:    00083
+ * Title: Remove Duplicates from Sorted List
+ * Difficulty: Easy
+ * Description: Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
+ *
+ * Example 1:
+ *
+ * Input: head = [1,1,2] Output: [1,2]
+ *
+ * Example 2:
+ *
+ * Input: head = [1,1,2,3,3] Output: [1,2,3]
+ *
+ * Constraints:
+ *
+ * The number of nodes in the list is in the range [0, 300].
+ * -100 <= Node.val <= 100
+ * The list is guaranteed to be sorted in ascending order.
+ */
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+class ListNode {
+  val: number
+  next: ListNode | null
+  constructor(val?: number, next?: ListNode | null) {
+    this.val = (val === undefined ? 0 : val)
+    this.next = (next === undefined ? null : next)
+  }
+}
+function createNode(arr: number[]): ListNode {
+  let head = new ListNode(arr[0])
+  let node = head
+  for (let i = 1; i < arr.length; i++) {
+    node.next = new ListNode(arr[i], null)
+    node = node.next
+  }
+  return head
+}
+
+function printNode(node: ListNode | null) {
+  let arr = []
+  while (node !== null) {
+    arr.push(node.val)
+    node = node.next
+  }
+  console.log(arr.join(' -> '));
+}
+
+function deleteDuplicates(head: ListNode | null): ListNode | null {
+  if (head === null)
+    return null
+  let node: ListNode | null = head
+  let arr = []
+  while (node !== null) {
+    arr.push(node.val)
+    node = node.next
+  }
+  // original list is sorted. so sort is not necessary.
+  // arr = Array.from(new Set(arr)).sort((a, b) => a - b)
+  arr = Array.from(new Set(arr))
+
+  node = new ListNode(arr[0], null)
+  head = node
+  for (let i = 1; i < arr.length; i++) {
+    node.next = new ListNode(arr[i], null)
+    node = node.next
+  }
+  return head
+};
+
+
+function test_00083() {
+  let head: ListNode = createNode([])
+  printNode(head)
+  printNode(deleteDuplicates(head));
+}
+
+test_00083()
