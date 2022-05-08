@@ -27,11 +27,32 @@
  */
 // Monotonic stack
 function finalPrices(prices: number[]): number[] {
+  let res: number[] = Array.from({ length: prices.length }, v => -1)
+  let stack = new Array()
+  for (let i = 0; i < prices.length; i++) {
+    while (stack.length > 0 && prices[i] <= prices[stack[stack.length - 1]]) {
+      let cur = stack.pop()
+      res[cur] = prices[i]
+    }
+    stack.push(i)
+  }
 
+  for (let i = 0; i < prices.length; i++) {
+    if (res[i] !== -1)
+      res[i] = prices[i] - res[i]
+    else
+      res[i] = prices[i]
+  }
+  return res
 };
 
 function test_01475() {
-
+  let prices = [8, 4, 6, 2, 3]
+  console.log(finalPrices(prices));
+  prices = [1, 2, 3, 4, 5]
+  console.log(finalPrices(prices));
+  prices = [10, 1, 1, 6]
+  console.log(finalPrices(prices));
 }
 
 test_01475()
