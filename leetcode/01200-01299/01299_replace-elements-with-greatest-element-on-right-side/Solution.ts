@@ -20,10 +20,9 @@
  * 1 <= arr[i] <= 10 5
  */
 function replaceElements(arr: number[]): number[] {
-  let res: number[] = new Array()
-  let stack: number[] = new Array()
-  for (let i = 0; i < arr.length; i++) {
-    while (stack.length > 0 && arr[i])
+  let res: number[] = new Array(arr.length).fill(-1)
+  for (let i = 0; i < arr.length - 1; i++) {
+    res[i] = Math.max(...arr.slice(i + 1))
   }
   return res
 };
