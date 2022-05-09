@@ -3,8 +3,7 @@
 _Read this in other languages:_
 [_简体中文_](README.zh-CN.md)
 
-本库包含了多种基于Golang语言的数据结构和算法。
-每种算法和数据结构都有自己的 README，包含相关说明和链接以及源码，以便进一步阅读。
+数据结构和算法教程。
 
 ## 数据结构
 

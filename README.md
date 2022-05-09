@@ -3,44 +3,43 @@
 _Read this in other languages:_
 [_简体中文_](README.zh-CN.md)
 
-本库包含了多种基于Golang语言的数据结构和算法。
-每种算法和数据结构都有自己的 README，包含相关说明和链接以及源码，以便进一步阅读。
+Algorithm and datastructure tutorial。
 
-## 数据结构
+## Data Structure
 
 是计算机中存储、组织数据的方式。 数据结构是一种具有一定逻辑关系，在计算机中应用某种存储结构，并且封装了相应操作的数据元素集合。 它包含三方面的内容，逻辑关系、存储关系及操作。 不同种类的数据结构适合于不同种类的应用，而部分甚至专门用于特定的作业任务。
 
-* [数组](data-structures/array)
-* [链表](data-structures/linked-list)
-* [双向链表](data-structures/doubly-linked-list)
-* [队列](data-structures/queue)
-* [栈](data-structures/stack)
-* [哈希表（散列表）](data-structures/hash-table)
-* [堆](data-structures/heap)
-* [优先队列](data-structures/priority-queue)
-* [字典树](data-structures/trie)
-* [树](data-structures/tree)
-  * [二叉查找树](data-structures/tree/binary-search-tree)
-  * [AVL树](data-structures/tree/avl-tree)
-  * [红黑树](data-structures/tree/red-black-tree)
-  * [线段树](data-structures/tree/segment-tree)
-  * [树状数组](data-structures/tree/fenwick-tree)
-* [图](data-structures/graph)
-* [并查集](disjoint-sets)
+* [array](data-structures/array)
+* [linked-list](data-structures/linked-list)
+* [doubly-linked-list](data-structures/doubly-linked-list)
+* [queue](data-structures/queue)
+* [stack](data-structures/stack)
+* [hash-table](data-structures/hash-table)
+* [heap](data-structures/heap)
+* [priority-queue](data-structures/priority-queue)
+* [trie](data-structures/trie)
+* [tree](data-structures/tree)
+  * [binary-search-tree](data-structures/tree/binary-search-tree)
+  * [avl-tree](data-structures/tree/avl-tree)
+  * [red-black-tree](data-structures/tree/red-black-tree)
+  * [segment-tree](data-structures/tree/segment-tree)
+  * [fenwick-tree](data-structures/tree/fenwick-tree)
+* [graph](data-structures/graph)
+* [disjoint-sets](disjoint-sets)
 
-## 算法
+## Algorithms
 
-### 数学相关
+### Maths
 
-* 位运算 - set/get/update/clear 位、乘以/除以二进制位 、变负等
-* 阶乘（Factorial）
-* 斐波那契数 - 经典 和 闭式 版本
-* 素数检测 (排除法)
-* 欧几里得算法 - 计算最大公约数 (GCD)
-* 最小公倍数 (LCM)
+* bit - set/get/update/clear bit、multiply/divide binary, minus
+* factorial
+* fibonacci
+* prime
+* GCD
+* LCM
 * 素数筛 - 查找任意给定范围内的所有素数
 * 判断 2 次方数 - 检查数字是否为 2 的幂 (原生和按位算法)
-* 杨辉三角形
+* binomial array
 * 复数 - 复数及其基本运算
 * 弧度和角 - 弧度与角的相互转换
 * 快速算次方
