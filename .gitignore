@@ -8,6 +8,7 @@
 *.so
 *.dylib
 *.log
+*.pyc
 
 # Test binary, built with `go test -c`
 *.test
@@ -33,4 +34,5 @@ dist
 dist-ssr
 node_modules
 .idea/
+__pycache__/
 *.log
