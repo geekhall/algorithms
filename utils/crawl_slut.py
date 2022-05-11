@@ -135,17 +135,44 @@ def write_to_csv(file_name, list_data):
     df = pd.DataFrame(list_data)
     df.to_csv(file_name, index=False)
 
+
 def get_id_range(id):
-  range_id= str(int(int(id) / 100)).zfill(3)
-  return range_id+"00-"+range_id+"99"
+    range_id = str(int(int(id) / 100)).zfill(3)
+    return range_id+"00-"+range_id+"99"
+
+
+def file_exists(id, slut):
+    workbase_dir = '/Users/yiny/workspace/algorithms/leetcode/'
+    id_range = get_id_range(id)
+    slut_dir = workbase_dir + id_range + "/" + id.zfill(5) + "_" + slut
+    print(slut_dir)
+    if not os.path.exists(slut_dir):
+        os.mkdir(slut_dir)
+    solution_file_ts = slut_dir + "/Solution.ts"
+    readme_file = slut_dir + "/README.md"
+    readme_file_cn = slut_dir + "/README.zh-CN.md"
+    if not os.path.exists(solution_file_ts):
+        print("1 not exists", solution_file_ts)
+        return False
+    if not os.path.exists(readme_file):
+        print("2 not exists", readme_file)
+        return False
+    if not os.path.exists(readme_file_cn):
+        print("3 not exists", readme_file_cn)
+        return False
+    cmdline = 'code -r '+solution_file_ts
+    os.system(cmdline)
+    return True
 
 ################################
-# write to csv file
+# save file
 ################################
+
+
 def save_file(id, slut, title, difficulty, content):
     workbase_dir = '/Users/yiny/workspace/algorithms/leetcode/'
-    id_range=get_id_range(id)
-    slut_dir = workbase_dir + id_range + "/" + id + "_" + slut
+    id_range = get_id_range(id)
+    slut_dir = workbase_dir + id_range + "/" + id.zfill(5) + "_" + slut
     print(slut_dir)
     if not os.path.exists(slut_dir):
         os.mkdir(slut_dir)
@@ -213,18 +240,18 @@ def save_file(id, slut, title, difficulty, content):
         sf_cn.write("\n")
         sf_cn.write(content)
         sf_cn.close()
-    cmdline='code -r '+solution_file_ts
+    cmdline = 'code -r '+solution_file_ts
     os.system(cmdline)
+
 
 def create_single_slug(id):
     slut = problem_dict[id]
-    questionFrontendId, questionTitleSlug, questionTitle, difficulty, content = get_problem_by_slug(
-        slut)
-    # print(content)
-    # content_text = html_text.extract_text(content)
-    # print(html_text.extract_text(content))
-    save_file(questionFrontendId, questionTitleSlug,
-              questionTitle, difficulty, content)
+    if not file_exists(id, slut):
+        print("EEEEEEnter")
+        questionFrontendId, questionTitleSlug, questionTitle, difficulty, content = get_problem_by_slug(
+            slut)
+        save_file(questionFrontendId, questionTitleSlug,
+                  questionTitle, difficulty, content)
 
 
 def is_number(s):
