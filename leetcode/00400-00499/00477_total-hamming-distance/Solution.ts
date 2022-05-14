@@ -22,7 +22,7 @@
  */
 function totalHammingDistance(nums: number[]): number {
   let res = 0
-  // save the sum count of bit-1 in nums in position i
+  // save the sum count of bit-1 in position i
   let ones: number[] = new Array(32).fill(0)
   for (let i = 0; i < 32; i++) {
     for (let j = 0; j < nums.length; j++) {
