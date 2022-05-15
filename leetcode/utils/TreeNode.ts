@@ -8,3 +8,9 @@ export class TreeNode {
     this.right = (right === undefined ? null : right)
   }
 }
+
+function createTree(arr: number | null[]): TreeNode | null {
+  let res: TreeNode | null = new TreeNode()
+
+  return res
+}
