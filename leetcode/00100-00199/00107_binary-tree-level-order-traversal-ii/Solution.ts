@@ -24,7 +24,25 @@
 import { TreeNode } from "../../utils/TreeNode"
 
 function levelOrderBottom(root: TreeNode | null): number[][] {
+  if (root === null)
+    return []
+  let res: number[][] = new Array()
+  let m = new Map<number, Array<TreeNode>>()
 
+
+  let level = 1
+  m.set(level, [root])
+  let current = root
+  while (current.left !== null || current.right !== null) {
+    level++
+    let tempArr = new Array()
+    if (current.left !== null)
+      tempArr.push(current.left)
+    if (current.right !== null)
+      tempArr.push(current.right)
+    m.set(level, tempArr)
+  }
+  return res
 };
 
 function test_00107() {
