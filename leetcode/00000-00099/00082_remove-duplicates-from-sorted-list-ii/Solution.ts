@@ -18,43 +18,8 @@
  * -100 <= Node.val <= 100
  * The list is guaranteed to be sorted in ascending order.
  */
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     val: number
- *     next: ListNode | null
- *     constructor(val?: number, next?: ListNode | null) {
- *         this.val = (val===undefined ? 0 : val)
- *         this.next = (next===undefined ? null : next)
- *     }
- * }
- */
-class ListNode {
-  val: number
-  next: ListNode | null
-  constructor(val?: number, next?: ListNode | null) {
-    this.val = (val === undefined ? 0 : val)
-    this.next = (next === undefined ? null : next)
-  }
-}
-function createNode(arr: number[]): ListNode {
-  let head = new ListNode(arr[0])
-  let node = head
-  for (let i = 1; i < arr.length; i++) {
-    node.next = new ListNode(arr[i], null)
-    node = node.next
-  }
-  return head
-}
+import { ListNode, createList, printList } from "../../utils/ListNode"
 
-function printNode(node: ListNode | null) {
-  let arr = []
-  while (node !== null) {
-    arr.push(node.val)
-    node = node.next
-  }
-  console.log(arr.join(' -> '));
-}
 function deleteDuplicates(head: ListNode | null): ListNode | null {
   let prev = head;
   let curr = head;
@@ -96,12 +61,12 @@ function deleteDuplicates(head: ListNode | null): ListNode | null {
 }
 
 function test_00082() {
-  let head: ListNode = createNode([1, 1, 2, 3, 3])
-  printNode(head)
-  printNode(deleteDuplicates(head));
-  head = createNode([1, 1, 1, 2, 3])
-  printNode(head)
-  printNode(deleteDuplicates(head));
+  let head: ListNode = createList([1, 1, 2, 3, 3])
+  printList(head)
+  printList(deleteDuplicates(head));
+  head = createList([1, 1, 1, 2, 3])
+  printList(head)
+  printList(deleteDuplicates(head));
 }
 
 test_00082()
