@@ -261,7 +261,7 @@ function traversalTreeWithLayer(root: TreeNode) {
       if (!cur && cur !== undefined)
         continue
       level.push(cur.val)
-      queue.push(cur.leaf)
+      queue.push(cur.left)
       queue.push(cur.right)
     }
     if (level.length > 0) {
