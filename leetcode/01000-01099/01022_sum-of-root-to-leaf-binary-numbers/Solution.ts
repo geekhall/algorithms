@@ -40,6 +40,7 @@ function sumRootToLeaf(root: TreeNode | null): number {
   dfs(root, 0)
   return res
 };
+
 function test_01022() {
   let root = TreeNode.create([1, 0, 1, 0, 1, 0, 1])
   console.log(sumRootToLeaf(root));
