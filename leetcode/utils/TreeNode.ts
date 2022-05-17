@@ -7,36 +7,216 @@ export class TreeNode {
     this.left = (left === undefined ? null : left)
     this.right = (right === undefined ? null : right)
   }
+  static create(arr: any[]): TreeNode | null {
+    if (arr === null || arr.length === 0)
+      return null
+    const insertLevelOrder = (arr: any[], root: TreeNode | null, i: number): TreeNode | null => {
+      // Base case for recursion
+      if (i < arr.length) {
+        let temp: TreeNode | null
+        if (arr[i] === null)
+          temp = null
+        else
+          temp = new TreeNode(arr[i], null, null)
+        root = temp
+        if (root !== null) {
+          root.left = insertLevelOrder(arr, root.left, 2 * i + 1)
+          root.right = insertLevelOrder(arr, root.right, 2 * i + 2)
+        }
+      }
+      return root
+    }
+    return insertLevelOrder(arr, null, 0)
+  }
+
+  print() {
+    const bfs = (root: TreeNode | null): any[] => {
+      let res: any[] = new Array()
+      let queue = new Array()
+      queue.push(root)
+      while (queue.length > 0) {
+        let current = queue.shift()
+        if (current === null) {
+          res.push(null)
+        } else {
+          res.push(current.val)
+          queue.push(current.left)
+          queue.push(current.right)
+        }
+      }
+      while (res[res.length - 1] === null) {
+        res.pop()
+      }
+      return res
+    }
+    console.log(bfs(this));
+  }
+
+  static morrisPre(root: TreeNode | null) {
+    if (root === null)
+      return
+    // 当前节点，
+    let cur: TreeNode | null = root
+    // cur左孩子的最右节点
+    let mostRight = null
+    while (cur !== null) {
+      mostRight = cur.left
+      if (mostRight !== null) {
+        // cur 有左孩子，找到cur左子树最右节点
+        while (mostRight.right !== null && mostRight.right !== cur) {
+          mostRight = mostRight.right
+        }
+
+        if (mostRight.right === null) {// 若mostRight的右孩子指向空，让其指向cur，cur向左移动
+          mostRight.right = cur
+          console.log(cur.val + " ");
+          cur = cur.left
+          continue
+        } else {// 若mostRight的右孩子指向cur，让其指向空，cur向右移动
+          mostRight.right = null
+          // cur = cur.right
+        }
+      } else {
+        console.log(cur.val + " ");
+      }
+      cur = cur.right
+    }
+    console.log("");
+
+  }
+
+  static morrisIn(root: TreeNode | null) {
+    if (root === null)
+      return
+    // 当前节点，
+    let cur: TreeNode | null = root
+    // cur左孩子的最右节点
+    let mostRight = null
+    while (cur !== null) {
+      mostRight = cur.left
+      if (mostRight !== null) {
+        while (mostRight.right !== null && mostRight.right !== cur) {
+          mostRight = mostRight.right;
+        }
+        if (mostRight.right === null) {
+          mostRight.right = cur;
+          cur = cur.left;
+          continue;
+        } else {
+          mostRight.right = null;
+        }
+      }
+      console.log(cur.val);
+      cur = cur.right
+    }
+    console.log("");
+  }
+
+  static morrisPos(root: TreeNode | null) {
+    if (root === null)
+      return null
+    // 当前节点，
+    let cur: TreeNode | null = root
+    // cur左孩子的最右节点
+    let mostRight = null
+    while (cur !== null) {
+      mostRight = cur.left
+      if (mostRight !== null) {
+        while (mostRight.right !== null && mostRight.right !== cur) {
+          mostRight = mostRight.right;
+        }
+        if (mostRight.right === null) {
+          mostRight.right = cur;
+          cur = cur.left;
+          continue;
+        } else {
+          mostRight.right = null;
+          this.printEdge(cur.left);
+        }
+      }
+      cur = cur.right
+    }
+    this.printEdge(root)
+    console.log("");
+  }
+
+  static printEdge(node: TreeNode | null) {
+    let tail = this.reverseEdge(node)
+    let cur = tail
+
+    while (cur !== null) {
+      console.log(cur.val);
+      cur = cur.right
+    }
+    this.reverseEdge(tail)
+  }
+
+  static reverseEdge(node: TreeNode | null): TreeNode | null {
+    let pre = null
+    let next = null
+    while (node !== null) {
+      next = node.right
+      node.right = pre
+      pre = node
+      node = next
+    }
+    return pre
+  }
+}
+/**
+ * create a TreeNode from an array.
+ * create TreeNode by BFS order.
+ *
+ * @param arr
+ * @returns
+ */
+export function createTree(arr: any[] | null): TreeNode | null {
+  if (arr === null || arr.length === 0)
+    return null
+  const insertLevelOrder = (arr: any[], root: TreeNode | null, i: number): TreeNode | null => {
+    // Base case for recursion
+    if (i < arr.length) {
+      let temp: TreeNode | null
+      if (arr[i] === null)
+        temp = null
+      else
+        temp = new TreeNode(arr[i], null, null)
+      root = temp
+      if (root !== null) {
+        root.left = insertLevelOrder(arr, root.left, 2 * i + 1)
+        root.right = insertLevelOrder(arr, root.right, 2 * i + 2)
+      }
+    }
+    return root
+  }
+  return insertLevelOrder(arr, null, 0)
 }
 
 /**
- * create a TreeNode from an array.
- * @param arr length <= 7
- * @returns
+ * Prints the binary tree in level order
+ * @param node The root element of binary tree
  */
-export function createTree(arr: number[] | null): TreeNode | null {
-  if (arr === null || arr.length === 0)
-    return null
-  let queue = new Array()
-  let res: TreeNode | null = new TreeNode(arr[0], null, null)
-  queue.push(res)
-  if (arr[1] !== null) {
-    res.left = new TreeNode(arr[1], null, null)
-    res.left.left = new TreeNode(arr[3], null, null)
-    res.left.right = new TreeNode(arr[4], null, null)
+export function printTree(node: TreeNode | null) {
+  const bfs = (root: TreeNode | null): any[] => {
+    let res: any[] = new Array()
+    let queue = new Array()
+    queue.push(root)
+    while (queue.length > 0) {
+      let current = queue.shift()
+      if (current === null) {
+        res.push(null)
+      } else {
+        res.push(current.val)
+        queue.push(current.left)
+        queue.push(current.right)
+      }
+    }
+    while (res[res.length - 1] === null) {
+      res.pop()
+    }
+    return res
   }
-
-  if (arr[2] !== null) {
-    res.right = new TreeNode(arr[2], null, null)
-    res.right.left = new TreeNode(arr[5], null, null)
-    res.right.right = new TreeNode(arr[6], null, null)
-  }
-
-  return res
-}
-function printTreeNode(node: TreeNode) {
-  let printList = new Array()
-  let st = new Array()
+  console.log(bfs(node));
 }
 
 // BFS 模板1
@@ -340,6 +520,7 @@ interface AVLReturnType {
   isBalanced: boolean
   height: number
 }
+
 /**
  * 平衡二叉树本质上是特殊的二叉搜索树（二叉排序树）(BST)，
  * 由前苏联的数学家 Adelse-Velskil 和 Landis 在 1962 年提出的高度平衡的二叉树，
@@ -403,8 +584,10 @@ function fbtProcess(root: TreeNode | null): FBTReturnType {
 
   return { height: height, nodes: nodes }
 }
+
 function treeNodeTest() {
-  let node = createTree([1, 2, 3, 4, 5, 6, 7])
+  // let node = createTree([1, 2, 3, 4, 5, 6, 7])
+  // printTree(node)
   // preOrderNonrecursive(node)             // 1, 2, 4, 5, 3, 6, 7
   // postOrderNonrecursive(node)            // 4, 5, 2, 6, 7, 3, 1
   // console.log(inOrderNonrecursive(node)) // 4, 2, 5, 1, 6, 3, 7
@@ -414,21 +597,18 @@ function treeNodeTest() {
   // console.log(isBST3(createTree([4, 2, 6, 1, 3, 5, 7]))); // true
   // console.log(inOrderNonrecursive(createTree([4, 2, 6, 1, 3, 5, 7]))); // 1, 2, 3, 4, 5, 6, 7
   // console.log(isCBT(createTree([1, 2, 3, 4, 5]))); // true
-  let root = new TreeNode(1, null, null)
-  let left = new TreeNode(2, null, null)
-  let right = new TreeNode(3, null, null)
-  root.left = left
-  root.right = right
-  left.left = new TreeNode(4, null, null)
-  left.right = new TreeNode(5, null, null)
-  // right.right = new TreeNode(7, null, null)
-  console.log(isCBT(root)); // false
+  // let root = createTree([1, 2, 3, 4, 5, null, 7])
+  // printTree(root);
+  // console.log(isCBT(root)); // false
   // console.log(isAVLTree(createTree([4, 2, 6, 1, 3, 5, 7]))); // true
   // console.log(isFullBinaryTree(createTree([1, 2, 3])));
   // console.log(isFullBinaryTree(createTree([1, 2, 3, 4, 5])));
   // console.log(isFullBinaryTree(createTree([1, 2, 3, 4, 5, 6, 7])));
-  console.log(isFullBinaryTree(root));
-
+  // console.log(isFullBinaryTree(root));
+  let node = TreeNode.create([1, 2, 3, 4, 5, 6, 7])
+  // TreeNode.morrisPre(node)
+  // TreeNode.morrisIn(node)
+  TreeNode.morrisPos(node)
 }
 
 // treeNodeTest()
