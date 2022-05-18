@@ -17,36 +17,34 @@
  * Constraints:
  *
  * The number of nodes in the tree is in the range [1, 10 4 ].
- * -1000 <= Node.val <= 1000
+ * -1000 <= Node.val <= 1000  ~
  */
 
 import { TreeNode } from "../../utils/TreeNode"
 
 function tree2str(root: TreeNode | null): string {
-  if (!root)
-    return ""
   let res = ""
-  let st = new Array()
-  st.push(root)
-  while (st.length > 0) {
-    let cur = st.pop()
-    res += cur.val
+  if (root === null)
+    return ""
+
+  res += root.val
+  if (root.left || (root.left === null && root.right !== null)) {
+    res += "("
+    res += tree2str(root.left)
     res += ")"
-    console.log(cur.val);
-    if (cur.right) {
-      res += "("
-      st.push(cur.right)
-    }
-    if (cur.left) {
-      res += "("
-      st.push(cur.left)
-    }
+  }
+
+  if (root.right) {
+    res += "("
+    res += tree2str(root.right)
+    res += ")"
   }
   return res
-};
-
+}
 function test_00606() {
   let root = TreeNode.create([1, 2, 3, 4])
+  console.log(tree2str(root));
+  root = TreeNode.create([1, 2, 3, null, 4])
   console.log(tree2str(root));
 
 }
