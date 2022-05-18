@@ -20,11 +20,73 @@
  * -10 5 <= Node.val <= 10 5
  */
 import { TreeNode } from "../../utils/TreeNode"
+import { createList, ListNode } from "../../utils/ListNode"
 
+// wrong answer (not height-balanced)
+function sortedListToBST1(head: ListNode | null): TreeNode | null {
+  if (!head)
+    return null
+
+  if (!head.next) // length = 1
+    return new TreeNode(head.val, null, null)
+
+  let slow: ListNode | null = head
+  let fast: ListNode | null = head
+  let pre: TreeNode | null = null
+  let cur: TreeNode | null = null
+  let st = new Array()
+  while (fast.next && fast.next.next) {
+    cur = new TreeNode(slow?.val, pre, null)
+    pre = cur
+    slow = slow!.next
+    fast = fast!.next.next
+  }
+  let root = new TreeNode(slow?.val, pre, null)
+  cur = root
+  while (slow && slow.next) {
+    slow = slow.next
+    cur.right = new TreeNode(slow.val, null, null)
+    cur = cur?.right
+  }
+  return root
+};
 function sortedListToBST(head: ListNode | null): TreeNode | null {
+  if (!head)
+    return null
+
+  if (!head.next) // length = 1
+    return new TreeNode(head.val, null, null)
+  let arr = new Array()
+  while (head) {
+    arr.push(head.val)
+    head = head.next
+  }
+  return sortedArrayToBST(arr)
 
 };
+function sortedArrayToBST(nums: number[]): TreeNode | null {
+
+  let size = nums.length
+  if (nums === null || size === 0)
+    return null
+  if (size === 1)
+    return new TreeNode(nums[0], null, null)
+
+  let mid = Math.trunc(size / 2)
+  let root = new TreeNode(nums[mid], null, null)
+  root.left = sortedArrayToBST(nums.slice(0, mid))
+  root.right = sortedArrayToBST(nums.slice(mid + 1))
+  return root
+};
+
 function test_00109() {
+  let head = createList([-10, -3, 0, 5, 9])
+  console.log(sortedListToBST(head));
+  head = createList([1, 2])
+  console.log(sortedListToBST(head));
+  head = createList([1, 2, 3])
+  console.log(sortedListToBST(head));
+
 
 }
 
