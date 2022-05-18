@@ -22,14 +22,34 @@
 import { TreeNode } from "../../utils/TreeNode"
 
 function findTarget(root: TreeNode | null, k: number): boolean {
-  let s = new Set()
-  const find = (node: TreeNode | null, target: number, s: Set<number>) => {
-
+  if (root === null)
+    return false
+  let found = false
+  let s = new Set<number>()
+  const find = (node: TreeNode | null) => {
+    if (node === null || found)
+      return
+    s.add(node.val)
+    if (s.has(k - node.val) && node.val !== k - node.val) {
+      found = true
+      return
+    }
+    find(node.left)
+    find(node.right)
   }
-  return false
+  find(root)
+  return found
 };
 
 function test_00653() {
+  let root = TreeNode.create([5, 3, 6, 2, 4, null, 7]), k = 9
+  console.log(findTarget(root, k));
+
+  root = TreeNode.create([5, 3, 6, 2, 4, null, 7]), k = 28
+  console.log(findTarget(root, k));
+
+  root = TreeNode.create([1]), k = 2
+  console.log(findTarget(root, k));
 
 }
 
