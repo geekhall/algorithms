@@ -14,3 +14,4 @@ usage()
 work_dir=`pwd`
 
 find $work_dir -name *.class |xargs \rm -f
+
