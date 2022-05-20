@@ -16,7 +16,36 @@ export class TreeNode {
     this.left = (left === undefined ? null : left)
     this.right = (right === undefined ? null : right)
   }
+
   static create(arr: any[]): TreeNode | null {
+    if (!arr || arr.length === 0)
+      return null
+    let treeNodeQueue = new Array<TreeNode>()
+    let numberQueue = new Array<number>()
+    for (let i = 1; i < arr.length; i++) {
+      numberQueue.push(arr[i])
+    }
+    let root = new TreeNode(arr[0])
+    treeNodeQueue.push(root)
+    while (numberQueue.length > 0) {
+      let leftValue = numberQueue.length > 0 ? null : numberQueue.shift()
+      let rightValue = numberQueue.length > 0 ? null : numberQueue.shift()
+      let currentNode = treeNodeQueue.shift()
+      if (leftValue !== null) {
+        let leftNode = new TreeNode(leftValue, null, null)
+        currentNode!.left = leftNode
+        treeNodeQueue.push(leftNode)
+      }
+      if (rightValue !== null) {
+        let rightNode = new TreeNode(rightValue, null, null)
+        currentNode!.right = rightNode
+        treeNodeQueue.push(rightNode)
+      }
+    }
+    return root
+  }
+
+  static createFullTree(arr: any[]): TreeNode | null {
     if (arr === null || arr.length === 0)
       return null
     const insertLevelOrder = (arr: any[], root: TreeNode | null, i: number): TreeNode | null => {

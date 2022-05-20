@@ -6,6 +6,17 @@ export class ListNode {
     this.val = (val === undefined ? 0 : val)
     this.next = (next === undefined ? null : next)
   }
+  create(arr: number[]): ListNode | null {
+    if (!arr || arr.length === 0)
+      return null
+    let head = new ListNode(arr[0])
+    let node = head
+    for (let i = 1; i < arr.length; i++) {
+      node.next = new ListNode(arr[i], null)
+      node = node.next
+    }
+    return head
+  }
 }
 
 export function createList(arr: number[]): ListNode {
