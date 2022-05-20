@@ -28,8 +28,8 @@ export class TreeNode {
     let root = new TreeNode(arr[0])
     treeNodeQueue.push(root)
     while (numberQueue.length > 0) {
-      let leftValue = numberQueue.length > 0 ? null : numberQueue.shift()
-      let rightValue = numberQueue.length > 0 ? null : numberQueue.shift()
+      let leftValue = numberQueue.length < 0 ? null : numberQueue.shift()
+      let rightValue = numberQueue.length < 0 ? null : numberQueue.shift()
       let currentNode = treeNodeQueue.shift()
       if (leftValue !== null) {
         let leftNode = new TreeNode(leftValue, null, null)

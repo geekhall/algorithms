@@ -30,12 +30,38 @@ import { ListNode } from "../../utils/ListNode"
 import { TreeNode } from "../../utils/TreeNode"
 
 function isSubPath(head: ListNode | null, root: TreeNode | null): boolean {
-  let res = false
-
-  return res
+  const dfs = (head: ListNode | null, root: TreeNode | null): boolean => {
+    if (head === null)
+      return true
+    if (root === null)
+      return false
+    if (head.val !== root.val)
+      return false
+    return dfs(head.next, root.left) || dfs(head.next, root.right)
+  }
+  if (head === null)
+    return true
+  if (root === null)
+    return false
+  if (dfs(head, root)) {
+    return true
+  }
+  return isSubPath(head, root.left) || isSubPath(head, root.right)
 };
 
 function test_01367() {
+  let head = ListNode.create([4, 2, 8])
+  let root = TreeNode.create([1, 4, 4, null, 2, 2, null,
+    1, null, 6, 8, null, null, null, null, 1, 3])
+  console.log(isSubPath(head, root));
+
+  head = ListNode.create([1, 4, 2, 6]), root = TreeNode.create([1, 4, 4, null, 2, 2, null, 1, null, 6, 8, null, null, null, null, 1, 3])
+  console.log(isSubPath(head, root));
+
+  head = ListNode.create([1, 4, 2, 6, 8]), root = TreeNode.create([1, 4, 4, null, 2, 2, null, 1, null, 6, 8, null, null, null, null, 1, 3])
+  console.log(isSubPath(head, root));
+
+
 
 }
 
