@@ -28,8 +28,8 @@ export class TreeNode {
     let root = new TreeNode(arr[0])
     treeNodeQueue.push(root)
     while (numberQueue.length > 0) {
-      let leftValue = numberQueue.length < 0 ? null : numberQueue.shift()
-      let rightValue = numberQueue.length < 0 ? null : numberQueue.shift()
+      let leftValue = numberQueue.length > 0 ? numberQueue.shift() : null
+      let rightValue = numberQueue.length > 0 ? numberQueue.shift() : null
       let currentNode = treeNodeQueue.shift()
       if (leftValue !== null) {
         let leftNode = new TreeNode(leftValue, null, null)
@@ -44,7 +44,30 @@ export class TreeNode {
     }
     return root
   }
-
+  static print(root: TreeNode | null) {
+    if (!root)
+      return
+    let treeNodeQueue = new Array<TreeNode | null>()
+    let numberQueue = new Array<number | null>()
+    treeNodeQueue.push(root)
+    while (treeNodeQueue.length > 0) {
+      let size = treeNodeQueue.length
+      for (let i = 0; i < size; i++) {
+        let cur = treeNodeQueue.shift()
+        if (cur) {
+          treeNodeQueue.push(cur.left)
+          treeNodeQueue.push(cur.right)
+          numberQueue.push(cur.val)
+        } else {
+          numberQueue.push(null)
+        }
+      }
+    }
+    while (numberQueue[numberQueue.length - 1] === null) {
+      numberQueue.pop()
+    }
+    console.log(numberQueue);
+  }
   static createFullTree(arr: any[]): TreeNode | null {
     if (arr === null || arr.length === 0)
       return null
@@ -67,7 +90,7 @@ export class TreeNode {
     return insertLevelOrder(arr, null, 0)
   }
 
-  print() {
+  printFull() {
     const bfs = (root: TreeNode | null): any[] => {
       let res: any[] = new Array()
       let queue = new Array()
@@ -201,6 +224,7 @@ export class TreeNode {
     return pre
   }
 }
+
 /**
  * create a TreeNode from an array.
  * create TreeNode by BFS order.
