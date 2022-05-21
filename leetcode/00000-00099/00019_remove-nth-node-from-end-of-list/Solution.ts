@@ -38,7 +38,7 @@
  * }
  */
 
-function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
+function removeNthFromEnd(head: MapNode | null, n: number): MapNode | null {
   return null
 };
 function test_00019() {

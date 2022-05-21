@@ -17,6 +17,14 @@ export class ListNode {
     }
     return head
   }
+  static print(node: ListNode | null) {
+    let arr = []
+    while (node !== null) {
+      arr.push(node.val)
+      node = node.next
+    }
+    console.log(arr.join(' -> '));
+  }
 }
 
 export function createList(arr: number[]): ListNode {
