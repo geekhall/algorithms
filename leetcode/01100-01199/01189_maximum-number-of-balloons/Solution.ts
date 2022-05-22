@@ -24,6 +24,17 @@
  * text consists of lower case English letters only.
  */
 function maxNumberOfBalloons(text: string): number {
+  const str2map = (str: string): Map<string, number> => {
+    let m = new Map<string, number>()
+    for (let i = 0; i < str.length; i++) {
+      if (m.get(str[i]) === undefined) {
+        m.set(str[i], 1)
+      } else {
+        m.set(str[i], m.get(str[i])! + 1)
+      }
+    }
+    return m
+  }
   let m = str2map(text)
   let b = m.get('b') === undefined ? 0 : m.get('b')!
   let a = m.get('a') === undefined ? 0 : m.get('a')!
@@ -32,19 +43,6 @@ function maxNumberOfBalloons(text: string): number {
   let n = m.get('n') === undefined ? 0 : m.get('n')!
   return Math.min(b, a, Math.floor(l / 2), Math.floor(o / 2), n)
 };
-
-function str2map(str: string): Map<string, number> {
-  let m = new Map<string, number>()
-  for (let i = 0; i < str.length; i++) {
-    if (m.get(str[i]) === undefined) {
-      m.set(str[i], 1)
-    } else {
-      m.set(str[i], m.get(str[i])! + 1)
-    }
-  }
-  return m
-}
-
 
 function test_01189() {
   let text = "nlaebolko"

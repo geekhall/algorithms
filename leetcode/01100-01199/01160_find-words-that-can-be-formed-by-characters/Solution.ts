@@ -24,6 +24,17 @@
  */
 function countCharacters(words: string[], chars: string): number {
   let res = 0
+  const str2map = (str: string): Map<string, number> => {
+    let m = new Map<string, number>()
+    for (let i = 0; i < str.length; i++) {
+      if (m.get(str[i]) === undefined) {
+        m.set(str[i], 1)
+      } else {
+        m.set(str[i], m.get(str[i])! + 1)
+      }
+    }
+    return m
+  }
   let m = str2map(chars)
 
   words.forEach((word, i) => {
@@ -42,19 +53,6 @@ function countCharacters(words: string[], chars: string): number {
 
   return res
 };
-
-function str2map(str: string): Map<string, number> {
-  let m = new Map<string, number>()
-  for (let i = 0; i < str.length; i++) {
-    if (m.get(str[i]) === undefined) {
-      m.set(str[i], 1)
-    } else {
-      m.set(str[i], m.get(str[i])! + 1)
-    }
-  }
-  return m
-}
-
 
 function test_01160() {
   let words = ["cat", "bt", "hat", "tree"], chars = "atach"
