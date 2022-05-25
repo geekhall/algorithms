@@ -36,11 +36,41 @@
  * 1 <= a i, b i <= n
  */
 function findJudge(n: number, trust: number[][]): number {
+  if (n === 1 && trust.length === 0) {
+    return n
+  }
+  let s = new Set()
+  let m: Map<number, number> = new Map()
+  for (let i = 0; i < trust.length; i++) {
+    if (!s.has(trust[i][0])) {
+      s.add(trust[i][0])
+    }
+    if (m.get(trust[i][1]) === undefined) {
+      m.set(trust[i][1], 1)
+    } else {
+      m.set(trust[i][1], m.get(trust[i][1])! + 1)
+    }
+  }
+  let res = -1
 
+  m.forEach((v, k) => {
+    if (v === n - 1 && !s.has(k)) {
+      res = k
+    }
+  })
+
+  return res
 };
 
 function test_00997() {
-
+  let n = 2, trust = [[1, 2]]
+  console.log(findJudge(n, trust));
+  n = 3, trust = [[1, 3], [2, 3]]
+  console.log(findJudge(n, trust));
+  n = 3, trust = [[1, 3], [2, 3], [3, 1]]
+  console.log(findJudge(n, trust));
+  n = 3, trust = [[1, 2], [2, 3]]
+  console.log(findJudge(n, trust)); // expect -1
 }
 
 test_00997()
