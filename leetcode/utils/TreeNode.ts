@@ -223,6 +223,16 @@ export class TreeNode {
     }
     return pre
   }
+
+  static search(root: TreeNode | null, value: number): TreeNode | null {
+    if (root === null || root.val === value) {
+      return root
+    }
+
+    if (root.val < value)
+      return this.search(root.right, value)
+    return this.search(root.left, value)
+  }
 }
 
 /**
