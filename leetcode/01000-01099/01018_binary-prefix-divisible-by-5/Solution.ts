@@ -27,8 +27,8 @@ function prefixesDivBy5(nums: number[]): boolean[] {
   let res = new Array<boolean>()
   let cur = 0
   for (let i = 0; i < nums.length; i++) {
-    cur = (cur << 1) + nums[i]
-    res.push(cur % 5 === 0 ? true : false)
+    cur = ((cur << 1) + nums[i]) % 5
+    res.push(cur % 5 === 0)
   }
   return res
 };
@@ -37,6 +37,8 @@ function test_01018() {
   let nums = [0, 1, 1]
   console.log(prefixesDivBy5(nums));
   nums = [1, 1, 1]
+  console.log(prefixesDivBy5(nums));
+  nums = [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1]
   console.log(prefixesDivBy5(nums));
 
 }
