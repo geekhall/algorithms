@@ -30,31 +30,33 @@
 function numRookCaptures(board: string[][]): number {
   let rx = 0
   let ry = 0
-  const getRPos = () => {
-    for (let i = 0; i < 8; i++) {
-      for (let j = 0; j < 8; j++) {
-        if (board[i][j] === 'R') {
-          rx = i
-          ry = j
-          return
-        }
+  let found = false
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < 8; j++) {
+      if (board[i][j] === 'R') {
+        rx = i
+        ry = j
+        found = true
+        break
       }
     }
+    if (found)
+      break
   }
-  getRPos()
+
   let res = 0
   // let st: string[] = new Array()
   let st: string[][] = new Array(4).fill(0).map(() => new Array(8));
   for (let i = 0; i < ry; i++) {
     st[0].push(board[rx][i])
   }
-  for (let i = 8; i > ry; i++) {
+  for (let i = 7; i > ry; i--) {
     st[1].push(board[rx][i])
   }
   for (let i = 0; i < rx; i++) {
     st[2].push(board[i][ry])
   }
-  for (let i = 8; i > rx; i++) {
+  for (let i = 7; i > rx; i--) {
     st[3].push(board[i][ry])
   }
   for (let i = 0; i < 4; i++) {
@@ -97,6 +99,9 @@ function test_00999() {
     [".", ".", ".", ".", ".", ".", ".", "."]
   ]
   console.log(numRookCaptures(board));
+  board = board = [[".", ".", ".", ".", ".", ".", ".", "."], [".", ".", ".", "p", ".", ".", ".", "."], [".", ".", ".", "p", ".", ".", ".", "."], ["p", "p", ".", "R", ".", "p", "B", "."], [".", ".", ".", ".", ".", ".", ".", "."], [".", ".", ".", "B", ".", ".", ".", "."], [".", ".", ".", "p", ".", ".", ".", "."], [".", ".", ".", ".", ".", ".", ".", "."]]
+  console.log(numRookCaptures(board));
+
 }
 
 test_00999()
