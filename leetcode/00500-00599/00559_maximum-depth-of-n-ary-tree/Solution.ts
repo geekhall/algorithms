@@ -27,11 +27,26 @@ function maxDepth(root: Node | null): number {
     return 0
 
   let depth = 0
-
-  return depth
+  let max = 0
+  const dfs = (node: Node | null, depth: number) => {
+    if (!node)
+      return
+    if (depth > max)
+      max = depth
+    for (let i = 0; i < node.children.length; i++) {
+      dfs(node.children[i], depth + 1)
+    }
+  }
+  dfs(root, 1)
+  return max
 };
 
 function test_00559() {
+  let root = new Node(1)
+  let n1 = new Node(3)
+  n1.children = [new Node(5), new Node(6)]
+  root.children = [n1, new Node(2), new Node(4)]
+  console.log(maxDepth(root));
 
 }
 
