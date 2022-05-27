@@ -68,6 +68,7 @@ export class TreeNode {
     }
     console.log(numberQueue);
   }
+
   static createFullTree(arr: any[]): TreeNode | null {
     if (arr === null || arr.length === 0)
       return null
@@ -222,6 +223,45 @@ export class TreeNode {
       node = next
     }
     return pre
+  }
+
+  static getLeftMost(node: TreeNode | null): TreeNode | null {
+    if (node === null) {
+      return null
+    }
+    while (node.left !== null) {
+      node = node!.left
+    }
+    return node
+  }
+
+  static preOrderSerialization(head: TreeNode | null): string {
+    if (head === null)
+      return "#_"
+
+    let res: string = head.val + "_"
+    res += this.preOrderSerialization(head.left)
+    res += this.preOrderSerialization(head.right)
+    return res
+  }
+
+  static preOrderDeserialization(str: string): TreeNode | null {
+    let values = str.split("_")
+    let queue = new Array<string>()
+
+    for (let i = 0; i < values.length; i++) {
+      queue.unshift(values[i])
+    }
+    return this.processPreOrderDeserialization(queue)
+  }
+  static processPreOrderDeserialization(queue: Array<string>): TreeNode | null {
+    let value = queue.pop()
+    if (value === '#')
+      return null
+    let head: TreeNode = new TreeNode(parseInt(value!))
+    head.left = this.processPreOrderDeserialization(queue)
+    head.right = this.processPreOrderDeserialization(queue)
+    return head
   }
 
   static search(root: TreeNode | null, value: number): TreeNode | null {
