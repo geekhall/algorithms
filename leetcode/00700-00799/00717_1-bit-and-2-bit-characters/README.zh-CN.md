@@ -38,3 +38,9 @@ So the last character is not one-bit character.
 	<li><code>1 &lt;= bits.length &lt;= 1000</code></li>
 	<li><code>bits[i]</code> is either <code>0</code> or <code>1</code>.</li>
 </ul>
+
+* 返回true的pattern
+  - 最后一位是0，但是到上一个零位之前中间有偶数个1，或者前面没有零，共有偶数个1
+* 返回false的pattern
+	- 最后一位是1
+	- 最后一位是0，但是到上一个零位之前中间有奇数个1，或者前面没有零，共有奇数个1
