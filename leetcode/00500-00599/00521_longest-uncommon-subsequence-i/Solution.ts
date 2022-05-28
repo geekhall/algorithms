@@ -28,10 +28,19 @@
  * a and b consist of lower-case English letters.
  */
 function findLUSlength(a: string, b: string): number {
-
+  if (a.length > b.length)
+    return a.length
+  else if (a.length < b.length)
+    return b.length
+  else if (a === b)
+    return -1
+  else
+    return a.length
 };
 
 function test_00521() {
+  let a = "aba", b = "cdc"
+  console.log(findLUSlength(a, b));
 
 }
 
