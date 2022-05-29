@@ -31,11 +31,36 @@
  * 0 <= grid[i][j] <= 50
  */
 function projectionArea(grid: number[][]): number {
-
+  let res = 0
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      if (grid[i][j] > 0) res++
+    }
+  }
+  for (let i = 0; i < grid.length; i++) {
+    let max = 0
+    for (let j = 0; j < grid[i].length; j++) {
+      if (grid[i][j] > max) max = grid[i][j]
+    }
+    res += max
+  }
+  for (let j = 0; j < grid[0].length; j++) {
+    let max = 0
+    for (let i = 0; i < grid.length; i++) {
+      if (grid[i][j] > max) max = grid[i][j]
+    }
+    res += max
+  }
+  return res
 };
 
 function test_00883() {
-
+  let grid = [[1, 2], [3, 4]]
+  console.log(projectionArea(grid));
+  grid = [[2]]
+  console.log(projectionArea(grid));
+  grid = [[1, 0], [0, 2]]
+  console.log(projectionArea(grid));
 }
 
 test_00883()
