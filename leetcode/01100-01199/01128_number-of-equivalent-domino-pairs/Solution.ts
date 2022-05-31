@@ -22,23 +22,11 @@
  */
 function numEquivDominoPairs(dominoes: number[][]): number {
   let res = 0
-  let map = new Map()
-  for (let i = 0; i < dominoes.length; i++) {
-    let key = dominoes[i][0] * 10 + dominoes[i][1] * 1
-    if (map.has(key)) {
-      map.set(key, map.get(key) + 1)
-    } else {
-      map.set(key, 1)
-    }
-    key = dominoes[i][1] * 10 + dominoes[i][0] * 1
-    if (map.has(key)) {
-      map.set(key, map.get(key) + 1)
-    } else {
-      map.set(key, 1)
-    }
-  }
-  for (let [key, value] of map) {
-    res += value * (value - 1) / 2
+  let bucket = new Array(100).fill(0)
+  for (let pair of dominoes) {
+    let up = pair[0] > pair[1] ? pair[0] : pair[1]
+    let down = pair[0] > pair[1] ? pair[1] : pair[0]
+    res += bucket[up * 10 + down]++
   }
   return res
 };
@@ -50,6 +38,9 @@ function test_01128() {
   console.log(numEquivDominoPairs(dominoes))
   dominoes = [[2, 1], [5, 4], [3, 7], [6, 2], [4, 4], [1, 8], [9, 6], [5, 3], [7, 4], [1, 9], [1, 1], [6, 6], [9, 6], [1, 3], [9, 7], [4, 7], [5, 1], [6, 5], [1, 6], [6, 1], [1, 8], [7, 2], [2, 4], [1, 6], [3, 1], [3, 9], [3, 7], [9, 1], [1, 9], [8, 9]]
   console.log(numEquivDominoPairs(dominoes))
+  dominoes = [[1, 1], [2, 2], [1, 1], [1, 2], [1, 2], [1, 1]] // expect 4
+  console.log(numEquivDominoPairs(dominoes))
+
 }
 
 test_01128()
