@@ -31,6 +31,15 @@ export class Trie {
     }
     node.end++
   }
+}
 
+function testTrie() {
+  let trie: Trie = new Trie()
+  trie.insert('abc')
+  trie.insert('ab')
+  trie.insert('abcd')
+  console.log(trie);
 
 }
+
+testTrie()

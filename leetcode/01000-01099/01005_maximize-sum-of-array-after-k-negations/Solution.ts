@@ -29,15 +29,25 @@
  * 1 <= k <= 10 4
  */
 // Min Heap
+import { MinHeap } from "../../utils/MinHeap";
 function largestSumAfterKNegations(nums: number[], k: number): number {
-  // let heap = new MinHeap()
-  return 0
+  let heap = new MinHeap()
+  for (let i = 0; i < nums.length; i++) {
+    heap.insert(nums[i])
+  }
+  for (let i = 0; i < k; i++) {
+    heap.insert(-heap.extractMin()!)
+  }
+  return heap.getSum()
 };
 
 function test_01005() {
   let nums = [4, 2, 3], k = 1
   console.log(largestSumAfterKNegations(nums, k));
-
+  nums = [3, -1, 0, 2], k = 3
+  console.log(largestSumAfterKNegations(nums, k));
+  nums = [2, -3, -1, 5, -4], k = 2
+  console.log(largestSumAfterKNegations(nums, k));
 }
 
 test_01005()
