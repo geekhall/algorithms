@@ -1,5 +1,6 @@
 
 problem_dict = {
+    '2269': 'find-the-k-beauty-of-a-number',
     '2265': 'count-nodes-equal-to-average-of-subtree',
     '2259': 'remove-digit-from-number-to-maximize-result',
     '2254': 'design-video-sharing-platform',
