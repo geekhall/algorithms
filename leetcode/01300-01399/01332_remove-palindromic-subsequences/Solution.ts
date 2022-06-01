@@ -28,11 +28,29 @@
  * s[i] is either 'a' or 'b'.
  */
 function removePalindromeSub(s: string): number {
+  let res = 1
+  let arr = Array.from(s)
+  let i = 0, j = arr.length - 1
+  while (i < j) {
+    if (arr[i] === arr[j]) {
+      i++
+      j--
+    } else {
+      res++
+      break
+    }
+  }
 
+  return res
 };
 
 function test_01332() {
-
+  let s = "ababa"
+  console.log(removePalindromeSub(s));
+  s = "abb"
+  console.log(removePalindromeSub(s));
+  s = "baabb"
+  console.log(removePalindromeSub(s));
 }
 
 test_01332()
