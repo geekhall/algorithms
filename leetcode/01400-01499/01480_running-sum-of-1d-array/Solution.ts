@@ -24,15 +24,12 @@
  * -10^6 <= nums[i] <= 10^6
  */
 function runningSum(nums: number[]): number[] {
-  let n = nums.length
-  if (n === 0)
-    return []
-  let res: number[] = new Array(n).fill(0)
-  res[0] = nums[0]
-  for (let i = 1; i < res.length; i++) {
-    res[i] = nums[i] + res[i - 1]
+  let sum = 0
+  for (let i = 0; i < nums.length; i++) {
+    sum += nums[i]
+    nums[i] = sum
   }
-  return res
+  return nums
 };
 
 function test_01480() {
