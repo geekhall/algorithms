@@ -40,9 +40,10 @@ function shiftGrid(grid: number[][], k: number): number[][] {
 
   for (let i = 0; i < m; i++) {
     for (let j = 0; j < n; j++) {
-      let newI = Math.trunc((i + k) / n) % m;
+      let newI = (i + Math.trunc((j + k) / n)) % m;
       let newJ = (j + k) % n;
       result[newI][newJ] = grid[i][j];
+      // console.log(`${i}, ${j} -> ${newI}, ${newJ}`);
     }
   }
   return result;
