@@ -25,14 +25,30 @@
  * 1 <= word.length <= 100
  * word consists of lowercase English letters only.
  */
+// bf
 function countVowelSubstrings(word: string): number {
-  let res = 0
-
-  return res
+  const isVowel = (c: string): boolean => ['a', 'e', 'i', 'o', 'u'].includes(c)
+  let vowelMap = new Map();
+  let total = 0;
+  for (let i = 0; i < word.length; i++) {
+    vowelMap.clear();
+    for (let j = i; j < word.length && isVowel(word[j]); j++) {
+      vowelMap.set(word[j], (vowelMap.get(word[j]) ?? 0) + 1);
+      if (vowelMap.size == 5)
+        total++;
+    }
+  }
+  return total;
 };
+// slide window (to be add)
 
 function test_02062() {
-
+  let word = "aeiouu"
+  console.log(countVowelSubstrings(word))
+  word = "unicornarihan"
+  console.log(countVowelSubstrings(word))
+  word = "cuaieuouac"
+  console.log(countVowelSubstrings(word))
 }
 
 test_02062()
