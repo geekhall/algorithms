@@ -8,15 +8,21 @@ export class UnionFind {
   private count: number
 
   constructor(parent?: Map<number, Point>, rank?: Map<number, number>, count?: number) {
-    this.parent = (parent === undefined ? new Map() : parent)
-    this.rank = (rank === undefined ? new Map() : rank)
-    this.count = (count === undefined ? 0 : count)
+    this.parent = parent || new Map()
+    this.rank = rank || new Map()
+    this.count = count || 0
+  }
+
+  getParent(p: Point): Point {
+    return this.parent.get(p.val)!
   }
 
   isConnected(p1: Point, p2: Point): boolean {
-    return false
+    return this.getParent(p1) === this.getParent(p2)
   }
+
   union(p1: Point, p2: Point) {
-    return
+
   }
 }
+
