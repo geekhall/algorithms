@@ -23,17 +23,33 @@
  * 1 <= s.length <= 100
  * s consists of uppercase and lowercase English letters.
  */
+// good question
 function longestNiceSubstring(s: string): string {
-  let res = ""
+  if (s.length < 2)
+    return ""
+  let arr = Array.from(s)
+  let set = new Set();
+  for (let c of arr) set.add(c)
+  for (let i = 0; i < arr.length; i++) {
+    let c = arr[i];
+    if (set.has(c.toLowerCase()) && set.has(c.toUpperCase())) continue
+    let left = longestNiceSubstring(arr.slice(0, i).join(""))
+    let right = longestNiceSubstring(arr.slice(i + 1).join(""))
+    return left.length >= right.length ? left : right
+  }
 
-  return res
+  return s
 };
 
 function test_01763() {
   let s = "YazaAay"
   console.log(longestNiceSubstring(s));
-
-
+  s = "Bb"
+  console.log(longestNiceSubstring(s));
+  s = "c"
+  console.log(longestNiceSubstring(s));
+  s = "dDzeE"
+  console.log(longestNiceSubstring(s));  // expect dD , earlist appearance.
 }
 
 test_01763()
