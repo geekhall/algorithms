@@ -1,5 +1,8 @@
 
 problem_dict = {
+    '2283': 'check-if-number-has-equal-digit-count-and-digit-value',
+    '2287': 'rearrange-characters-to-make-target-string',
+    '2278': 'percentage-of-letter-in-string',
     '2269': 'find-the-k-beauty-of-a-number',
     '2265': 'count-nodes-equal-to-average-of-subtree',
     '2259': 'remove-digit-from-number-to-maximize-result',
