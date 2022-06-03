@@ -25,12 +25,24 @@
  * 1 <= tickets[i] <= 100
  * 0 <= k < n
  */
-// dp
 function timeRequiredToBuy(tickets: number[], k: number): number {
-  const n = tickets.length
-  const dp = new Array(n).fill(0)
-
-  return dp[k]
+  let res = 0
+  for (let i = 0; i < tickets.length; i++) {
+    if (i <= k) {
+      if (tickets[i] >= tickets[k]) {
+        res += tickets[k]
+      } else {
+        res += tickets[i]
+      }
+    } else {
+      if (tickets[i] >= tickets[k] - 1) {
+        res += tickets[k] - 1
+      } else {
+        res += tickets[i]
+      }
+    }
+  }
+  return res
 };
 
 function test_02073() {
