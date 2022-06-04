@@ -20,16 +20,55 @@
  *
  * 1 <= n <= 9
  */
+
 function solveNQueens(n: number): string[][] {
+  if (n === 1)
+    return [["Q"]];
+  const isArrValid = (arr: string[][], row: number, col: number): boolean => {
+    let res = true;
+
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i][col] === "Q") {
+        res = false;
+        break
+      }
+      if (arr[row][i] === "Q") {
+        res = false;
+        break
+      }
+      if (arr[i].indexOf('Q') !== -1) {
+        let r = arr[i].indexOf('Q');
+        // console.log("#3: ", row, col, i, r,
+        //   Math.abs(row - i), Math.abs(col - r));
+        if (Math.abs(row - i) === Math.abs(col - r)) {
+          res = false;
+          break
+        }
+      }
+    }
+    return res
+  }
+  const isValid = (str: string[], row: number, col: number): boolean => {
+    return isArrValid(str.map(x => x.split('')), row, col)
+  }
+
   let res = new Array(n).fill('').map(() => new Array(n).fill('.'))
-
-
-  return res
+  let remaining = new Set()
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      if (isArrValid(res, i, j)) {
+        res[i][j] = 'Q'
+      }
+    }
+  }
+  return res;
 };
 
 function test_00051() {
-  console.log(solveNQueens(4));
-
+  // console.log(solveNQueens(4));
+  // let arr = new Array('.', 'Q', '.', 'Q', '.', 'Q')
+  // console.log(arr.indexOf('Q', 2));
+  solveNQueens(4);
 }
 
 test_00051()
