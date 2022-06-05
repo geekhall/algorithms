@@ -37,13 +37,20 @@ function convert(s: string, numRows: number): string {
   let res = '';
   let index = 0;
   let step = 1;
+  let buckets = new Array(numRows).fill('').map(() => new Array().fill(''));
 
-  while (index < s.length) {
-    res += s[index];
-    index += step;
-    if (index % (numRows - 1) === 0) {
-      step = -step;
+  for (let i = 0; i < s.length; i++) {
+    if (index === numRows - 1) {
+      step = -1;
+    } else if (index === 0) {
+      step = 1;
     }
+    buckets[index].push(s[i]);
+    index += step;
+  }
+
+  for (let i = 0; i < numRows; i++) {
+    res += buckets[i].join('');
   }
   return res;
 };
