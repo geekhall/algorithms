@@ -20,10 +20,7 @@
  *
  * 1 <= n <= 9
  */
-
-function solveNQueens(n: number): string[][] {
-  if (n === 1)
-    return [["Q"]];
+function solveNQueens1(n: number) {
   const isArrValid = (arr: string[][], row: number, col: number): boolean => {
     let res = true;
 
@@ -51,24 +48,67 @@ function solveNQueens(n: number): string[][] {
   const isValid = (str: string[], row: number, col: number): boolean => {
     return isArrValid(str.map(x => x.split('')), row, col)
   }
+}
+function solveNQueens(n: number): string[][] {
+  if (n === 1)
+    return [["Q"]];
 
-  let res = new Array(n).fill('').map(() => new Array(n).fill('.'))
-  let remaining = new Set()
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j < n; j++) {
-      if (isArrValid(res, i, j)) {
-        res[i][j] = 'Q'
+  let result = new Array()
+  const generateResult = (record: number[]) => {
+    let res: string[] = new Array()
+    for (let i = 0; i < n; i++) {
+      let str = '';
+      for (let j = 0; j < n; j++) {
+        if (record[i] === j) {
+          str += 'Q';
+        } else {
+          str += '.';
+        }
+      }
+      res.push(str)
+    }
+    result.push(res)
+  }
+  const isValid = (record: number[], row: number, col: number): boolean => {
+    for (let i = 0; i < record.length; i++) {
+      if (record[i] === col) {
+        return false
+      }
+      if (Math.abs(record[i] - col) === Math.abs(i - row)) {
+        return false
+      }
+    }
+    return true
+  }
+  /**
+   *
+   * @param row row
+   * @param record record[i] is the column of the queen in row i
+   * @param n n
+   * @returns
+   */
+  const process = (row: number, record: number[], n: number) => {
+    if (row === n) {
+      generateResult(record)
+    }
+    for (let col = 0; col < n; col++) {
+      if (isValid(record, row, col)) {
+        record[row] = col;
+        process(row + 1, record, n);
+      }
+      if (col === n - 1 && record[row] === undefined) {
+        record.splice(row - 1, 1);
       }
     }
   }
-  return res;
+  let record = new Array()
+  process(0, record, n);
+
+  return result
 };
 
 function test_00051() {
-  // console.log(solveNQueens(4));
-  // let arr = new Array('.', 'Q', '.', 'Q', '.', 'Q')
-  // console.log(arr.indexOf('Q', 2));
-  solveNQueens(4);
+  console.log(solveNQueens(4));
 }
 
 test_00051()

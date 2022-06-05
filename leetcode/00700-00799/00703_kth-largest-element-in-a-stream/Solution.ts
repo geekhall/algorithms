@@ -1,3 +1,5 @@
+import { MinHeap } from "../../utils/MinHeap"
+
 /**
  * ID:    00703
  * Title: Kth Largest Element in a Stream
@@ -23,8 +25,12 @@
  * It is guaranteed that there will be at least k elements in the array when you search for the k th element.
  */
 class KthLargest {
+  heap: MinHeap
   constructor(k: number, nums: number[]) {
-
+    this.heap = new MinHeap()
+    for (let i = 0; i < nums.length; i++) {
+      this.add(nums[i])
+    }
   }
 
   add(val: number): number {
