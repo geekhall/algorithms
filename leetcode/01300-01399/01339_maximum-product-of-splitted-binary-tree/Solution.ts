@@ -26,14 +26,32 @@ function maxProduct(root: TreeNode | null): number {
   const getSum = (node: TreeNode | null): number => {
     if (node === null)
       return 0
-    return node.val + getSum(node.left) + getSum(node.right)
+    node.val = getSum(node.left) + getSum(node.right) + node.val
+    return node.val
+  }
+  let res = 0
+  const total = getSum(root)
+  const dfs = (node: TreeNode | null) => {
+    if (node === null)
+      return 0
+    if (node.left) {
+      res = Math.max(res, node.left.val * (total - node.left.val))
+      dfs(node.left)
+    }
+    if (node.right) {
+      res = Math.max(res, node.right.val * (total - node.right.val))
+      dfs(node.right)
+    }
   }
 
-  return getSum(root)
+  dfs(root)
+  return res % 1000000007
 };
 
 function test_01339() {
   let root = TreeNode.create([1, 2, 3, 4, 5, 6])
+  console.log(maxProduct(root));
+  root = TreeNode.create([1, null, 2, 3, 4, null, null, 5, 6])
   console.log(maxProduct(root));
 
 }

@@ -1,28 +1,32 @@
-import { Graph, Point } from "./Graph"
 /**
  * UnionFind （并查集）
  */
 export class UnionFind {
-  private parent: Map<number, Point>
-  private rank: Map<number, number>
-  private count: number
-
-  constructor(parent?: Map<number, Point>, rank?: Map<number, number>, count?: number) {
-    this.parent = parent || new Map()
-    this.rank = rank || new Map()
-    this.count = count || 0
+  parent: Array<number>
+  size: Array<number>
+  constructor(n: number) {
+    this.parent = new Array(n).fill(0).map(() => -1)
+    this.size = new Array(n).fill(1)
   }
 
-  getParent(p: Point): Point {
-    return this.parent.get(p.val)!
+  find(n: number): number {
+    if (this.parent[n] === -1)
+      return n
+    return this.parent[n] = this.find(this.parent[n])
   }
-
-  isConnected(p1: Point, p2: Point): boolean {
-    return this.getParent(p1) === this.getParent(p2)
-  }
-
-  union(p1: Point, p2: Point) {
-
+  union(a: number, b: number) {
+    const rootA = this.find(a)
+    const rootB = this.find(b)
+    if (rootA === rootB)
+      return false
+    if (this.size[rootA] < this.size[rootB]) {
+      this.parent[rootA] = rootB
+      this.size[rootB] += this.size[rootA]
+    } else {
+      this.parent[rootB] = rootA
+      this.size[rootA] += this.size[rootB]
+    }
+    return true
   }
 }
 
