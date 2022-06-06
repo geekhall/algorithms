@@ -54,6 +54,7 @@ function test_01339() {
   root = TreeNode.create([1, null, 2, 3, 4, null, null, 5, 6])
   console.log(maxProduct(root));
 
+
 }
 
 test_01339()
