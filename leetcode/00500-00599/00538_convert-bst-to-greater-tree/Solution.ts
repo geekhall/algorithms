@@ -29,10 +29,25 @@
  */
 import { TreeNode } from "../../utils/TreeNode"
 function convertBST(root: TreeNode | null): TreeNode | null {
-
+  let sum = 0
+  function dfs(node: TreeNode | null) {
+    if (!node) {
+      return
+    }
+    dfs(node.right)
+    sum += node.val
+    node.val = sum
+    dfs(node.left)
+  }
+  dfs(root)
+  return root
 };
 
 function test_00538() {
+  let root = TreeNode.create([4, 1, 6, 0, 2, 5, 7, null, null, null, 3, null, null, null, 8])
+  TreeNode.print(convertBST(root));
+  root = TreeNode.create([0, null, 1])
+  TreeNode.print(convertBST(root));
 
 }
 
