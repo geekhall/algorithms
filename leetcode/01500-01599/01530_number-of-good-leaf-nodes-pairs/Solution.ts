@@ -30,7 +30,7 @@ function countPairs(root: TreeNode | null, distance: number): number {
     return 0
   }
   if (root.left === null && root.right === null) {
-    return 1
+    return 0
   }
   const left = countPairs(root.left, distance);
   const right = countPairs(root.right, distance);
