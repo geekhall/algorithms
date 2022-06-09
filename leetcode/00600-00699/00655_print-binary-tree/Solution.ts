@@ -49,8 +49,8 @@ function printTree(root: TreeNode | null): string[][] {
       return
     }
     res[row][col] = node.val.toString();
-    dfs(node.left, row + 1, col - Math.pow(2, (height - row - 2)));
-    dfs(node.right, row + 1, col + Math.pow(2, (height - row - 2)));
+    dfs(node.left, row + 1, col - Math.pow(2, (height - row - 1)));
+    dfs(node.right, row + 1, col + ;
   }
   dfs(root, 0, Math.floor(width / 2));
   return res

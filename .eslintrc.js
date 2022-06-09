@@ -16,7 +16,7 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-        '@typescript-eslint/no-unused-vars': 1,
-        '@typescript-eslint/no-multiple-empty-lines': 1,
+        '@typescript-eslint/no-unused-vars': 'warn',
+        '@typescript-eslint/no-multiple-empty-lines': 'warn',
     }
 }
