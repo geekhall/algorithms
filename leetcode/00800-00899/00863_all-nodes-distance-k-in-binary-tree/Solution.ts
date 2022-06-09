@@ -34,6 +34,7 @@ function distanceK(root: TreeNode | null, target: TreeNode | null, k: number): n
   const parentMap = new Map()
   parentMap.set(root, null)
 
+
   queue.push(root)
   while (queue.length > 0) {
     let cur = queue.shift()!
@@ -46,19 +47,13 @@ function distanceK(root: TreeNode | null, target: TreeNode | null, k: number): n
       queue.push(cur.right)
     }
   }
-  const getUpDistance = (node: TreeNode, distance: number) => {
-    if (!node)
-      return
-    let cur = node
-    while (cur) {
-      if (distance === 0 && target.val !== node.val) {
-        result.add(node.val)
-        return
-      }
-      cur = parentMap.get(cur)
-      distance--
-    }
-  }
+  /**
+   * 获取与node节点相距为distance的节点，放置在result中
+   * @param node  节点
+   * @param distance 距离
+   * @param direction 1-仅查找node节点的右子树，2-仅查找node节点的左子树，3-查找node节点的左右子树
+   * @returns
+   */
   const getDownDistance = (node: TreeNode, distance: number, direction: number) => {
     if (!node)
       return
@@ -78,12 +73,13 @@ function distanceK(root: TreeNode | null, target: TreeNode | null, k: number): n
   let distance = k
   let cur = target
   let parent = parentMap.get(cur)
-  if (target === root) {
+  if (target === root) { // 根节点无需向上查找，直接向下查找
     getDownDistance(target, distance, 3)
-  } else {
-    getDownDistance(cur, distance, 3)
+  } else {  // 非根节点
+    getDownDistance(cur, distance, 3)  // 向下查找距离为distance的节点
     while (distance >= 0) {
       distance = distance - 1
+      // 向上查找父节点的另一分支上距离为distance-1的节点
       if (parent && parent.left === cur) {
         getDownDistance(parent, distance, 1)
       } else if (parent && parent.right === cur) {
@@ -91,7 +87,6 @@ function distanceK(root: TreeNode | null, target: TreeNode | null, k: number): n
       }
       cur = parent
       parent = parentMap.get(cur)
-
     }
   }
 
