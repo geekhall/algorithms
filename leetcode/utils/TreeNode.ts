@@ -273,6 +273,56 @@ export class TreeNode {
       return this.search(root.right, value)
     return this.search(root.left, value)
   }
+
+  maxDepth(root: TreeNode | null): number {
+    let max_depth = 0
+    const dfs = (node: TreeNode | null, depth: number) => {
+      if (!node)
+        return
+      max_depth = Math.max(max_depth, depth)
+      dfs(node.left, depth + 1)
+      dfs(node.right, depth + 1)
+    }
+    dfs(root, 1)
+    return max_depth
+  }
+
+  isSymmetric(root: TreeNode | null): boolean {
+    if (!root)
+      return false
+    let res = true
+    const dfs = (a: TreeNode | null, b: TreeNode | null) => {
+      if (!a && !b)
+        return
+      if ((a === null && b !== null) ||
+        (a !== null && b === null) ||
+        a!.val !== b!.val) {
+        res = false
+        return
+      }
+      dfs(a!.left, b!.right)
+      dfs(a!.right, b!.left)
+    }
+    dfs(root.left, root.right)
+    return res
+  }
+
+  hasPathSum(root: TreeNode | null, target_sum: number): boolean {
+    if (!root)
+      return false
+    const dfs = (node: TreeNode | null, current_sum: number): boolean => {
+      if (!node)
+        return false
+
+      current_sum += node.val
+      if (node.left === null && node.right === null) {
+        return current_sum === target_sum
+      }
+      return dfs(node.left, current_sum) || dfs(node.right, current_sum)
+    }
+
+    return dfs(root, 0)
+  }
 }
 
 /**
