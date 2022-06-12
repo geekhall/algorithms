@@ -27,47 +27,44 @@
  */
 import { TreeNode } from "../../utils/TreeNode";
 function serialize(root: TreeNode | null): string {
-  let res = ""
-  const dfs = (node: TreeNode | null): void => {
-    if (!node)
-      return
-    res += node.val + ","
-    dfs(node.left)
-    dfs(node.right)
-  }
-  dfs(root)
-  return res
-};
+  if (root === null) return '';
+  const serializeHelper = function (node: TreeNode | null, result: number[]) {
+    if (node) {
+      result.push(node.val);
+      serializeHelper(node.left, result);
+      serializeHelper(node.right, result);
+    }
+  };
+  let result = new Array();
+  serializeHelper(root, result);
+  return result.join(',');
+}
 
 /*
  * Decodes your encoded data to tree.
  */
 function deserialize(data: string): TreeNode | null {
-  let root = null
-  const dfs = (data: string): TreeNode | null => {
-    if (data === "")
-      return null
-    let arr = data.split(",")
-    let node = new TreeNode(parseInt(arr[0]))
-    let right_index = 0
-    for (let i = 0; i < arr.length; i++) {
-      if (parseInt(arr[i]) > parseInt(arr[0])) {
-        right_index = i
-        break
-      }
-    }
-    node.left = dfs(arr.slice(1, right_index).join(","))
-    node.right = dfs(arr.slice(right_index).join(","))
-    return node
-  }
-  root = dfs(data)
-  return root
+  if (!data)
+    return null;
+
+  const deserializeHelper = function (array: string[], min: number, max: number) {
+    if (array.length === 0) return null;
+    let val = parseInt(array[0]);
+    if (val < min || val > max) return null;
+    array.shift();
+    let root = new TreeNode(val);
+    root.left = deserializeHelper(array, min, val);
+    root.right = deserializeHelper(array, val, max);
+    return root;
+  };
+  const array = data.split(',');
+  return deserializeHelper(array, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
 };
 
 function test_00449() {
   let root = TreeNode.create([2, 1, 3])
   console.log(serialize(root))
-  console.log(deserialize(serialize(root)))
+  TreeNode.print(deserialize(serialize(root)))
 }
 
 test_00449()
