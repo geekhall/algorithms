@@ -106,9 +106,41 @@ function solveNQueens(n: number): string[][] {
 
   return result
 };
+function solveNQueens2(n: number): number {
 
+  /**
+   *
+   * @param limit
+   * @param col_lim 列限制，1表示该位置不可以放置皇后
+   * @param left_dia_lim  左斜线限制，1表示该位置不可以放置皇后
+   * @param right_dia_lim 右斜线限制，1表示该位置不可以放置皇后
+   * @returns
+   */
+  const process = (limit: number, col_lim: number, left_dia_lim: number, right_dia_lim: number) => {
+    if (col_lim === limit)
+      return 1
+    let pos = 0
+    let most_right_one = 0
+    // 所有可以填皇后的列
+    pos = limit & (~(col_lim | left_dia_lim | right_dia_lim))
+    let res = 0
+    while (pos !== 0) {
+      most_right_one = pos & (~pos + 1)
+      pos = pos - most_right_one
+      res += process(limit!, col_lim | most_right_one, (left_dia_lim | most_right_one) << 1, (right_dia_lim | most_right_one) >>> 1)
+    }
+    return res
+  }
+  const generateNumber = (n: number) => {
+    if (n < 1 || n > 32)
+      return 0
+    let limit = n === 32 ? -1 : (1 << n) - 1
+    return process(limit, 0, 0, 0)
+  }
+  return generateNumber(n)
+}
 function test_00051() {
-  console.log(solveNQueens(4));
+  console.log(solveNQueens2(4));
 }
 
 test_00051()
