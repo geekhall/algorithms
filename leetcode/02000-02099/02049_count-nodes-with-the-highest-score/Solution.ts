@@ -34,7 +34,7 @@
  * @param parents
  */
 
-function countHighestScoreNodes(parents: number[]): number {
+function countHighestScoreNodes1(parents: number[]): number {
   let n = parents.length;
   let max_score = 0;
   let count = 0;
@@ -47,7 +47,7 @@ function countHighestScoreNodes(parents: number[]): number {
     arr[parents[i]].push(i);
   }
   console.log(arr);
-  // ;.////
+
   const dfs = (u: number, arr: number[][], n: number): number => {
     let total = 0
     let prod = 1
@@ -73,6 +73,12 @@ function countHighestScoreNodes(parents: number[]): number {
   dfs(0, arr, n)
   return count
 };
+
+function countHighestScoreNodes(parents: number[]): number {
+  let res = 0
+
+  return res
+}
 
 function test_02049() {
   let parents = [-1, 2, 0, 2, 0]
