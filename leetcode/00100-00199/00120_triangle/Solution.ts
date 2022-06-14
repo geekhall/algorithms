@@ -39,6 +39,7 @@ function test_00120() {
   console.log(minimumTotal(triangle))
   triangle = [[1], [2, 3]]
   console.log(minimumTotal(triangle))
-}
+};
+
 
 test_00120()
