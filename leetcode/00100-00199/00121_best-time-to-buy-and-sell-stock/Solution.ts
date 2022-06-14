@@ -28,7 +28,6 @@ function maxProfit(prices: number[]): number {
   let stack = new Array<number>()
   stack.push(prices[0])
   let maxProfit = 0
-  let min = prices[0]
   for (let i = 1; i < prices.length; i++) {
     if (prices[i] > stack[stack.length - 1]) {
       stack.push(prices[i])
@@ -39,13 +38,8 @@ function maxProfit(prices: number[]): number {
           break
         }
       }
-      if (index >= 0) {
-        maxProfit += stack[index] - min
-        min = stack[index]
-        stack = stack.slice(0, index + 1)
-        stack.push(prices[i])
-      }
-
+      stack = stack.slice(0, index + 1)
+      stack.push(prices[i])
     }
     maxProfit = Math.max(maxProfit, stack[stack.length - 1] - stack[0])
   }
