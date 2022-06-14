@@ -27,11 +27,12 @@ function closedIsland(grid: number[][]): number {
   let res = 0
   let totally_surrendled = true
   const dfs = (grid: number[][], i: number, j: number) => {
-    if (i < 0 || i >= grid.length || j < 0 || j > grid[0].length) {
+    if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length) {
       totally_surrendled = false
+      return
     }
-    if (!totally_surrendled || grid[i][j] !== 0) {
-      return 0
+    if (grid[i][j] !== 0) {
+      return
     }
     grid[i][j] = 1
     dfs(grid, i + 1, j)
