@@ -61,7 +61,6 @@ function nextGreaterElement2(nums1: number[], nums2: number[]): number[] {
 
 // monotonic stack
 function nextGreaterElement(nums1: number[], nums2: number[]): number[] {
-  let n = nums1.length
   // let ans: number[] = new Array<number>(nums2.length).fill(-1)
   let stack: number[] = new Array<number>()
   let map = new Map()
