@@ -21,11 +21,24 @@
  * 1 <= nums.length <= 2 * 10 4
  * 1 <= nums[i] <= 10 4
  */
-function deleteAndEarn(nums: number[]): number {
 
+function deleteAndEarn(nums: number[]): number {
+  let sum = new Array(10001).fill(0)
+  // 将所有数值累加到对应的bucket中
+  for (let i of nums) sum[i] += i;
+  // 与 house robber 一样，只需要考虑前一个和后一个数字的情况
+  for (let i = 2; i < 10001; ++i) {
+    sum[i] = Math.max(sum[i - 1], sum[i - 2] + sum[i]);
+  }
+
+  return sum[10000];
 };
 
 function test_00740() {
+  let nums = [3, 4, 2]
+  console.log(deleteAndEarn(nums))
+  nums = [2, 2, 3, 3, 3, 4]
+  console.log(deleteAndEarn(nums))
 
 }
 
