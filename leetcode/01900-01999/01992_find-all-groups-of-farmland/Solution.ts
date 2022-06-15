@@ -39,13 +39,17 @@ function findFarmland(land: number[][]): number[][] {
         let left = j
         let bottom = i
         let right = j
+        // find bottom
         while (bottom < land.length - 1 && land[bottom + 1][j] === 1) {
           bottom++
         }
+        // find right
         while (right < land[i].length - 1 && land[i][right + 1] === 1) {
           right++
         }
+        // 由于是矩形，所以只需要检查下和右两个边界
         result.push([top, left, bottom, right])
+        // 将已经检查过的地块设置为0
         for (let k = top; k <= bottom; k++) {
           for (let l = left; l <= right; l++) {
             land[k][l] = 0
