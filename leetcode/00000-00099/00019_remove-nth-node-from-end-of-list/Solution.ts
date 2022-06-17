@@ -37,12 +37,27 @@
  *     }
  * }
  */
-
-function removeNthFromEnd(head: MapNode | null, n: number): MapNode | null {
-  return null
+import { ListNode } from '../../utils/ListNode';
+function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
+  let dummy = new ListNode(0)
+  dummy.next = head
+  let slow: ListNode | null = dummy
+  let fast: ListNode | null = dummy
+  while (n > 0 && fast) {
+    fast = fast.next
+    n--
+  }
+  while (fast && fast.next) {
+    slow = slow!.next
+    fast = fast.next
+  }
+  slow!.next = slow!.next!.next
+  return dummy.next
 };
-function test_00019() {
 
+function test_00019() {
+  let head = ListNode.create([1, 2, 3, 4, 5]), n = 2
+  ListNode.print(removeNthFromEnd(head, n))
 }
 
 test_00019()

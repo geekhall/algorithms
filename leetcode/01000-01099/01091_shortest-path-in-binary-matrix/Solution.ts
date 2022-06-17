@@ -31,33 +31,49 @@
  * grid[i][j] is 0 or 1
  */
 function shortestPathBinaryMatrix(grid: number[][]): number {
-  let res = 0
-  let checked = new Array(grid.length).fill(0).map(() => new Array(grid[0].length).fill(false))
-
-  const dfs = (grid: number[][], i: number, j: number): number => {
-    if (i < 0 || i >= grid.length || j < 0 || j >= grid[i].length || grid[i][j] === 1 || checked[i][j]) {
-      return 0
-    }
-    checked[i][j] = true
-    grid[i][j] = 1
-    res += 1
-    res += dfs(grid, i + 1, j)
-    res += dfs(grid, i, j + 1)
-    return res
+  if (grid[0][0] !== 0) {
+    return -1
   }
-  for (let i = 0; i < grid.length; i++) {
-    for (let j = 0; j < grid[i].length; j++) {
-      if (grid[i][j] === 0) {
-        res = Math.max(res, dfs(grid, i, j))
+  let res = 1
+  let checked = new Array(grid.length).fill(0).map(() => new Array(grid[0].length).fill(false))
+  let queue = new Array()
+  queue.push([0, 0])
+  checked[0][0] = true
+  const dirs = [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, -1], [-1, 1], [1, -1], [1, 1]]
+  while (queue.length > 0) {
+    let size = queue.length
+    for (let i = 0; i < size; i++) {
+      const cur = queue.shift()
+      if (cur[0] === grid.length - 1 && cur[1] === grid[0].length - 1) {
+        return res
+      }
+
+      for (const [di, dj] of dirs) {
+        const neighbor_x = cur[0] + di
+        const neighbor_y = cur[1] + dj
+        if (neighbor_x < 0 || neighbor_x >= grid.length
+          || neighbor_y < 0 || neighbor_y >= grid[0].length
+          || checked[neighbor_x][neighbor_y] || grid[neighbor_x][neighbor_y] === 1) {
+          continue
+        }
+        checked[neighbor_x][neighbor_y] = true
+        queue.push([neighbor_x, neighbor_y])
       }
     }
+    res++
   }
-  return res === 0 ? -1 : res
+
+  return -1
 };
 
 function test_01091() {
   let grid = [[0, 0, 0], [1, 1, 0], [1, 1, 0]]
   console.log(shortestPathBinaryMatrix(grid))
+  grid = grid = [[1, 0, 0], [1, 1, 0], [1, 1, 0]]
+  console.log(shortestPathBinaryMatrix(grid))
+  grid = [[0, 1], [1, 0]]
+  console.log(shortestPathBinaryMatrix(grid))
+
 }
 
 test_01091()
