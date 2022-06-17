@@ -244,7 +244,7 @@ func hasZero(mat [][]int, row, col int) bool {
 }
 
 func dfsMatrix(mat [][]int, row, col, val int) {
-	// 不超过棋盘氛围，且 val 要比 mat[row][col] 小
+	// 不超过矩阵范围，且 val 要比 mat[row][col] 小
 	if row < 0 || row >= len(mat) || col < 0 || col >= len(mat[0]) || (mat[row][col] <= val) {
 		return
 	}
