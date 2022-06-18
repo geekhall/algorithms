@@ -37,14 +37,18 @@ function nearestExit(maze: string[][], entrance: number[]): number {
   let visited = new Array(m).fill(false).map(() => new Array(n).fill(false))
   queue.push([entrance[0], entrance[1]])
   visited[entrance[0]][entrance[1]] = true
-  let step = 0
+
+  let step = 0 // move step
+  // bfs to find the nearest exit
   while (queue.length > 0) {
     let size = queue.length
     for (let i = 0; i < size; i++) {
       let [row, col] = queue.shift()
+      // found the exit and not the entrance
       if ((row === 0 || row === m - 1 || col === 0 || col === n - 1) && (row !== entrance[0] || col !== entrance[1])) {
         return step
       }
+      // check the neighbors of the current cell
       for (let [r, c] of [[row - 1, col], [row + 1, col], [row, col - 1], [row, col + 1]]) {
         if (r < 0 || r >= m || c < 0 || c >= n || visited[r][c] || maze[r][c] === '+') continue
         queue.push([r, c])
