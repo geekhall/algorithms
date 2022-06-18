@@ -34,21 +34,39 @@ function makeConnected(n: number, connections: number[][]): number {
   if (connections.length < n - 1) {
     return -1
   }
-  // graph[x][y] = true means x is connected to y
-  const graph = new Array(n).fill(0).map(() => new Array(n).fill(false))
-
-  for (let i = 0; i < connections.length; i++) {
-    const [a, b] = connections[i]
-    graph[a][b] = true
-    graph[b][a] = true
+  // count of disjoint-set
+  let disjoint_count: number = 0
+  let disjoint_set: number[] = Array.from({ length: n }).map((_, i) => i)
+  const find = (i: number): number => {
+    if (disjoint_set[i] === i) {
+      return i
+    }
+    return find(disjoint_set[i])
   }
-  const visited = new Array(n).fill(false)
-  const queue: number[] = []
-
+  for (let i = 0; i < connections.length; i++) {
+    let root_i = find(connections[i][0])
+    let root_j = find(connections[i][1])
+    if (root_i !== root_j) {
+      disjoint_set[root_i] = root_j
+    }
+  }
+  // get the count of disjoint-set
+  for (let i = 0; i < disjoint_set.length; i++) {
+    if (disjoint_set[i] === i) {
+      disjoint_count++
+    }
+  }
+  // the answer is the number of disjoint-set - 1
+  return disjoint_count - 1
 };
 
 function test_01319() {
-
+  let n = 4, connections = [[0, 1], [0, 2], [1, 2]]
+  console.log(makeConnected(n, connections))
+  n = 6, connections = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3]]
+  console.log(makeConnected(n, connections))
+  n = 6, connections = [[0, 1], [0, 2], [0, 3], [1, 2]]
+  console.log(makeConnected(n, connections))
 }
 
 test_01319()
