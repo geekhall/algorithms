@@ -26,20 +26,23 @@
  * 0 <= prices[i] <= 10 4
  */
 function maxProfit(prices: number[]): number {
-  let maxProfit = 0
-  for (let i = 0; i < prices.length; i++) {
-    for (let j = i + 1; j < prices.length; j++) {
+  // dp[i] represents the max profit you can get at day i
+  let dp = Array(prices.length + 1).fill(0)
+  for (let i = prices.length - 1; i >= 0; i--) {
+    for (let j = prices.length - 1; j >= i; j--) {
       let profit = prices[j] - prices[i]
-      if (profit > maxProfit) {
-        maxProfit = profit
-      }
+      dp[i] = Math.max(dp[i], profit + dp[j + 1])
     }
   }
-  return maxProfit
+  return dp[0]
 };
 
 function test_00122() {
   let prices = [7, 1, 5, 3, 6, 4]
+  console.log(maxProfit(prices))
+  prices = [1, 2, 3, 4, 5]
+  console.log(maxProfit(prices))
+  prices = [7, 6, 4, 3, 1]
   console.log(maxProfit(prices))
 }
 
