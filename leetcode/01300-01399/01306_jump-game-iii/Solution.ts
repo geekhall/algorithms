@@ -25,15 +25,37 @@
  * 0 <= start < arr.length
  */
 function canReach(arr: number[], start: number): boolean {
-  let res = false
-  let visited = new Array(arr.length).fill(0)
+  let queue = [start]
+  let visited = new Set()
+  while (queue.length) {
+    let cur = queue.shift()!
+    if (arr[cur] === 0) {
+      return true
+    }
+    if (visited.has(cur)) {
+      continue
+    }
+    visited.add(cur)
+    let next = cur + arr[cur]
+    if (next < arr.length) {
+      queue.push(next)
+    }
+    next = cur - arr[cur]
+    if (next >= 0) {
+      queue.push(next)
+    }
+  }
 
-
-  return res
+  return false
 };
 
 function test_01306() {
-
+  let arr = [4, 2, 3, 0, 3, 1, 2], start = 5
+  console.log(canReach(arr, start))
+  arr = [4, 2, 3, 0, 3, 1, 2], start = 0
+  console.log(canReach(arr, start))
+  arr = [3, 0, 2, 1, 2], start = 2
+  console.log(canReach(arr, start))
 }
 
 test_01306()
