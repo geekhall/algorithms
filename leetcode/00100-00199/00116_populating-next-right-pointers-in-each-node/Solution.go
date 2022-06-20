@@ -7,6 +7,29 @@ type Node struct {
 	Next  *Node
 }
 
+func connect(root *Node) *Node {
+	if root == nil {
+		return nil
+	}
+	root.Next = nil
+	dfs(root)
+	return root
+}
+
+func dfs(current *Node) {
+	if current.Right != nil { // 由于是满二叉树，所以不需要校验Left
+		current.Left.Next = current.Right
+		if current.Next == nil {
+			current.Right.Next = nil
+		} else {
+			current.Right.Next = current.Next.Left
+		}
+
+		dfs(current.Left)
+		dfs(current.Right)
+	}
+}
+
 /**
  * Definition for a Node.
  * type Node struct {
