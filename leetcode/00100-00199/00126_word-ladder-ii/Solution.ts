@@ -28,12 +28,60 @@
  * beginWord != endWord
  * All the words in wordList are unique.
  */
-function solution() {
+function findLadders(beginWord: string, endWord: string, wordList: string[]): string[][] {
+  const isValid = (a: string, b: string): boolean => {
+    let diff = 0
+    if (a.length !== b.length) {
+      return false
+    }
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] !== b[i]) {
+        diff++
+        if (diff > 1) {
+          return false
+        }
+      }
+    }
+    return diff === 1
+  }
+  if (!wordList.includes(endWord)) {
+    return []
+  }
+  let queue = [beginWord]
+  let visited = new Set()
+  let count = 0
+  let paths = [beginWord]
+  let res = []
+  while (queue.length) {
+    let size = queue.length
+    let removeSet = new Set()
+    for (let i = 0; i < size; i++) {
+      let cur = queue.shift()!
+      paths.push(cur)
+      if (cur === endWord) {
+        res.push(paths)
+      }
+      if (visited.has(cur)) {
+        continue
+      }
+      visited.add(cur)
+      for (let i = 0; i < wordList.length; i++) {
+        if (isValid(cur, wordList[i]) && !visited.has(wordList[i])) {
+          queue.push(wordList[i])
+          removeSet.add(wordList[i])
+        }
+      }
+    }
+    paths.filter((v, i) => !removeSet.has(v))
+    count++
+  }
 
-}
+  return res
+};
 
 function test_00126() {
-
+  let beginWord = "hit", endWord = "cog", wordList = ["hot", "dot", "dog", "lot", "log", "cog"]
+  console.log(findLadders(beginWord, endWord, wordList))
 }
 
 test_00126()
