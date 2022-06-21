@@ -46,3 +46,5 @@ public static void heapify(int[] arr, int index, int heapSize) {
 }
 
 ```
+## 相关题目
+* 1642. Furthest Building You Can Reach
