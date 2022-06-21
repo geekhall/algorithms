@@ -27,10 +27,26 @@
  * All the strings of wordDict are unique.
  */
 function wordBreak(s: string, wordDict: string[]): boolean {
-
+  const dp: boolean[] = new Array(s.length + 1).fill(false);
+  dp[0] = true;
+  for (let i = 0; i < s.length; i++) {
+    for (let j = 0; j < i + 1; j++) {
+      if (dp[j] && wordDict.includes(s.substring(j, i + 1))) {
+        dp[i + 1] = true;
+        break;
+      }
+    }
+  }
+  return dp[s.length];
 };
 
 function test_00139() {
+  let s = "leetcode", wordDict = ["leet", "code"]
+  console.log(wordBreak(s, wordDict));
+  s = "applepenapple", wordDict = ["apple", "pen"]
+  console.log(wordBreak(s, wordDict));
+  s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
+  console.log(wordBreak(s, wordDict));
 
 }
 
