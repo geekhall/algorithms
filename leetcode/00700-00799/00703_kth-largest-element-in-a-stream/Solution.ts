@@ -24,22 +24,37 @@ import { MinHeap } from "../../utils/MinHeap"
  * At most 10 4 calls will be made to add.
  * It is guaranteed that there will be at least k elements in the array when you search for the k th element.
  */
+import { PriorityQueueTemplate } from "../../utils/PriorityQueue"
+
 class KthLargest {
-  heap: MinHeap
+  heap: PriorityQueueTemplate<number>
+  size: number
   constructor(k: number, nums: number[]) {
-    this.heap = new MinHeap()
-    for (let i = 0; i < nums.length; i++) {
-      this.add(nums[i])
+    this.size = k
+    this.heap = new PriorityQueueTemplate<number>((a, b) => a - b)
+    for (let num of nums) {
+      this.add(num)
     }
   }
 
   add(val: number): number {
-
+    if (this.heap.size() < this.size) {
+      this.heap.enqueue(val)
+    } else if (val > this.heap.peek()!) {
+      this.heap.dequeue()
+      this.heap.enqueue(val)
+    }
+    return this.heap.peek()!
   }
 }
 
 function test_00703() {
-
+  let kthLargest = new KthLargest(3, [4, 5, 8, 2]);
+  console.log(kthLargest.add(3));   // return 4
+  console.log(kthLargest.add(5));   // return 5
+  console.log(kthLargest.add(10));  // return 5
+  console.log(kthLargest.add(9));   // return 8
+  console.log(kthLargest.add(4));   // return 8
 }
 
 test_00703()
