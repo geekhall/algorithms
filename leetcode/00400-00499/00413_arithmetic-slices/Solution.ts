@@ -24,11 +24,24 @@
  * -1000 <= nums[i] <= 1000
  */
 function numberOfArithmeticSlices(nums: number[]): number {
-
+  let curr = 0, sum = 0;
+  for (let i = 2; i < nums.length; i++)
+    if (nums[i] - nums[i - 1] == nums[i - 1] - nums[i - 2]) {
+      curr += 1;
+      sum += curr;
+    } else {
+      curr = 0;
+    }
+  return sum;
 };
 
 function test_00413() {
-
+  let nums = [1, 2, 3, 4]
+  console.log(numberOfArithmeticSlices(nums));
+  nums = [1]
+  console.log(numberOfArithmeticSlices(nums));
+  nums = [1, 2, 3, 4, 5, 6, 7]
+  console.log(numberOfArithmeticSlices(nums));
 }
 
 test_00413()

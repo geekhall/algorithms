@@ -21,7 +21,7 @@
  * 1 <= prices.length <= 10 5
  * 0 <= prices[i] <= 10 4
  */
-function maxProfit(prices: number[]): number {
+function maxProfit1(prices: number[]): number {
   if (prices.length < 2) {
     return 0
   }
@@ -46,6 +46,24 @@ function maxProfit(prices: number[]): number {
 
   return maxProfit
 };
+
+function maxProfit(prices: number[]): number {
+  let lsf = Number.MAX_SAFE_INTEGER
+  let op = 0;
+  let profit = 0;
+
+  for (let i = 0; i < prices.length; i++) {
+    if (prices[i] < lsf) {
+      lsf = prices[i];
+    }
+    profit = prices[i] - lsf;
+    if (op < profit) {
+      op = profit;
+    }
+  }
+  return op;
+}
+
 function test_00121() {
   let prices = [7, 1, 5, 3, 6, 4]
   console.log(maxProfit(prices));
