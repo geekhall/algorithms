@@ -62,8 +62,5 @@ function test_01855() {
   console.log(maxDistance(nums1, nums2))
   nums1 = [30, 29, 19, 5], nums2 = [25, 25, 25, 25, 25]
   console.log(maxDistance(nums1, nums2))
-
-
 }
-
 test_01855()

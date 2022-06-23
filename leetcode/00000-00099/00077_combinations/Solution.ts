@@ -19,59 +19,33 @@
  * 1 <= n <= 20
  * 1 <= k <= n
  */
-function combine1(n: number, k: number): number[][] {
-  let res: number[][] = []
-  let cur: number[] = []
-  let i = 1
-  let j = 1
-  let count = 0
-  while (count < k) {
-    if (i > n) {
-      i = 1
-      j++
-    }
-    if (j > n) {
-      j = 1
-      i++
-    }
-    if (i === j) {
-      cur.push(i)
-      count++
-    } else {
-      cur.push(i)
-      cur.push(j)
-      count += 2
-    }
-    if (count === k) {
-      res.push(cur)
-    }
-  }
-  return res
-};
 function combine(n: number, k: number): number[][] {
-
-  const dfs = (start: number, end: number, cur: number[], res: number[][]) => {
-    if (cur.length === k) {
-      res.push(cur)
+  let arr = new Array(n).fill(0).map((_, i) => i + 1)
+  let res = new Array()
+  let cur = new Array()
+  const dfs = (arr: number[], cur: number[], k: number) => {
+    if (k === 0) {
+      res.push(cur.slice())
       return
     }
-    for (let i = start; i <= end; i++) {
-      cur.push(i)
-      dfs(i + 1, end, cur, res)
+    for (let i = 0; i < arr.length; i++) {
+      cur.push(arr[i])
+      dfs(arr.slice(i + 1), cur, k - 1)
       cur.pop()
     }
   }
-  const res: number[][] = []
-  dfs(1, n, [], res)
+  dfs(arr, cur, k)
   return res
-}
+};
 
 function test_00077() {
   let n = 4
   let k = 2
-  let res = combine(n, k)
-  console.log(res)
-
+  console.log(combine(n, k))
+  n = 1
+  k = 1
+  console.log(combine(n, k))
+  let cur = Array.from({ length: 5 }).map((_, i) => i + 1)
 }
 
 test_00077()
