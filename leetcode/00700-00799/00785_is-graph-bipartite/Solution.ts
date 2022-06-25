@@ -32,13 +32,44 @@
  * If graph[u] contains v, then graph[v] contains u.
  */
 function isBipartite(graph: number[][]): boolean {
-  let res = false
-
-  return res
+  const n = graph.length
+  // group 用来表示每个节点的分组，如：group[0] = 1 表示第一个节点是分组1
+  const group = Array.from({ length: n }).fill(0)
+  /**
+   *
+   * @param index the index of the node
+   * @param g the group of the node
+   * @returns true if the node is bipartite, false otherwise
+   */
+  const dfs = (index: number, g: number) => {
+    group[index] = g
+    for (let i = 0; i < graph[index].length; i++) {
+      if (group[graph[index][i]] === g) {
+        return false
+      }
+      if (group[graph[index][i]] === 0) {
+        if (!dfs(graph[index][i], -g)) {
+          return false
+        }
+      }
+    }
+    return true
+  }
+  for (let i = 0; i < n; i++) {
+    if (group[i] === 0) {
+      if (!dfs(i, 1)) {
+        return false
+      }
+    }
+  }
+  return true
 };
 
 function test_00785() {
-
+  let graph = [[1, 2, 3], [0, 2], [0, 1, 3], [0, 2]]
+  console.log(isBipartite(graph)) // false
+  graph = [[1, 3], [0, 2], [1, 3], [0, 2]]
+  console.log(isBipartite(graph)) // true
 }
 
 test_00785()
