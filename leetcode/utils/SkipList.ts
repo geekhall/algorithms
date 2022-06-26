@@ -24,6 +24,24 @@ export class SkipList {
   public constructor(compare: (a: any, b: any) => number) {
     this.compare = compare
   }
+  public randomLevel(): number {
+    let level = 0
+    while (Math.random() < SkipList.PROBABILITY && level < this.maxLevel) {
+      level++
+    }
+    return level
+  }
+  public find(value: any): SkipListNode | null {
+    let node = this.head
+    while (node !== null) {
+      let i = 0
+      while (i < node.next.length && this.compare(value, node.next[i].key) > 0) {
+        i++
+      }
+      node = node.next[i]
+    }
+    return node
+  }
   public insert(value: any): void {
     this.head = this.insertNode(this.head, value)
   }
