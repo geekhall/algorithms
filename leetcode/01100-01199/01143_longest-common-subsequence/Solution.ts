@@ -28,11 +28,27 @@
  * text1 and text2 consist of only lowercase English characters.
  */
 function longestCommonSubsequence(text1: string, text2: string): number {
-
+  // dp[i][j] = longest common subsequence of text1[0..i] and text2[0..j]
+  let dp = Array.from({ length: text1.length + 1 }, () => Array.from({ length: text2.length + 1 }, () => 0))
+  for (let i = 1; i <= text1.length; ++i) {
+    for (let j = 1; j <= text2.length; ++j) {
+      if (text1[i - 1] === text2[j - 1])
+        dp[i][j] = dp[i - 1][j - 1] + 1
+      else
+        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1])
+    }
+  }
+  console.log(dp)
+  return dp[text1.length][text2.length]
 };
 
 function test_01143() {
-
+  let text1 = "abcde", text2 = "ace"
+  console.log(longestCommonSubsequence(text1, text2));
+  text1 = "abc", text2 = "abc"
+  console.log(longestCommonSubsequence(text1, text2));
+  text1 = "abc", text2 = "def"
+  console.log(longestCommonSubsequence(text1, text2));
 }
 
 test_01143()
