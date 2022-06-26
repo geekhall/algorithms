@@ -30,11 +30,43 @@
  * 1 <= n <= 10 9
  */
 function prisonAfterNDays(cells: number[], n: number): number[] {
-
+  let m = new Map()
+  let idx = 0
+  const getNextDay = (cells: number[]): number[] => {
+    let cells2 = Array.from({ length: 8 }, () => 0)
+    for (let i = 1; i < 7; ++i)
+      cells2[i] = cells[i - 1] == cells[i + 1] ? 1 : 0;
+    return cells2
+  }
+  while (idx < n) {
+    idx++;
+    cells = getNextDay(cells);
+    let key = cells.join('')
+    if (m.has(key)) {
+      let cycle = idx - m.get(key)
+      n = n % cycle
+      if (n == 0)
+        n = cycle
+      for (let i = 1; i < n; ++i) {
+        cells = getNextDay(cells)
+        // console.log("idx:", idx, "cycle:", cycle, "n:", n, m.get(key), key, "cells:", cells)
+      }
+      break
+    } else {
+      m.set(cells.join(''), idx)
+    }
+  }
+  // console.log(m)
+  return cells
 };
 
 function test_00957() {
-
+  let cells = [0, 1, 0, 1, 1, 0, 0, 1], n = 7
+  console.log(prisonAfterNDays(cells, n))
+  cells = [1, 0, 0, 1, 0, 0, 1, 0], n = 1000000000
+  console.log(prisonAfterNDays(cells, n)) // expect [0,0,1,1,1,1,1,0]
+  cells = [1, 1, 0, 1, 1, 0, 0, 1], n = 300663720
+  console.log(prisonAfterNDays(cells, n)) // expect [0,0,1,0,0,1,1,0]
 }
 
 test_00957()
