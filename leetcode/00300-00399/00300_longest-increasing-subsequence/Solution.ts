@@ -26,25 +26,24 @@
  * Follow up: Can you come up with an algorithm that runs in O(n log(n)) time complexity?
  */
 function lengthOfLIS(nums: number[]): number {
-  let m = nums.length
-  let dp = new Array(m + 1).fill(0).map(() => new Array(m + 1).fill(0))
-  for (let i = 1; i <= m; i++) {
-    dp[i][i] = 1
-  }
-  for (let i = m - 1; i >= 0; i--) {
-    for (let j = i + 1; j <= m; j++) {
-      if (nums[i] < nums[j]) {
-        dp[i][j] = dp[i][j - 1] + 1
-      } else {
-        dp[i][j] = Math.max(dp[i][j - 1], dp[i + 1][j])
-      }
+  // dp[i] means the length of the longest increasing subsequence ending at i
+  // dp[i] 表示到i位置为止（算上自己）最长递增子序列的长度
+  let dp = Array.from({ length: nums.length }, () => 1)
+  for (let i = 1; i < nums.length; ++i) {
+    for (let j = 0; j < i; ++j) {
+      if (nums[i] > nums[j])
+        dp[i] = Math.max(dp[i], dp[j] + 1)
     }
   }
-  return dp[0][m]
+  return Math.max(...dp)
 };
 function test_00300() {
   let nums = [10, 9, 2, 5, 3, 7, 101, 18]
   console.log(lengthOfLIS(nums));
+  nums = [0, 1, 0, 3, 2, 3]
+  console.log(lengthOfLIS(nums));
+  nums = [7, 7, 7, 7, 7, 7, 7]
+
 }
 
 test_00300()
