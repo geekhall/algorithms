@@ -21,9 +21,9 @@
  * Follow up: Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
  */
 // Similar to 00692_top-k-frequent-words
-import { PriorityQueueTemplate } from '../../utils/PriorityQueue'
+import { PriorityQueue } from '../../utils/PriorityQueue'
 function topKFrequent(nums: number[], k: number): number[] {
-  let pq = new PriorityQueueTemplate<number[]>((a: number[], b: number[]) => {
+  let pq = new PriorityQueue<number[]>((a: number[], b: number[]) => {
     return b[1] - a[1]
   })
   let m = new Map<number, number>()

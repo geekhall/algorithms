@@ -28,9 +28,9 @@
  * 1 <= n <= 5 * 10 4
  * 1 <= target[i] <= 10 9
  */
-import { PriorityQueueTemplate } from '../../utils/PriorityQueue'
+import { PriorityQueue } from '../../utils/PriorityQueue'
 function isPossible(target: number[]): boolean {
-  let pq = new PriorityQueueTemplate<number>((a: number, b: number) => b - a)
+  let pq = new PriorityQueue<number>((a: number, b: number) => b - a)
   let total = 0;
   for (let element of target) {
     total += element

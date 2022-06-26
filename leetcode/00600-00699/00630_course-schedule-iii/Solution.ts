@@ -25,13 +25,13 @@
  * 1 <= courses.length <= 10 4
  * 1 <= duration i, lastDay i <= 10 4
  */
-import { PriorityQueueTemplate } from '../../utils/PriorityQueue'
+import { PriorityQueue } from '../../utils/PriorityQueue'
 
 function scheduleCourse(courses: number[][]): number {
   //Sort the courses by their deadlines
   // (Greedy! We have to deal with courses with early deadlines first)
   courses.sort((a, b) => a[1] - b[1])
-  let pq = new PriorityQueueTemplate<number>((a, b) => b - a);
+  let pq = new PriorityQueue<number>((a, b) => b - a);
   let time = 0;
   for (let c of courses) {
     time += c[0]; // add current course to a priority queue

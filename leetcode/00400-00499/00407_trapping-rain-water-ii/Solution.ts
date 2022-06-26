@@ -19,13 +19,13 @@
  * 1 <= m, n <= 200
  * 0 <= heightMap[i][j] <= 2 * 10 4
  */
-import { PriorityQueue, PriorityQueueTemplate } from '../../utils/PriorityQueue'
+import { NumberPriorityQueue, PriorityQueue } from '../../utils/PriorityQueue'
 function trapRainWater(heightMap: number[][]): number {
   let res = 0
   let m = heightMap.length
   let n = (m === 0 ? 0 : heightMap[0].length)
   // 按照height排序的小根堆（优先队列）
-  let pq = new PriorityQueueTemplate<number[]>((a, b) => a[2] - b[2])
+  let pq = new PriorityQueue<number[]>((a, b) => a[2] - b[2])
   let visited = Array.from({ length: m }, () => Array.from({ length: n }, () => false))
   const dirs = [[0, 1], [0, -1], [1, 0], [-1, 0]]
 

@@ -23,10 +23,10 @@
  */
 // 求最小的第K个或者前K个，用大根堆保存最小的K个元素
 // 求最大的第K个或者后K个，用小根堆保存最大的K个元素
-import { PriorityQueueTemplate } from '../../utils/PriorityQueue';
+import { PriorityQueue } from '../../utils/PriorityQueue';
 
 function kClosest(points: number[][], k: number): number[][] {
-  let pq = new PriorityQueueTemplate<number[]>((a, b) => {
+  let pq = new PriorityQueue<number[]>((a, b) => {
     return b[0] * b[0] + b[1] * b[1] - (a[0] * a[0] + a[1] * a[1])    // Math.sqrt can be omitted
   })
 

@@ -1,5 +1,5 @@
 import { UnionFind } from "./UnionFind"
-import { PriorityQueue } from "./PriorityQueue"
+import { NumberPriorityQueue } from "./PriorityQueue"
 
 export class Side {
   weight: number
@@ -187,7 +187,7 @@ export class Graph {
     edges.sort((a, b) => a.weight - b.weight)
     let uf = new UnionFind(graph.points)
     const compare = (a: Side, b: Side) => { return a.weight - b.weight }
-    let pq = new PriorityQueue<Side>(compare)
+    let pq = new NumberPriorityQueue<Side>(compare)
     for (let edge of edges) {
       pq.enqueue(edge)
     }
@@ -202,7 +202,7 @@ export class Graph {
 
   static dijkstra(graph: Graph, start: Point) {
     let result = new Array()
-    let pq = new PriorityQueue<Point>((a, b) => a.val - b.val)
+    let pq = new NumberPriorityQueue<Point>((a, b) => a.val - b.val)
     for (let point of graph.points) {
       point[1].distance = Number.MAX_VALUE
       pq.enqueue(point[1])

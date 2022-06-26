@@ -19,13 +19,13 @@
  * 1 <= nums.length <= 10 5
  * 1 <= nums[i] <= 10 7
  */
-import { PriorityQueueTemplate } from '../../utils/PriorityQueue';
+import { PriorityQueue } from '../../utils/PriorityQueue';
 // 100% 100%
 function halveArray(nums: number[]): number {
   let sum = nums.reduce((a, b) => a + b, 0);
   let half = sum / 2;
   let count = 0;
-  let pq = new PriorityQueueTemplate<number>((a, b) => b - a);
+  let pq = new PriorityQueue<number>((a, b) => b - a);
   for (let i = 0; i < nums.length; i++) {
     pq.enqueue(nums[i]);
   }

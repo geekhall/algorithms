@@ -27,9 +27,9 @@
  * nums[i] consists of only digits.
  * nums[i] will not have any leading zeros.
  */
-import { PriorityQueueTemplate } from '../../utils/PriorityQueue';
+import { PriorityQueue } from '../../utils/PriorityQueue';
 function kthLargestNumber(nums: string[], k: number): string {
-  let pq = new PriorityQueueTemplate<string>((a, b) => {
+  let pq = new PriorityQueue<string>((a, b) => {
     // return parseInt(a) - parseInt(b) // can not use parseInt here, because it will overflow when the number is large
     if (a.length === b.length) {
       return a.localeCompare(b)

@@ -1,5 +1,5 @@
 import { Side } from "./Graph";
-export class PriorityQueue {
+export class NumberPriorityQueue {
   private heap: number[]
   private count: number
   constructor(count?: number) {
@@ -65,7 +65,7 @@ export class PriorityQueue {
     }
   }
 }
-export class PriorityQueueTemplate<T> {
+export class PriorityQueue<T> {
   private heap: T[]
   private count: number
   private compare: (a: T, b: T) => number

@@ -24,13 +24,13 @@
  * Follow-up: Could you solve it in O(n log(k)) time and O(n) extra space?
  */
 
-import { PriorityQueueTemplate } from '../../utils/PriorityQueue'
+import { PriorityQueue } from '../../utils/PriorityQueue'
 function topKFrequent(words: string[], k: number): string[] {
   type WordCount = {
     word: string,
     count: number
   }
-  let pq = new PriorityQueueTemplate<WordCount>((a: WordCount, b: WordCount) => {
+  let pq = new PriorityQueue<WordCount>((a: WordCount, b: WordCount) => {
     if (a.count === b.count) {
       return a.word > b.word ? 1 : -1
     }

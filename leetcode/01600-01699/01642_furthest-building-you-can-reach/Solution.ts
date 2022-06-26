@@ -34,10 +34,10 @@
  */
 
 // Greedy may be wrong , Use Heap (Priority Queue)
-import { PriorityQueue } from '../../utils/PriorityQueue'
+import { NumberPriorityQueue } from '../../utils/PriorityQueue'
 function furthestBuilding(heights: number[], bricks: number, ladders: number): number {
 
-  let pq = new PriorityQueue();
+  let pq = new NumberPriorityQueue();
   for (let i = 0; i < heights.length - 1; i++) {
     let gap = heights[i + 1] - heights[i];
     // put gap into priority queue（min-heap）
