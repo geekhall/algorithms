@@ -23,6 +23,7 @@
  * 0 <= nums.length <= 3000
  * -10 5 <= nums[i] <= 10 5
  */
+// slow version, O(N^3) 5%
 function threeSum(nums: number[]): number[][] {
   let res: number[][] = []
   if (nums.length < 2)
