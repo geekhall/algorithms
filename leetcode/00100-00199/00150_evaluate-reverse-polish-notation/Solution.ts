@@ -28,10 +28,41 @@
  * tokens[i] is either an operator: "+", "-", "*", or "/", or an integer in the range [-200, 200].
  */
 function evalRPN(tokens: string[]): number {
-
+  const stack: number[] = [];
+  for (let token of tokens) {
+    if (token === '+') {
+      stack.push(stack.pop()! + stack.pop()!);
+    } else if (token === '-') {
+      stack.push(-stack.pop()! + stack.pop()!);
+    } else if (token === '*') {
+      stack.push(stack.pop()! * stack.pop()!);
+    } else if (token === '/') {
+      let divisor = stack.pop()!;
+      let dividend = stack.pop()!;
+      if (divisor === 0) {
+        stack.push(0);
+      }
+      let quotient = dividend / divisor;
+      if (quotient < 0) {
+        stack.push(Math.ceil(quotient));
+      } else {
+        stack.push(Math.floor(quotient));
+      }
+    } else {
+      stack.push(parseInt(token));
+    }
+    console.log(stack)
+  }
+  return stack[0];
 };
 
 function test_00150() {
+  let tokens = ["2", "1", "+", "3", "*"]
+  console.log(evalRPN(tokens))
+  tokens = ["4", "13", "5", "/", "+"]
+  console.log(evalRPN(tokens))
+  tokens = ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]
+  console.log(evalRPN(tokens))
 
 }
 
