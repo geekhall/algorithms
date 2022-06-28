@@ -1,59 +1,84 @@
 class SkipListNode {
-  key: number;
   val: number;
-  next: SkipListNode[];
-  constructor(key: number, val: number, next: SkipListNode[]) {
-    this.key = key;
+  next: SkipListNode | null;
+  down: SkipListNode | null;
+  constructor(val: number, next: SkipListNode | null, down: SkipListNode | null) {
     this.val = val;
     this.next = next;
-  }
-  public isKeyLessThan(key: number): boolean {
-    return this.key < key;
-  }
-  public isKeyEqual(key: number): boolean {
-    return this.key === key;
+    this.down = down;
   }
 }
-export class SkipList {
+export class Skiplist {
   static PROBABILITY = 0.5;
 
   public head: SkipListNode | null = null
   public size: number = 0;
   public maxLevel: number = 0;
-  public compare: (a: any, b: any) => number
-  public constructor(compare: (a: any, b: any) => number) {
-    this.compare = compare
+  public constructor() {
+    this.head = new SkipListNode(-1, null, null)
   }
-  public randomLevel(): number {
-    let level = 0
-    while (Math.random() < SkipList.PROBABILITY && level < this.maxLevel) {
-      level++
-    }
-    return level
-  }
-  public find(value: any): SkipListNode | null {
-    let node = this.head
-    while (node !== null) {
-      let i = 0
-      while (i < node.next.length && this.compare(value, node.next[i].key) > 0) {
-        i++
+
+  public print(): void {
+    let cur = this.head
+    while (cur) {
+      let arr = []
+      let cur_level: SkipListNode | null = cur
+      while (cur_level) {
+        arr.push(cur_level.val)
+        cur_level = cur_level.next
       }
-      node = node.next[i]
+      console.log("## : ", arr.join(' -> '));
+      cur = cur.down
     }
-    return node
   }
-  public insert(value: any): void {
-    this.head = this.insertNode(this.head, value)
+  public search(target: number): boolean {
+    let cur = this.head
+    while (cur !== null) {
+      while (cur.next && cur.next.val < target) {
+        cur = cur.next
+      }
+      if (cur.next && target === cur.next.val) {
+        return true
+      }
+      cur = cur.down
+    }
+    return false
   }
-  public insertNode(node: SkipListNode | null, value: any): SkipListNode | null {
-    if (node === null) {
-      return new SkipListNode(value, value, [])
+  public add(num: number): void {
+    let stack = new Array<SkipListNode>()
+    let cur = this.head
+    while (cur) {
+      while (cur.next && cur.next.val < num) {
+        cur = cur.next
+      }
+      stack.push(cur)
+      cur = cur.down
     }
-    let next = node.next
-    let i = 0
-    while (i < next.length && this.compare(value, next[i].key) > 0) {
-      i++
+    let insert = true
+    let down = null
+    while (insert && stack.length > 0) {
+      cur = stack.pop()!
+      cur.next = new SkipListNode(num, cur.next, down)
+      down = cur.next
+      insert = Math.random() < Skiplist.PROBABILITY
     }
-    return node
+    if (insert)
+      this.head = new SkipListNode(-1, null, this.head)
+  }
+
+  public erase(num: number): boolean {
+    let cur = this.head
+    let found = false
+    while (cur) {
+      while (cur.next && cur.next.val < num) {
+        cur = cur.next
+      }
+      if (cur.next && cur.next.val === num) {
+        cur.next = cur.next.next
+        found = true
+      }
+      cur = cur.down
+    }
+    return found
   }
 }
