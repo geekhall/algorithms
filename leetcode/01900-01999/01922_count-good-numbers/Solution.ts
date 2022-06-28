@@ -31,22 +31,39 @@ function countGoodNumbers1(n: number): number {
   let pre = 1
   let cur = 1
   for (let i = 1; i <= n; i++) {
-    if (i % 2 === 0) {
-      cur = pre * 4
-    } else {
+    pre = cur
+    if (i & 1) {
       cur = pre * 5
+    } else {
+      cur = pre * 4
     }
     cur = cur % 1000000007
   }
   return cur
 }
+
+//  ( 5 ^ even indices) * (4 ^ odd indices)
 function countGoodNumbers(n: number): number {
-  const modPow = (a: number, b: number): number => {
-    if (b === 0) return 1;
-    let p = modPow(a, b / 2)
-    return (p * p * (b & 1 ? a : 1)) % 1000000007;
+
+  const mod = 1000000007n;
+  let even = Math.ceil(n / 2);
+  let odd = n - even;
+  const modPow = (x: number, y: number): bigint => {
+    if (y === 0) {
+      return 1n;
+    }
+    let res = 1n;
+    res *= modPow(x, Math.floor(y / 2)); // cut in half in each recursion
+    res *= res;
+    if (y & 1) { // if y is odd
+      res *= BigInt(x);
+    }
+    res %= mod;
+    return res;
   }
-  return (modPow(5, (n + 1) / 2)) * modPow(4, n / 2) % 1000000007;
+  let ans = modPow(5, even) * modPow(4, odd);
+  ans %= mod;
+  return Number(ans);
 };
 
 function test_01922() {
