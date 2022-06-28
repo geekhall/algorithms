@@ -26,10 +26,32 @@
  * s contains only lowercase English letters.
  */
 function minDeletions(s: string): number {
+  let m = new Map()
+  for (let i = 0; i < s.length; i++) {
+    m.set(s[i], m.get(s[i]) ? m.get(s[i]) + 1 : 1)
+  }
 
+  let res = 0
+  let newMap = new Map([...m.entries()].sort((a, b) => b[1] - a[1]))
+  let val_set = new Set()
+  newMap.forEach((v, k) => {
+    if (val_set.has(v)) {
+      while (v > 0 && val_set.has(v)) {
+        res++
+        v--
+      }
+    }
+    val_set.add(v)
+  })
+  return res
 };
 function test_01647() {
-
+  let s = "aab"
+  console.log(minDeletions(s))
+  s = "aaabbbcc"
+  console.log(minDeletions(s))
+  s = "ceabaacb"
+  console.log(minDeletions(s))
 }
 
 test_01647()
