@@ -25,29 +25,30 @@ function multiply(num1: string, num2: string): string {
   if (num1 === "0" || num2 === "0") {
     return "0";
   }
-  let m = num1.length;
-  let n = num2.length;
-  let dp = new Array(m + 1).fill(0).map(() => new Array(n + 1).fill(0));
-  for (let i = 1; i <= m; i++) {
-    for (let j = 1; j <= n; j++) {
-      dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j] + dp[i][j - 1] - dp[i - 1][j - 1];
-      dp[i][j] %= 10;
+
+  let m = num1.length
+  let n = num2.length
+  let pos: number[] = Array.from({ length: m + n }, () => 0);
+
+  for (let i = m - 1; i >= 0; i--) {
+    for (let j = n - 1; j >= 0; j--) {
+      let mul = (num1.charCodeAt(i) - '0'.charCodeAt(0))
+        * (num2.charCodeAt(j) - '0'.charCodeAt(0));
+      let p1 = i + j, p2 = i + j + 1;
+      let sum = mul + pos[p2];
+
+      pos[p1] += Math.floor(sum / 10)
+      pos[p2] = (sum) % 10;
     }
   }
-  let res = "";
-  for (let i = m; i >= 1; i--) {
-    for (let j = n; j >= 1; j--) {
-      if (dp[i][j] !== 0) {
-        res += dp[i][j];
-      }
+  let res = ""
+  for (let p of pos) {
+    if (p !== 0 || res !== "") {
+      res += p;
     }
   }
   return res;
 };
-
-
-
-
 function test_00043() {
   console.log(multiply("123", "456"));  // expect 56088
   console.log(multiply("123456789", "987654321"));  //"121932631112635269"
