@@ -22,25 +22,34 @@
  */
 // number bigger than 10^18 will overflow?
 function multiply(num1: string, num2: string): string {
-  let n1: number = 0;
-  let n2: number = 0;
-  let l1 = num1.length;
-  let l2 = num2.length;
-  for (let i = 0; i < l1; i++) {
-    n1 += (num1.charCodeAt(i) - 0x30) * Math.pow(10, l1 - i - 1)
+  if (num1 === "0" || num2 === "0") {
+    return "0";
   }
-  for (let i = 0; i < l2; i++) {
-    n2 = (num2.charCodeAt(i) - 0x30) * Math.pow(10, l2 - i - 1)
+  let m = num1.length;
+  let n = num2.length;
+  let dp = new Array(m + 1).fill(0).map(() => new Array(n + 1).fill(0));
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j] + dp[i][j - 1] - dp[i - 1][j - 1];
+      dp[i][j] %= 10;
+    }
   }
-
-  return String(n1 * n2)
+  let res = "";
+  for (let i = m; i >= 1; i--) {
+    for (let j = n; j >= 1; j--) {
+      if (dp[i][j] !== 0) {
+        res += dp[i][j];
+      }
+    }
+  }
+  return res;
 };
 
 
 
 
 function test_00043() {
-  console.log(multiply("123", "456"));
+  console.log(multiply("123", "456"));  // expect 56088
   console.log(multiply("123456789", "987654321"));  //"121932631112635269"
   console.log(987654321 * 123456789);
   console.log(121932631112635269);
