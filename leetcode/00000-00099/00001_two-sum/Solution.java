@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 class Solution{
-    
+
     // Solution 1
-    // We can use two for loops to loop through the array 
+    // We can use two for loops to loop through the array
     // and find the indices of the two numbers that add up to the target number.
     // 使用双循环，不推荐。
     public static int[] findTwoSum1(int [] nums, int target){
@@ -19,12 +19,12 @@ class Solution{
             }
         }
         return new int[]{};
-    } 
+    }
 
-    // Solution 2 
-    // O(n) time, O(n) space 
+    // Solution 2
+    // O(n) time, O(n) space
     // We can use a hash table to store the numbers as keys and the indices as values.
-    // Then we check to see if the difference (target - number) is in the hash table. 
+    // Then we check to see if the difference (target - number) is in the hash table.
     // If it is, return both the index of the number and the index of the difference.//
     // 使用一个HashTable来存储原数组（值作为Key，索引作为Value）
     // 然后查看target - number是否在HashTable中存在，
@@ -38,21 +38,21 @@ class Solution{
                 return new int [] {numMap.get(another), i};
             } else {
                 numMap.put(nums[i], i);
-            }   
+            }
         }
         return new int[]{};
     }
 
     // Solution 3
     // O(nlogn) time, O(1) space
-    // You can use the two pointer method. 
-    // After sorting the array and creating an array of the numbers and their indices, 
-    // create two pointers i and j where i = 0 and j = len(array)-1. 
-    // If the sum is smaller than target, increment i, if larger, increment j. 
+    // You can use the two pointer method.
+    // After sorting the array and creating an array of the numbers and their indices,
+    // create two pointers i and j where i = 0 and j = len(array)-1.
+    // If the sum is smaller than target, increment i, if larger, increment j.
     // If equal, return the indices.。
     // 使用双指针
     // 将原数组排序后使用双指针向内遍历查找
-    public static int[] findTwoSum3(int []nums, int target){        
+    public static int[] findTwoSum3(int []nums, int target){
         // [num, index]
         int[][] mergedNums = new int[nums.length][];
         for (int i = 0; i< nums.length; i++){
