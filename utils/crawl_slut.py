@@ -19,6 +19,18 @@ session = requests.Session()
 user_agent = r'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36'
 
 
+class CrawlSlut:
+    'Crawl leetcode problem description.'
+    url = 'https://leetcode.com'
+
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    def displayUrl(self):
+        print("LeetCode baseUrl: %s" % CrawlSlut.url)
+
+
 def login(username, password):
     url = 'https://leetcode.com'
     cookies = session.get(url).cookies
@@ -126,9 +138,11 @@ def get_problem_by_slug(slug):
     # content_cn = question_cn['translatedContent']
     # content_cn = question_cn['content']
     return questionFrontendId, questionTitleSlug, questionTitle, difficulty, content
-################################
-# write to csv file
-################################
+
+
+'''
+write to csv file
+'''
 
 
 def write_to_csv(file_name, list_data):
@@ -141,6 +155,19 @@ def get_id_range(id):
     return range_id+"00-"+range_id+"99"
 
 
+def file_exists(id, slut, type):
+    workbase_dir = '/Users/yiny/workspace/algorithms/leetcode/'
+    id_range = get_id_range(id)
+    slut_dir = workbase_dir + id_range + "/" + id.zfill(5) + "_" + slut
+    print(slut_dir)
+    if not os.path.exists(slut_dir):
+        os.mkdir(slut_dir)
+    solution_file = slut_dir + "/Solution.ts"
+    if not os.path.exists(solution_file):
+        print("solution file %s not exists", solution_file)
+        return False
+
+
 def file_exists(id, slut):
     workbase_dir = '/Users/yiny/workspace/algorithms/leetcode/'
     id_range = get_id_range(id)
@@ -149,10 +176,34 @@ def file_exists(id, slut):
     if not os.path.exists(slut_dir):
         os.mkdir(slut_dir)
     solution_file_ts = slut_dir + "/Solution.ts"
+    solution_file_go = slut_dir + "/Solution.go"
+    solution_file_java = slut_dir + "/Solution.java"
+    solution_file_py = slut_dir + "/Solution.py"
+    # solution_file_c = slut_dir + "/Solution.c"
+    # solution_file_cpp = slut_dir + "/Solution.cpp"
+    solution_file_rust = slut_dir + "/Solution.rs"
     readme_file = slut_dir + "/README.md"
     readme_file_cn = slut_dir + "/README.zh-CN.md"
     if not os.path.exists(solution_file_ts):
         print("typescript solution file not exists", solution_file_ts)
+        return False
+    if not os.path.exists(solution_file_go):
+        print("go solution file not exists", solution_file_go)
+        return False
+    if not os.path.exists(solution_file_java):
+        print("java solution file not exists", solution_file_java)
+        return False
+    if not os.path.exists(solution_file_py):
+        print("python solution file not exists", solution_file_py)
+        return False
+    # if not os.path.exists(solution_file_c):
+    #     print("python solution file not exists", solution_file_c)
+    #     return False
+    # if not os.path.exists(solution_file_cpp):
+    #     print("python solution file not exists", solution_file_cpp)
+    #     return False
+    if not os.path.exists(solution_file_rust):
+        print("python solution file not exists", solution_file_rust)
         return False
     if not os.path.exists(readme_file):
         print("readme file not exists", readme_file)
@@ -167,6 +218,8 @@ def file_exists(id, slut):
 ################################
 # save file
 ################################
+
+
 def save_file(id, slut, title, difficulty, content):
     workbase_dir = '/Users/yiny/workspace/algorithms/leetcode/'
     id_range = get_id_range(id)
@@ -178,6 +231,9 @@ def save_file(id, slut, title, difficulty, content):
     solution_file_go = slut_dir + "/Solution.go"
     solution_file_py = slut_dir + "/Solution.py"
     solution_file_java = slut_dir + "/Solution.java"
+    # solution_file_c = slut_dir + "/Solution.c"
+    # solution_file_cpp = slut_dir + "/Solution.cpp"
+    solution_file_rust = slut_dir + "/Solution.rs"
     # solution_file_c = slut_dir + "/Solution.c"
     # solution_file_cpp = slut_dir + "/Solution.cpp"
     readme_file = slut_dir + "/README.md"
@@ -210,12 +266,18 @@ def save_file(id, slut, title, difficulty, content):
         sf.write(" * Difficulty: " + difficulty + "\n")
         sf.write(" * Description: " + content_text + "\n")
         sf.write(" */\n")
+        sf.write("package main\n")
+        sf.write("\n")
+        sf.write("import (\n")
+        sf.write("  \"fmt\"\n")
+        sf.write(")\n")
+        sf.write("\n")
         sf.write("func solution() {\n")
-        sf.write("  \n")
+        sf.write("  fmt.Print(\"solution\\n\") \n")
         sf.write("}\n")
         sf.write("\n")
         sf.write("func test_" + id + "() {\n")
-        sf.write("  \n")
+        sf.write("  solution()\n")
         sf.write("}\n")
         sf.write("\n")
         sf.write("func main() {\n")
@@ -224,18 +286,24 @@ def save_file(id, slut, title, difficulty, content):
         sf.close()
     if not os.path.exists(solution_file_py):
         sf = open(solution_file_py, 'w')
-        sf.write("/'''\n")
+        sf.write("#!/usr/bin/env python3\n")
+        sf.write("# -*- coding:UTF-8 -*-\n")
+        sf.write("'''\n")
         sf.write(" ID:    " + id + "\n")
         sf.write(" Title: " + title + "\n")
         sf.write(" Difficulty: " + difficulty + "\n")
         sf.write(" Description: " + content_text + "\n")
-        sf.write("''' \n")
+        sf.write("'''\n")
+        sf.write("\n")
+        sf.write("\n")
         sf.write("def solution():\n")
-        sf.write("    \n")
+        sf.write("    print(\"solution\")\n")
+        sf.write("    pass\n")
         sf.write("\n")
         sf.write("\n")
-        sf.write("def test_" + id + ":\n")
-        sf.write("    \n")
+        sf.write("def test_" + id + "():\n")
+        sf.write("    solution()\n")
+        sf.write("    pass\n")
         sf.write("\n")
         sf.write("\n")
         sf.write("if __name__ == '__main__':\n")
@@ -251,16 +319,92 @@ def save_file(id, slut, title, difficulty, content):
         sf.write(" * Description: " + content_text + "\n")
         sf.write(" */\n")
         sf.write("class Solution {\n")
-        sf.write("  \n")
-        sf.write("  public static void function(){\n")
-        sf.write("    \n")
+        sf.write("\n")
+        sf.write("  public static void solution(){\n")
+        sf.write("    System.out.println(\"solution\");\n")
         sf.write("  }\n")
+        sf.write("\n")
         sf.write("  public static void test_" + id + "() {\n")
-        sf.write("    \n")
+        sf.write("    Solution.solution();\n")
         sf.write("  }\n")
+        sf.write("\n")
         sf.write("  public static void main(String[] args) {\n")
-        sf.write("    Solution.test_" + id + "()\n")
+        sf.write("    Solution.test_" + id + "();\n")
         sf.write("  }\n")
+        sf.write("}\n")
+        sf.write("\n")
+        sf.close()
+    # if not os.path.exists(solution_file_c):
+    #     sf = open(solution_file_c, 'w')
+    #     sf.write("/**\n")
+    #     sf.write(" * ID:    " + id + "\n")
+    #     sf.write(" * Title: " + title + "\n")
+    #     sf.write(" * Difficulty: " + difficulty + "\n")
+    #     sf.write(" * Description: " + content_text + "\n")
+    #     sf.write(" */\n")
+    #     sf.write("\n")
+    #     sf.write("#include <stdio.h>\n")
+    #     sf.write("\n")
+    #     sf.write("void solution() {\n")
+    #     sf.write("  cout << \"solution\" << endl;\n")
+    #     sf.write("}\n")
+    #     sf.write("\n")
+    #     sf.write("function test_" + id + "() {\n")
+    #     sf.write("  solution();\n")
+    #     sf.write("}\n")
+    #     sf.write("\n")
+    #     sf.write("int main(){\n")
+    #     sf.write("  test_" + id + "();\n")
+    #     sf.write("  return 0;\n")
+    #     sf.write("}\n")
+    #     sf.write("\n")
+    #     sf.close()
+    # if not os.path.exists(solution_file_cpp):
+    #     sf = open(solution_file_cpp, 'w')
+    #     sf.write("/**\n")
+    #     sf.write(" * ID:    " + id + "\n")
+    #     sf.write(" * Title: " + title + "\n")
+    #     sf.write(" * Difficulty: " + difficulty + "\n")
+    #     sf.write(" * Description: " + content_text + "\n")
+    #     sf.write(" */\n")
+    #     sf.write("\n")
+    #     sf.write("#include <iostream>\n")
+    #     sf.write("using namespace std;\n")
+    #     sf.write("\n")
+    #     sf.write("void solution() {\n")
+    #     sf.write("  cout << \"solution\" << endl;\n")
+    #     sf.write("}\n")
+    #     sf.write("\n")
+    #     sf.write("function test_" + id + "() {\n")
+    #     sf.write("  solution();\n")
+    #     sf.write("}\n")
+    #     sf.write("\n")
+    #     sf.write("int main(){\n")
+    #     sf.write("  test_" + id + "();\n")
+    #     sf.write("  return 0;\n")
+    #     sf.write("}\n")
+    #     sf.write("\n")
+    #     sf.close()
+    if not os.path.exists(solution_file_rust):
+        sf = open(solution_file_rust, 'w')
+        sf.write("/**\n")
+        sf.write(" * ID:    " + id + "\n")
+        sf.write(" * Title: " + title + "\n")
+        sf.write(" * Difficulty: " + difficulty + "\n")
+        sf.write(" * Description: " + content_text + "\n")
+        sf.write(" */\n")
+        sf.write("\n")
+        sf.write("\n")
+        sf.write("fn solution() {\n")
+        sf.write("  println!(\"solution\");\n")
+        sf.write("}\n")
+        sf.write("\n")
+        sf.write("fn test_" + id + "() {\n")
+        sf.write("  solution();\n")
+        sf.write("}\n")
+        sf.write("\n")
+        sf.write("fn main(){\n")
+        sf.write("  test_" + id + "();\n")
         sf.write("}\n")
         sf.write("\n")
         sf.close()
@@ -329,6 +473,7 @@ if __name__ == '__main__':
     if len(sys.argv) >= 3:
         language = str(sys.argv[2])
         print("language", language)
+
     # get_problem_by_slug('running-sum-of-1d-array')
     # get_problem_by_slug(slut)
     # save_file("01480", "running-sum-of-1d-array",
