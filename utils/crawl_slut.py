@@ -716,7 +716,8 @@ if __name__ == '__main__':
         if is_number(leetcode_id):
             id = leetcode_id
             real_slut = problem_dict[id]
-            create_single_slug(id)
+            # create_single_slug(id)
+            create_single_slug_with_lang(id, 'ts')
         else:
             print("developing...")
     else:

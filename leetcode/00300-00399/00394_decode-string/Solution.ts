@@ -30,9 +30,26 @@
  * All the integers in s are in the range [1, 300].
  */
 function decodeString(s: string): string {
-  let arr = new Array()
-
-  return arr.join('')
+  const stack: any[] = []
+  let curNum = 0
+  let curString = ''
+  for (const c of s) {
+    if (c === '[') {
+      stack.push(curString)
+      stack.push(curNum)
+      curString = ''
+      curNum = 0
+    } else if (c === ']') {
+      const num = stack.pop() as number
+      const str = stack.pop() as string
+      curString = str + curString.repeat(num)
+    } else if (c.match(/\d/)) {
+      curNum = curNum * 10 + parseInt(c)
+    } else {
+      curString += c
+    }
+  }
+  return curString
 };
 
 function test_00394() {

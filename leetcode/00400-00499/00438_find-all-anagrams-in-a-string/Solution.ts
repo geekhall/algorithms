@@ -20,13 +20,41 @@
  * s and p consist of lowercase English letters.
  */
 function findAnagrams(s: string, p: string): number[] {
-
+  if (s.length < p.length) return []
+  const ans: number[] = []
+  const pMap: Map<string, number> = new Map()
+  const sMap: Map<string, number> = new Map()
+  for (const c of p) {
+    pMap.set(c, (pMap.get(c) || 0) + 1)
+  }
+  const isAnagram = (sMap: Map<string, number>, pMap: Map<string, number>) => {
+    for (const [key, value] of pMap) {
+      if (sMap.get(key) !== value) return false
+    }
+    return true
+  }
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i]
+    sMap.set(c, (sMap.get(c) || 0) + 1)
+    if (i >= p.length) {
+      const d = s[i - p.length]
+      sMap.set(d, sMap.get(d)! - 1)
+      if (sMap.get(d) === 0) sMap.delete(d)
+    }
+    if (i >= p.length - 1) {
+      if (isAnagram(sMap, pMap)) ans.push(i - p.length + 1)
+    }
+  }
+  return ans
 };
 
 function test_00438() {
   let s = "cbaebabacd", p = "abc"
   console.log(findAnagrams(s, p))
-  s = 
+  s = "abab", p = "ab"
+  console.log(findAnagrams(s, p))
+  s = "baa", p = "aa"
+  console.log(findAnagrams(s, p))
 }
 
 test_00438()
