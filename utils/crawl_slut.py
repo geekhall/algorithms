@@ -192,9 +192,9 @@ def file_exists(id, slut):
     solution_file_go = slut_dir + "/Solution.go"
     solution_file_java = slut_dir + "/Solution.java"
     solution_file_py = slut_dir + "/Solution.py"
+    solution_file_rust = slut_dir + "/Solution.rs"
     # solution_file_c = slut_dir + "/Solution.c"
     # solution_file_cpp = slut_dir + "/Solution.cpp"
-    solution_file_rust = slut_dir + "/Solution.rs"
     readme_file = slut_dir + "/README.md"
     readme_file_cn = slut_dir + "/README.zh-CN.md"
     if not os.path.exists(solution_file_ts):
@@ -209,15 +209,15 @@ def file_exists(id, slut):
     if not os.path.exists(solution_file_py):
         print("python solution file not exists", solution_file_py)
         return False
+    if not os.path.exists(solution_file_rust):
+        print("python solution file not exists", solution_file_rust)
+        return False
     # if not os.path.exists(solution_file_c):
     #     print("python solution file not exists", solution_file_c)
     #     return False
     # if not os.path.exists(solution_file_cpp):
     #     print("python solution file not exists", solution_file_cpp)
     #     return False
-    if not os.path.exists(solution_file_rust):
-        print("python solution file not exists", solution_file_rust)
-        return False
     if not os.path.exists(readme_file):
         print("readme file not exists", readme_file)
         return False
