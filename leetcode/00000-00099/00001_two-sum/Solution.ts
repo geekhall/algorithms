@@ -30,29 +30,21 @@
  * Follow-up: Can you come up with an algorithm that is less than O(n 2) time complexity?
  */
 function twoSum(nums: number[], target: number): number[] {
-  let m = new Map
+  let map = new Map()
   for (let i = 0; i < nums.length; i++) {
     let another = target - nums[i]
-    if (m.has(another)) {
-      return [m.get(another), i]
+    if (map.has(another)) {
+      return [map.get(another), i]
     }
-    m.set(nums[i], i)
+    map.set(nums[i], i)
   }
   return []
-};
+}
+
 function test_00001() {
   let testdata: number[] = [2, 7, 11, 13]
   let target: number = 9
-  console.log(twoSum1(testdata, target));
+  console.log(twoSum(testdata, target));
 }
 
 test_00001()
-
-// Usage of hashmap
-// let hashmap: HashMap<number> = {}
-// hashmap['1'] = 10
-// hashmap['2'] = 22
-// console.log(hashmap);
-// console.log(hashmap['1']); // 10
-// console.log(hashmap['3']); // undefined
-// console.log(typeof hashmap['3']);  // undefined
