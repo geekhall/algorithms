@@ -30,8 +30,10 @@ class Solution:
         if not s:
             return []
         dict = {}
+        # dict表示每个字符的最后一次出现的位置
         for i in range(len(s)):
             dict[s[i]] = i
+        print(dict)
         res = []
         start = 0
         end = 0
@@ -44,8 +46,8 @@ class Solution:
 
 
 def test_00763():
-    print(Solution.solution(Solution, 0))
-    pass
+    print(Solution().partitionLabels("ababcbacadefegdehijhklij"))
+    print(Solution().partitionLabels("eccbbbbdec"))
 
 
 if __name__ == '__main__':
