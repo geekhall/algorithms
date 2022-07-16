@@ -24,32 +24,33 @@
  * s consists of lowercase and/or uppercase English letters only.
  */
 function longestPalindrome(s: string): number {
-  const str2map = (str: string): Map<string, number> => {
-    let m = new Map<string, number>()
-    for (let i = 0; i < str.length; i++) {
-      if (m.get(str[i]) === undefined) {
-        m.set(str[i], 1)
-      } else {
-        m.set(str[i], m.get(str[i])! + 1)
-      }
-    }
-    return m
+  if (s.length === 1) {
+    return 1;
   }
-  let m = str2map(s)
-  let res = 0
-  let containsOdd = false
-  m.forEach((v, k) => {
-    if (v % 2 === 0) {
-      res += v
+  let max = 0;
+  let map = new Map<string, number>();
+  for (let i = 0; i < s.length; i++) {
+    let c = s[i];
+    if (map.has(c)) {
+      map.set(c, map.get(c)! + 1);
     } else {
-      containsOdd = true
-      if (v > 1) {
-        res += v - 1
-      }
+      map.set(c, 1);
     }
-  })
-  return containsOdd ? res + 1 : res
-};
+  }
+  let oddFlag = false;
+  for (let [key, value] of map) {
+    if (value % 2 === 0) {
+      max += value;
+    } else {
+      max += value - 1;
+      oddFlag = true;
+    }
+  }
+  if (oddFlag) {
+    max += 1;
+  }
+  return max;
+}
 
 function test_00409() {
   let s = "abccccdd"

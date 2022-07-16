@@ -25,37 +25,28 @@
  * num1 and num2 don't have any leading zeros except for the zero itself.
  */
 function addStrings(num1: string, num2: string): string {
-  let n1 = num1.length
-  let n2 = num2.length
-  let arr1 = Array.from(num1)
-  let arr2 = Array.from(num2)
-  let n = n1
-  if (n1 > n2) {
-    arr2.unshift(...Array.from({ length: n1 - n2 }, v => '0'))
-    n = n1
-  }
-  if (n2 > n1) {
-    arr1.unshift(...Array.from({ length: n2 - n1 }, v => '0'))
-    n = n2
-  }
-
-  let upFlag = 0
-  let res = Array.from({ length: n }, v => '0')
-
-  for (let i = n - 1; i >= 0; i--) {
-    let t = parseInt(arr1[i]) + parseInt(arr2[i]) + upFlag
-    if (t >= 10) {
-      upFlag = 1
-    } else {
-      upFlag = 0
+  let carry = 0;
+  let result = "";
+  let i = num1.length - 1;
+  let j = num2.length - 1;
+  while (i >= 0 || j >= 0) {
+    let sum = carry;
+    if (i >= 0) {
+      sum += num1.charCodeAt(i) - 0x30;
     }
-    res[i] = (t % 10).toString()
+    if (j >= 0) {
+      sum += num2.charCodeAt(j) - 0x30;
+    }
+    result = sum % 10 + result;
+    carry = Math.trunc(sum / 10);
+    i--;
+    j--;
   }
-  if (upFlag === 1) {
-    res.unshift('1')
+  if (carry > 0) {
+    result = carry + result;
   }
-  return res.join('')
-};
+  return result;
+}
 
 function test_00415() {
   let num1 = "11", num2 = "123"
