@@ -42,7 +42,6 @@ function kClosest(points: number[][], k: number): number[][] {
     res.push(pq.dequeue()!)
   }
   return res
-
 };
 
 function test_00973() {
