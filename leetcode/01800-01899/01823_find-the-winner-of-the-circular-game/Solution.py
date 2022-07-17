@@ -1,8 +1,10 @@
-/**
- * ID:    01823
- * Title: Find the Winner of the Circular Game
- * Difficulty: Medium
- * Description: There are n friends that are playing a game. The friends are sitting in a circle and are numbered from 1 to n in clockwise order. More formally, moving clockwise from the i th friend brings you to the (i+1) th friend for 1 <= i < n, and moving clockwise from the n th friend brings you to the 1 st friend.
+#!/usr/bin/env python3
+# -*- coding:UTF-8 -*-
+'''
+ ID:    01823
+ Title: Find the Winner of the Circular Game
+ Difficulty: Medium
+ Description: There are n friends that are playing a game. The friends are sitting in a circle and are numbered from 1 to n in clockwise order. More formally, moving clockwise from the i th friend brings you to the (i+1) th friend for 1 <= i < n, and moving clockwise from the n th friend brings you to the 1 st friend.
  *
  * The rules of the game are as follows:
  *
@@ -25,29 +27,25 @@
  * Constraints:
  *
  * 1 <= k <= n <= 500
- */
-function findTheWinner(n: number, k: number): number {
-  // queue : 1 => n
-  let queue = Array.from({ length: n }, (_, i) => i + 1);
-  while (queue.length !== 1) {
-    let x = k % queue.length;
-    for (let i = 0; i < x; i++) {
-      queue.push(queue.shift() as number);
-    }
-    queue.pop();
-  }
-  return queue[0];
-};
+ *
+ * Follow up:
+ *
+ * Could you solve this problem in linear time with constant space?
+'''
 
-function test_01823() {
-  let n = 5;
-  let k = 2;
-  let winner = findTheWinner(n, k);
-  console.log(winner);
-  n = 6;
-  k = 5;
-  winner = findTheWinner(n, k);
-  console.log(winner);
-}
 
-test_01823()
+class Solution:
+    def findTheWinner(self, n: int, k: int) -> int:
+        if n == 1:
+            return 1
+        player = []
+
+
+def test_01823():
+    print(Solution().findTheWinner(5, 2))
+    print(Solution().findTheWinner(6, 5))
+    pass
+
+
+if __name__ == '__main__':
+    test_01823()

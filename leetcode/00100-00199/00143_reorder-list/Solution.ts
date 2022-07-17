@@ -27,10 +27,33 @@
  */
 import { ListNode } from "../../utils/ListNode"
 function reorderList(head: ListNode | null): void {
+  if (!head || !head.next) {
+    return
+  }
+  const stack: ListNode[] = [];
 
+  while (head) {
+    stack.push(head);
+    head = head.next;
+  }
+
+  while (stack.length >= 3) {
+    stack[0].next = stack[stack.length - 1];
+    stack[stack.length - 1].next = stack[1];
+    stack[stack.length - 2].next = null;
+
+    stack.shift();
+    stack.pop();
+  }
 };
 
 function test_00143() {
+  let l1 = ListNode.create([1, 2, 3, 4])
+  reorderList(l1)
+  ListNode.print(l1)
+  let l2 = ListNode.create([1, 2, 3, 4, 5])
+  reorderList(l2)
+  ListNode.print(l2)
 
 }
 
