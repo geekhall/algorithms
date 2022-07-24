@@ -29,22 +29,17 @@
  * 1 <= piles[i] <= 10 9
  */
 function minEatingSpeed(piles: number[], h: number): number {
-  let max = Math.max(...piles)
-  let min = Math.min(...piles)
-  let mid = Math.floor((max + min) / 2)
-  while (mid > 0) {
-    let count = 0
-    for (let i = 0; i < piles.length; i++) {
-      count += Math.ceil(piles[i] / mid)
-    }
-    if (count > h) {
-      min = mid
-    } else {
-      max = mid
-    }
-    mid = Math.floor((max + min) / 2)
+  let l = 1, r = 1000000000;
+  while (l < r) {
+    let m = Math.trunc((l + r) / 2), total = 0;
+    for (let p of piles)
+      total += Math.trunc((p + m - 1) / m)
+    if (total > h)
+      l = m + 1;
+    else
+      r = m;
   }
-  return min
+  return l;
 };
 
 function test_00875() {
